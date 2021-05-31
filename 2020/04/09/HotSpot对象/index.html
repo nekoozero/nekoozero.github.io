@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: JVM, Nekoo">
+    <meta name="keywords" content="HotSpot 对象, Nekoo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -19,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类: JVM | Nekoo</title>
+    <title>HotSpot 对象 | Nekoo</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -246,380 +246,367 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <!--
- * @Author: your name
- * @Date: 2021-05-30 14:06:24
- * @LastEditTime: 2021-05-31 20:45:24
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\bg-cover-content.ejs
--->
-<div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div id="yiYan" class="title center-align" style="color:rgb(237, 237, 245)">
-                
-                    <!-- 朝如青丝暮成雪 -->
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                    
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">HotSpot 对象</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-
-window.onload=function(){
-    $.ajax({url:"https://infinity-api.infinitynewtab.com/random-wallpaper",success:function(result){
-        var bannerUrl = result.data[0].src.originalSrc;
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');                
-    }});
-    $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
-        var res = result.hitokoto;
-        $('#yiYan').html(res);                
-    }});
-}
 
 
-    // 每天切换 banner 图.  Switch banner image every day.
-    // var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    // $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
-
-
-    </div>
-</div>
-
-<main class="content">
+<main class="container content">
 
     
-
-<div id="category-cloud" class="container chip-container">
+    <!-- 文章内容详情 -->
+<div id="artDetail">
     <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JVM/" class="post-category">
+                                JVM
+                            </a>
+                        
+                    </div>
+                    
+                </div>
             </div>
-            <div class="tag-chips">
+
+            <div class="post-info">
                 
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-09
+                </div>
                 
+
                 
-                <a href="/categories/CONCURRENT/" title="CONCURRENT: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">CONCURRENT
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+
                 
+
                 
-                <a href="/categories/JVM/" title="JVM: 11">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F5EEF8;">JVM
-                        <span class="tag-length">11</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/JVM%E5%93%AA%E9%82%A3%E4%BA%9B%E5%86%85%E5%AD%98%E9%9C%80%E8%A6%81%E5%9B%9E%E6%94%B6%EF%BC%9F/" title="JVM哪那些内存需要回收？: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D5F5E3;">JVM哪那些内存需要回收？
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
+
                 
             </div>
         </div>
-    </div>
-</div>
+        <hr class="clearfix">
 
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>对象在<code>Java</code>堆中的分配、布局和访问。</p>
+<h3 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h3><p>先进行类加载检查（没有则会执行相应的类加载过程），之后会为对象分配内存大小，<strong>对象所需的内存大小在类加载完成后便可完全确定</strong>。那么如何从<code>Java</code>堆中划分出等大的内存呢？</p>
+<ol>
+<li><strong>指针碰撞</strong>：假设<code>Java</code>堆中的内存是绝对规整的，所有被使用过的放在一边，未被使用过的放在另一边，中间有指针作为指示器，分配内存就是将指针向未被使用的内存空间挪动一段与对象大小相同的距离。</li>
+<li><strong>空闲列表</strong>：如果<code>Java</code>堆中的内存不是规整的，已被使用的和未被使用的交叉在一起，没有办法进行指针碰撞，那么虚拟机就必须维护一个列表，记录哪块内存使用的，哪块内存是未被使用的，在分配的时候找到足够大的空间给对象实例，并更新列表上的记录。</li>
+</ol>
+<p><strong>选择哪种方式是由<code>Java</code>堆是否规整决定的，而是否规整则是由采用的垃圾收集器是否带有空间压缩整理的能力决定的。</strong><code>Serial</code>、<code>ParNew</code>等带压缩整理过程的收集器，系统采用得到算法是指针碰撞，而<code>CMS</code>基于清除算法的收集器，理论上只能使用空闲列表来分配内存了。</p>
+<p>虚拟机创建对象是非常频繁的过程，即使是修改一个指针的位置，在并发的情况下也并不是线程安全的。有两种解决方案：</p>
+<ol>
+<li>对分配内存空间的动作进行同步处理，虚拟机是采用<code>CAS</code>配上失败重试的方式保证更新操作的原子性，但即使这样，也会影响到分配内存的效率。</li>
+<li>本地线程分配缓冲（<code>Thread Local Allocation Buffer,TLAB</code>）：内存分配的动作按照线程划分在不同的空间之中，每个线程在<code>Java</code>堆中预先分配一小块内存。虚拟机是否使用<code>TLAB</code>，通过<code>-XX:+UseTLAB</code>参数来设定。</li>
+</ol>
+<p>内存分配完成之后，虚拟机必须将分配到的内存空间（不包括对象头）都初始化为零值，如果使用了<code>TLAB</code>,这一项工作也可以在<code>TLAB</code>分配时顺便进行。这一步保证了对象的实例字段在代码中可以不赋初始值就直接使用。</p>
+<p>之后会对对象的对象头进行设置。在这些工作完成之后，一个新的对象就已经产生了，接着才是构造函数的执行等等。</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/04/08/508e088fff0acbb9b824d10993991eab.png" alt="对象创建过程.png"></p>
+<h3 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h3><p>对象在堆内存中的存储布局可以划分为三个部分：<strong>对象头（<code>Header</code>）、实例数据（<code>Instance Data</code>）、对齐填充（<code>Padding</code>）。</strong></p>
+<h4 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h4><p>主要分为两部分：</p>
+<ol>
+<li><p>主要用于存储<strong>对象自身的运行时数据</strong>，如<strong>哈希码、<code>GC</code>分代年龄、锁状态标志、线程持有锁、偏向线程<code>ID</code>、偏向时间戳</strong>等。这部分数据长度为32个比特或者64个比特（32位和64位的虚拟机），成为“<code>Mark Word</code>”。为了在极小的空间内存储尽量多的数据，它被设计成一个有这个动态定义的数据结构，根据对象的状态复用自己的存储空间。</p>
+<table>
+<thead>
+<tr>
+<th>存储内容</th>
+<th>标志位</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>对象哈希码、对象分代年龄</td>
+<td>01</td>
+<td>未锁定</td>
+</tr>
+<tr>
+<td>指向锁记录的指针</td>
+<td>00</td>
+<td>轻量级锁</td>
+</tr>
+<tr>
+<td>指向重量级锁的指针</td>
+<td>10</td>
+<td>膨胀（重量级锁）</td>
+</tr>
+<tr>
+<td>空、不需要记录信息</td>
+<td>11</td>
+<td><code>GC</code>标记</td>
+</tr>
+<tr>
+<td>偏向线程<code>ID</code>、偏向时间戳、对象分代年龄</td>
+<td>01</td>
+<td>可偏</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>另一部分是<strong>类型指针</strong>，对象指向它的类型元数据的指针，通过这个指针来确定该对象是哪个类的实例。</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/04/25/HotSpot-.jpg" alt="HotSpot-lock.jpg"></p>
+</li>
+</ol>
+<p>此外，如果对象是一个<code>Java</code>数组，那么<strong>对象头中还必须有一块用于记录数组长度的数据</strong>，因为虚拟机可以通过普通对象的元数据信息来确定普通对象的大小，但是如果数组的长度是不确定的，将无法通过元数据来推断出数组的大小。</p>
+<h4 id="实例数据"><a href="#实例数据" class="headerlink" title="实例数据"></a>实例数据</h4><p>是对象真正存储的有效信息，即在代码里面所定义的各种类型的字段内容，无论是从父类继承下来的还是在子类中定义的字段都必须记录起来。</p>
+<h4 id="对齐填充"><a href="#对齐填充" class="headerlink" title="对齐填充"></a>对齐填充</h4><p>这并不是必然存在的，也没有特别的含义，仅仅起着占位符的作用。<code>HotSpot</code>虚拟机的自动内存管理系统要求对象起始地址必须是8字节的整数倍，任何对象的大小都必须是8字节的整数倍。对象头部分已经被设计是8字节的倍数（1倍或2倍），因此，如果对象实例数据部分没有对齐的话，就需要通过对齐填充来补全。</p>
+<h2 id="对象的访问定位"><a href="#对象的访问定位" class="headerlink" title="对象的访问定位"></a>对象的访问定位</h2><p><code>Java</code>程序通过栈上的<code>reference</code>数据来操作堆上的具体对象，在虚拟机规范中只规定了他是一个指向对象的引用，并能没有定义该怎么去实现，所以对象访问方式也是由虚拟机实现而定的。主流的有两种：</p>
+<ol>
+<li><p>句柄访问，<code>Java</code>堆中可能会划分出一块内存作为句柄池，<code>reference</code>中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自具体的地址信息。</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/12/818f16cb57eb8a9ef198a27c1e15f95a.png" alt="句柄访问.png"></p>
+</li>
+<li><p>直接指针，<code>Java</code>堆中对象的内存布局就必须考虑如何放置访问类型数据的相关信息，<code>reference</code>中存储的直接就是对象地址，如果只是访问对象本身的话，就不需要多多一次间接访问的开销。</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/12/21d8a8b01f70ebfc6de39faa83645efd.png" alt="直接指针.png"></p>
+</li>
+</ol>
+<blockquote>
+<p>句柄访问的好处<code>reference</code>中存储的是稳定句柄地址，在对象被移动时只会改变句柄的实例数据地址，而<code>reference</code>本身不需要被修改。</p>
+<p>直接指针的最大好处就是速度更快，节省一次指针定位的时间开销，由于对象访问在<code>Java</code>中非常频繁，因此这类开销积少成多也是一项极为可观的执行成本。</p>
+<p>就<code>HotSpot</code>而言，使用的第二种方式进行对象访问（也是有例外情况的）</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://nekoozero.github.io/2020/04/09/HotSpot%E5%AF%B9%E8%B1%A1/">http://nekoozero.github.io/2020/04/09/HotSpot%E5%AF%B9%E8%B1%A1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
 
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/15/JIT%E9%83%A8%E5%88%86%E4%BC%98%E5%8C%96%E6%8E%AA%E6%96%BD/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="JIT部分优化措施">
-                            
-                            <span class="card-title">JIT部分优化措施</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                即时编译器常见优化技术：栈上分配、公共子表达式消除、无用代码消除、自动装箱消除、逃逸分析、锁消除、锁膨胀、表达式提升、内联……
-首先要明确一点的是，所做的这些优化都是建立在代码的中间表示或者是机器码之上的，绝不是直接在 Java 源码上去做
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-15
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+</div>
 
-                    
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/14/JVM%E4%B8%AD%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%8E%E8%A7%A3%E9%87%8A%E5%99%A8/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="HotSpot 中的编译器与解释器">
-                            
-                            <span class="card-title">HotSpot 中的编译器与解释器</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-编译器在编译的过程中，读入源程序文件，输出一份等价的二进制可执行文件，就和笔译工作者一样，他们都会输出一份翻译后的文件。
-解释器在解释的过程中，读入源程序文件，输出的是执行的结果，就和口译工作者一样，他们输出的是已经完成翻译的结果。
+        </div>
+    </div>
 
-输
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/14/JVM%E4%B8%AD%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%8E%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="HotSpot 中的编译器与解释器">
+                        
+                        <span class="card-title">HotSpot 中的编译器与解释器</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
                             
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
                                     JVM
                                 </a>
-                                
-                                
-                            </span>
-                        </div>
+                            
+                            
+                        </span>
                     </div>
-
-                    
                 </div>
+                
             </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/09/HotSpot%E5%AF%B9%E8%B1%A1/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="HotSpot 对象">
-                            
-                            <span class="card-title">HotSpot 对象</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                对象在Java堆中的分配、布局和访问。
-对象的创建先进行类加载检查（没有则会执行相应的类加载过程），之后会为对象分配内存大小，对象所需的内存大小在类加载完成后便可完全确定。那么如何从Java堆中划分出等大的内存呢？
-
-指针碰撞：假设Java
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/01/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%94%BE%E7%9A%84%E5%8C%BA%E5%9F%9F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="类变量和 Class 对象存放的区域">
+                        
+                        <span class="card-title">类变量和 Class 对象存放的区域</span>
                     </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/01/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%94%BE%E7%9A%84%E5%8C%BA%E5%9F%9F/">
-                        <div class="card-image tag-image">
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
                             
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="类变量和 Class 对象存放的区域">
-                            
-                            <span class="card-title">类变量和 Class 对象存放的区域</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                先说结论：
-JDK7之后及其以后的版本的HotSpot虚拟机选择把静态变量和Java类的Class对象存放在一起，存储与Java堆中。换句话说，JDK8 中，两者都位于堆（Heap），且static 成员变量位于 Class对象内。
-字符串
-                            
-                        </div>
-                        <div class="publish-info">
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
                                     JVM
                                 </a>
-                                
-                                
-                            </span>
-                        </div>
+                            
+                            
+                        </span>
                     </div>
-
-                    
                 </div>
+                
             </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/29/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="类加载器">
-                            
-                            <span class="card-title">类加载器</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                “通过一个类的全限定名来获取描述该类的二进制字节流”这个动作放到虚拟机外部去实现。这个动作的代码被称为“类加载器（Class Loader）”
-类加载器对于任意一个类，都必须由加载它的类加载器和这个类本身译器共同确立其在Java虚拟机的唯一
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/19/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="运行时数据区域">
-                            
-                            <span class="card-title">运行时数据区域</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                虚拟机在执行Java程序的时候会把他所管理的内存划分为若干个不同的数据区域，有的区域随着虚拟机进程的启动而一直存在，有些区域则是依赖用户线程的启动和结束而自动建立和销毁。
-
-
-程序计数器（Program Counter Register）
-
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
         </div>
-    </article>
-</main>
-
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a class="left btn-floating btn-large disabled">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 2</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a href="/categories/JVM/page/2/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
+        
     </div>
+</article>
+
 </div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
 
 
 

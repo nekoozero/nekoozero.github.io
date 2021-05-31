@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类, Nekoo">
+    <meta name="keywords" content="类加载器, Nekoo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -19,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类 | Nekoo</title>
+    <title>类加载器 | Nekoo</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -250,12 +250,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">categories</h1>
+                    <h1 class="description center-align post-title">类加载器</h1>
                 </div>
             </div>
         </div>
@@ -282,6 +282,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JVM/" class="post-category">
+                                JVM
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -289,7 +298,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-30
+                    2020-03-29
                 </div>
                 
 
@@ -310,7 +319,87 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>“通过一个类的全限定名来获取描述该类的二进制字节流”这个动作放到虚拟机外部去实现。这个动作的代码被称为“类加载器（<code>Class Loader</code>）”</p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>对于任意一个类，都必须由加载它的类加载器和这个类本身译器共同确立其在<code>Java</code>虚拟机的唯一性每一个类加载器，都拥有一个独立的类名称空间。</p>
+<p>也就是说比较两个类是否“相等”，必须在同一个类加载器加载的前提下才有意义，否则即使两个类来源同一个<code>Class</code>文件，被同一个虚拟机加载，只要加载它们的类加载器不同，它们就必定不相等。</p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>定义：</p>
+<p>当某个类加载器需要加载某个<code>.class</code>文件时，它首先把这个任务委托给他的上级类加载器，递归这个操作，如果上级的类加载器没有加载，自己才会去加载这个类。</p>
+<p><code>JDK8</code>及之前版本来介绍三层类加载器。</p>
+<ul>
+<li>启动类加载器（<code>BootStrap Class Loader</code>）:负责加载存放在<code>JAVA_HOME\lib</code>目录，而且是虚拟机能够识别的类库加载到虚拟机的内存中。启动类加载其无法被<code>Java</code>程序直接引用，因为它是用<code>C++</code>来实现的。</li>
+<li>扩展类加载器（<code>Extension Class Loader</code>）:这个加载器是以<code>Java</code>代码实现的，负责加载<code>JAVA_HOME\lib\ext</code>目录中，是一种<code>Java</code>系统类库的扩展机制，允许用户将具有通用性的类库放置在<code>ext</code>目录以扩展<code>Java SE</code> 的功能，<code>JDK9</code>之后，这种扩展机制被模块化带来的天然的扩展能力所取代。</li>
+<li>应用程序类加载器（<code>Application Class Loader</code>）:也是用<code>Java</code>代码实现的，它负责加载用户类路径上所有的类库，如果应用程序中没有定义过自己的类加载器，一般情况下这个就是程序默认的类加载器。</li>
+</ul>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/19/48634f49e381dacca0fd9f5836e50c17.png" alt="类加载器1"></p>
+<p>或者看下图：</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/05/13/2.jpg" alt="类加载器2.jpg"></p>
+<p><code>Java9</code>之前的应用都是由这三类加载器互相配合来完成加载的。自定义类加载器典型的有增加除了磁盘位置之外的<code>Class</code>文件来源，或者通过类加载器实现类的隔离、重载等功能。</p>
+<p>类加载器的父子关系并不是继承的关系实现的，而是使用组合关系来复用父加载器的代码。</p>
+<h3 id="工作过程"><a href="#工作过程" class="headerlink" title="工作过程"></a>工作过程</h3><p>如果一个类加载器收到了类加载的请求，他首先不会自己尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到最顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求，子加载器才会尝试自己去完成加载。</p>
+<blockquote>
+<p>好处：<code>Java</code>中的类随着他的类加载器一起具备了一种带有优先级的层次关系。比如<code>java.lang.Object</code>，它存放在<code>rt.jar</code>中，无论哪一个类加载器要加载这个类，最终都会被委派给最顶端的启动类加载器进行加载。</p>
+<p>可以避免类的重复加载，另外也避免了java的核心API被篡改。</p>
+</blockquote>
+<blockquote>
+<p><code>Java9</code>模块化的关键目标—–可配置的封装隔离机制</p>
+</blockquote>
+<blockquote>
+<p>时间 2020/5/13 更新</p>
+</blockquote>
+<p>在实际的应用中双亲委派解决了java 基础类统一加载的问题，但是却着实存在着一定的缺陷。<strong>jdk中的基础类作为用户典型的api被调用，但是也存在api调用用户的代码的情况</strong>，典型的如SPI代码。</p>
+<p>所以jdk开发人员就引入了<strong>线程上下文类加载器（Thread Context ClassLoader）</strong>，这类类加载器可以通过java.lang.Thread 类的setContextClassLoader方法进行设置。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol>
+<li><p>JDBC</p>
+<p>在JDBC4.0以后，开始支持使用spi的方式来注册这个Driver，具体做法就是在mysql的jar包中的META-INF/services/java.sql.Driver 文件中指明当前使用的Driver是哪个，然后使用的时候就直接这样就可以了：</p>
+<pre class=" language-java"><code class="language-java">Connection conn<span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token string">"jdbc:mysql://localhost:3306/mydb?characterEncoding=GBK"</span><span class="token punctuation">,</span> <span class="token string">"root"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>可以看到这里直接获取连接，省去了Class.forName()注册过程。步骤：</p>
+<p>第一，从META-INF/services/java.sql.Driver文件中获取具体的实现类名“com.mysql.jdbc.Driver”</p>
+<p>第二，加载这个类，这里肯定只能用Class.forName(“com.mysql.jdbc.Driver”)来加载</p>
+<p>好了，问题来了，Class.forName()加载用的是调用者的Classloader，这个调用者DriverManager是在rt.jar中的，ClassLoader是启动类加载器，而com.mysql.jdbc.Driver肯定不在<JAVA_HOME>/lib下，所以肯定是无法加载mysql中的这个类的。<strong>这就是双亲委派模型的局限性了，父级加载器无法加载子级类加载器路径中的类。</strong></p>
+<p>按照目前情况来分析，这个mysql的drvier只有应用类加载器能加载，那么我们只要在启动类加载器中有方法获取应用程序类加载器，然后通过它去加载就可以了。这就是所谓的线程上下文加载器。<br> <strong>线程上下文类加载器可以通过Thread.setContextClassLoaser()方法设置，如果不特殊设置会从父类继承，一般默认使用的是应用程序类加载器</strong></p>
+<p><strong>很明显，线程上下文类加载器让父级类加载器能通过调用子级类加载器来加载类，这打破了双亲委派模型的原则</strong>。</p>
+<p>以下的代码是DriverManager的初始化方法loadInitialDrivers，大家可以从中看到先是获取jdbc.drivers属性，得到类的路径。然后通过系统类加载器加载。</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/05/13/3.jpg" alt="代码段1.jpg"></p>
+<p>然后我们看下ServiceLoader.load()的具体实现：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>S<span class="token operator">></span> ServiceLoader<span class="token operator">&lt;</span>S<span class="token operator">></span> <span class="token function">load</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>S<span class="token operator">></span> service<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ClassLoader cl <span class="token operator">=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContextClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ServiceLoader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>service<span class="token punctuation">,</span> cl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>S<span class="token operator">></span> ServiceLoader<span class="token operator">&lt;</span>S<span class="token operator">></span> <span class="token function">load</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>S<span class="token operator">></span> service<span class="token punctuation">,</span>
+                                        ClassLoader loader<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ServiceLoader</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>service<span class="token punctuation">,</span> loader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可以看到核心就是拿到线程上下文类加载器，然后构造了一个ServiceLoader,接下来，DriverManager的loadInitialDrivers()方法中有一句<strong>driversIterator.next();</strong>,它的具体实现如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> S <span class="token function">nextService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">hasNextService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NoSuchElementException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String cn <span class="token operator">=</span> nextName<span class="token punctuation">;</span>
+    nextName <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> c <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//此处的cn就是产商在META-INF/services/java.sql.Driver文件中注册的Driver具体实现类的名称</span>
+        <span class="token comment" spellcheck="true">//此处的loader就是之前构造ServiceLoader时传进去的线程上下文类加载器</span>
+        c <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>cn<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> loader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">fail</span><span class="token punctuation">(</span>service<span class="token punctuation">,</span>
+             <span class="token string">"Provider "</span> <span class="token operator">+</span> cn <span class="token operator">+</span> <span class="token string">" not found"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//省略部分代码</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>现在，我们成功的做到了通过线程上下文类加载器拿到了应用程序类加载器（或者自定义的然后塞到线程上下文中的），同时我们也查找到了厂商在子级的jar包中注册的驱动具体实现类名，这样我们就可以成功的在rt.jar包中的DriverManager中成功的加载了放在第三方应用程序包中的类了。</p>
+</li>
+</ol>
+<p>这个时候我们再看下整个mysql的驱动加载过程:</p>
+<ul>
+<li>第一，获取线程上下文类加载器，从而也就获得了应用程序类加载器（也可能是自定义的类加载器）</li>
+<li>第二，从META-INF/services/java.sql.Driver文件中获取具体的实现类名“com.mysql.jdbc.Driver”</li>
+<li>第三，通过线程上下文类加载器去加载这个Driver类，从而避开了双亲委派模型的弊端</li>
+</ul>
+<p>很明显，mysql驱动采用的这种spi服务确确实实是破坏了双亲委派模型的，毕竟做到了父级类加载器加载了子级路径中的类。</p>
+
                 
             </div>
             <hr/>
@@ -336,7 +425,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/categories/index.html">http://nekoozero.github.io/categories/index.html</a>
+                    <a href="http://nekoozero.github.io/2020/03/29/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">http://nekoozero.github.io/2020/03/29/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -415,18 +504,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/categories/index.html">
+                <a href="/2020/04/01/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%94%BE%E7%9A%84%E5%8C%BA%E5%9F%9F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="类变量和 Class 对象存放的区域">
                         
-                        <span class="card-title">categories</span>
+                        <span class="card-title">类变量和 Class 对象存放的区域</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -436,18 +524,21 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            qxnekoo
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -455,16 +546,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/categories/index.html">
+                <a href="/2020/03/19/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="运行时数据区域">
                         
-                        <span class="card-title">categories</span>
+                        <span class="card-title">运行时数据区域</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -475,17 +566,20 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            qxnekoo
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

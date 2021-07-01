@@ -312,6 +312,113 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/04/08/synchronized/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="synchronized">
+                            
+                            <span class="card-title">synchronized</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                众所周知 synchronized 关键字是解决并发问题常用解决方案，属于互斥同步，有以下三种使用方式:
+
+同步普通方法，锁的是当前对象。
+同步静态方法，锁的是当前 Class 对象。
+同步块，锁的是 () 中的对象。
+
+实现原理：JVM 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/CONCURRENT/" class="post-category">
+                                    CONCURRENT
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/08/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="线程安全的实现">
+                            
+                            <span class="card-title">线程安全的实现</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+互斥同步
+非阻塞同步
+无同步方案
+
+互斥同步同步是指在多个线程并发访问共享数据时，保证共享数据在同一个时刻只被一条（或者一些，当使用信号量时）线程使用。
+互斥是实现同步的一种手段，临界区、互斥量和信号量都是常见的互斥方式。
+互斥是方法，同
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/CONCURRENT/" class="post-category">
+                                    CONCURRENT
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/04/06/%E9%94%81%E4%BC%98%E5%8C%96/">
                         <div class="card-image">
                             
@@ -484,104 +591,6 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                                 
                                 <a href="/categories/CONCURRENT/" class="post-category">
                                     CONCURRENT
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/29/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="抽象类与接口">
-                            
-                            <span class="card-title">抽象类与接口</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-抽象类使用abstract关键字修饰；接口使用interface修饰。
-抽象类中有构造方法，但不能是实例化；接口没有构造方法。
-抽象类可以有非抽象方法；接口中有抽象方法，在java8后接口提供了默认方法，使用default修饰，并且不强制
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/BASIC/" class="post-category">
-                                    BASIC
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/29/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="类加载器">
-                            
-                            <span class="card-title">类加载器</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                “通过一个类的全限定名来获取描述该类的二进制字节流”这个动作放到虚拟机外部去实现。这个动作的代码被称为“类加载器（Class Loader）”
-类加载器对于任意一个类，都必须由加载它的类加载器和这个类本身译器共同确立其在Java虚拟机的唯一
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
                                 </a>
                                 
                                 

@@ -1,0 +1,1137 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+       
+        <meta name="referrer" content="no-referrer" />
+    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="反射, Nekoo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>反射 | Nekoo</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Nekoo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Nekoo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">反射</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/BASIC/" class="post-category">
+                                BASIC
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-09
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>在<em>运行状态</em>中，对于任意一个类，都能知道这个类的所有属性和方法；对于任何一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为<code>java</code>语言的反射机制。</strong></p>
+<h2 id="相关类"><a href="#相关类" class="headerlink" title="相关类"></a>相关类</h2><table>
+<thead>
+<tr>
+<th>类名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Class</code>类</td>
+<td>代表类的实体，在运行的<code>java</code>应用程序中表示类和接口</td>
+</tr>
+<tr>
+<td><code>Field</code>类</td>
+<td>代表类的成员变量</td>
+</tr>
+<tr>
+<td><code>Method</code>类</td>
+<td>代表类的方法</td>
+</tr>
+<tr>
+<td><code>Constructor</code>类</td>
+<td>代表类的构造方法</td>
+</tr>
+</tbody></table>
+<p>获取<code>Class</code>实例的三种常见方式</p>
+<pre class=" language-java"><code class="language-java">Class <span class="token class-name">clazz1</span> <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+Class <span class="token class-name">clazz2</span> <span class="token operator">=</span> person<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Class <span class="token class-name">clazz3</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>String classPath<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//类的全类名  体现反射的动态性 </span>
+</code></pre>
+<p><code>clazz.newInstance();</code>   <code>clazz</code>的类必须要有空的构造方法</p>
+<p><code>clazz.getMethod();</code> 获取该类中所有的<strong>public</strong>方法，包括从父类中继承的。</p>
+<p><code>clazz.getDeclaredMethod();</code>  获取该类（<strong>当前类</strong>）中所有的方法。</p>
+<pre class=" language-java"><code class="language-java">Class <span class="token class-name">clazz</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"cn.qxnekoo.advance.reflect.User"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+User u <span class="token operator">=</span> <span class="token punctuation">(</span>User<span class="token punctuation">)</span> clazz<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Method show <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"show"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+show<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+show<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="类相关的方法"><a href="#类相关的方法" class="headerlink" title="类相关的方法"></a>类相关的方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>asSubclass(Class&lt;U&gt; clazz)</code></td>
+<td>把传递的类的对象转换成代表其子类的对象</td>
+</tr>
+<tr>
+<td><code>Cast</code></td>
+<td>把对象转换成代表类或是接口的对象</td>
+</tr>
+<tr>
+<td><code>getClassLoader()</code></td>
+<td>获得类的加载器</td>
+</tr>
+<tr>
+<td><code>getClasses()</code></td>
+<td>返回一个数组，数组中包含该类中所有公共类和接口类的对象</td>
+</tr>
+<tr>
+<td><code>getDeclaredClasses()</code></td>
+<td>返回一个数组，数组中包含该类中所有类和接口类的对象</td>
+</tr>
+<tr>
+<td><code>forName(String className)</code></td>
+<td>根据类名返回类的对象</td>
+</tr>
+<tr>
+<td><code>getName()</code></td>
+<td>获得类的完整路径名字</td>
+</tr>
+<tr>
+<td><code>newInstance()</code></td>
+<td>创建类的实例</td>
+</tr>
+<tr>
+<td><code>getPackage()</code></td>
+<td>获得类的包</td>
+</tr>
+<tr>
+<td><code>getSimpleName()</code></td>
+<td>获得类的名字</td>
+</tr>
+<tr>
+<td><code>getSuperclass()</code></td>
+<td>获得当前类继承的父类的名字</td>
+</tr>
+<tr>
+<td><code>getInterfaces()</code></td>
+<td>获得当前类实现的类或是接口</td>
+</tr>
+</tbody></table>
+<h2 id="类中属性相关的方法"><a href="#类中属性相关的方法" class="headerlink" title="类中属性相关的方法"></a>类中属性相关的方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getField(String name)</code></td>
+<td>获得某个公有的属性对象</td>
+</tr>
+<tr>
+<td><code>getFields()</code></td>
+<td>获得所有公有的属性对象</td>
+</tr>
+<tr>
+<td><code>getDeclaredField(String name)</code></td>
+<td>获得某个属性对象</td>
+</tr>
+<tr>
+<td><code>getDeclaredFields()</code></td>
+<td>获得所有属性对象</td>
+</tr>
+</tbody></table>
+<h2 id="类中注解相关的方法"><a href="#类中注解相关的方法" class="headerlink" title="类中注解相关的方法"></a>类中注解相关的方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getAnnotation(Class&lt;A&gt; annotationClass)</code></td>
+<td>返回该类中与参数类型匹配的公有注解对象</td>
+</tr>
+<tr>
+<td><code>getAnnotations()</code></td>
+<td>返回该类所有的公有注解对象</td>
+</tr>
+<tr>
+<td><code>getDeclaredAnnotation(Class&lt;A&gt; annotationClass)</code></td>
+<td>返回该类中与参数类型匹配的所有注解对象</td>
+</tr>
+<tr>
+<td><code>getDeclaredAnnotations()</code></td>
+<td>返回该类所有的注解对象</td>
+</tr>
+</tbody></table>
+<h2 id="类中构造器相关的方法"><a href="#类中构造器相关的方法" class="headerlink" title="类中构造器相关的方法"></a>类中构造器相关的方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getConstructor(Class...&lt;?&gt; parameterTypes)</code></td>
+<td>获得该类中与参数类型匹配的公有构造方法</td>
+</tr>
+<tr>
+<td><code>getConstructors()</code></td>
+<td>获得该类的所有公有构造方法</td>
+</tr>
+<tr>
+<td><code>getDeclaredConstructor(Class...&lt;?&gt; parameterTypes)</code></td>
+<td>获得该类中与参数类型匹配的构造方法</td>
+</tr>
+<tr>
+<td><code>getDeclaredConstructors()</code></td>
+<td>获得该类所有构造方法</td>
+</tr>
+</tbody></table>
+<h2 id="类中方法相关的方法"><a href="#类中方法相关的方法" class="headerlink" title="类中方法相关的方法"></a>类中方法相关的方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getMethod(String name, Class...&lt;?&gt; parameterTypes)</code></td>
+<td>获得该类某个公有的方法</td>
+</tr>
+<tr>
+<td><code>getMethods()</code></td>
+<td>获得该类所有公有的方法</td>
+</tr>
+<tr>
+<td><code>getDeclaredMethod(String name, Class...&lt;?&gt; parameterTypes)</code></td>
+<td>获得该类某个方法</td>
+</tr>
+<tr>
+<td><code>getDeclaredMethods()</code></td>
+<td>获得该类所有方法</td>
+</tr>
+</tbody></table>
+<h2 id="类中其他重要方法"><a href="#类中其他重要方法" class="headerlink" title="类中其他重要方法"></a>类中其他重要方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>isAnnotation()</code></td>
+<td>如果是注解类型则返回true</td>
+</tr>
+<tr>
+<td><code>isAnnotationPresent(Class&lt;? extends Annotation&gt; annotationClass)</code></td>
+<td>如果是指定类型注解类型则返回true</td>
+</tr>
+<tr>
+<td><code>isAnonymousClass()</code></td>
+<td>如果是匿名类则返回true</td>
+</tr>
+<tr>
+<td><code>isArray()</code></td>
+<td>如果是一个数组类则返回true</td>
+</tr>
+<tr>
+<td><code>isEnum()</code></td>
+<td>如果是枚举类则返回true</td>
+</tr>
+<tr>
+<td><code>isInstance(Object obj)</code></td>
+<td>如果obj是该类的实例则返回true</td>
+</tr>
+<tr>
+<td><code>isInterface()</code></td>
+<td>如果是接口类则返回true</td>
+</tr>
+<tr>
+<td><code>isLocalClass()</code></td>
+<td>如果是局部类则返回true</td>
+</tr>
+<tr>
+<td><code>isMemberClass()</code></td>
+<td>如果是内部类则返回true</td>
+</tr>
+</tbody></table>
+<h2 id="Field类"><a href="#Field类" class="headerlink" title="Field类"></a>Field类</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>equals(Object obj)</code></td>
+<td>属性与obj相等则返回true</td>
+</tr>
+<tr>
+<td><code>get(Object obj)</code></td>
+<td>获得obj中对应的属性值</td>
+</tr>
+<tr>
+<td><code>set(Object obj, Object value)</code></td>
+<td>设置obj中对应属性值</td>
+</tr>
+</tbody></table>
+<h2 id="Method类"><a href="#Method类" class="headerlink" title="Method类"></a>Method类</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>invoke(Object obj, Object... args)</code></td>
+<td>传递object对象及参数调用该对象对应的方法</td>
+</tr>
+</tbody></table>
+<h2 id="Constructor类"><a href="#Constructor类" class="headerlink" title="Constructor类"></a>Constructor类</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>newInstance(Object... initargs)</code></td>
+<td>根据传递的参数创建类的对象</td>
+</tr>
+</tbody></table>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://nekoozero.github.io/2020/04/09/%E5%8F%8D%E5%B0%84/">http://nekoozero.github.io/2020/04/09/%E5%8F%8D%E5%B0%84/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/09/HotSpot%E5%AF%B9%E8%B1%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="HotSpot 对象">
+                        
+                        <span class="card-title">HotSpot 对象</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/08/synchronized/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="synchronized">
+                        
+                        <span class="card-title">synchronized</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CONCURRENT/" class="post-category">
+                                    CONCURRENT
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <!--
+ * @Author: your name
+ * @Date: 2021-05-30 14:06:24
+ * @LastEditTime: 2021-07-16 12:38:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\footer.ejs
+-->
+<footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6782589134"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <!-- <div class="col s12 m8 l8 copy-right">
+            
+        </div> -->
+        <!-- <div class="col s12 m8 l8 copy-right">高堂明镜悲白发，朝如青丝暮成雪</div> -->
+        <div class="col s12 m8 l8 copy-right">
+            <!-- Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span> -->
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici-author"></span>
+            <div style="float:right"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备18027893号</a></div>
+            <!-- <a href="/about" target="_blank">qxnekoo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+            
+            
+            
+            
+            <br>
+
+            <script type="text/javascript"> 
+                function getGushici() {
+                    $.ajax({url:"https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=iwbPjlHvayxXYk7KgpZQGcAHdGZ18T87",success:function(result){
+                        
+                        $('#gushici').html(result.data.content);
+                        $('#gushici-author').html(" --"+result.data.origin.author);
+                    }});
+                }
+                $("#gushici").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $("#gushici-author").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $(document).ready(function(){ 
+                    getGushici();
+                }); 
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

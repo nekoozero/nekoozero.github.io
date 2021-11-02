@@ -1,0 +1,926 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+       
+        <meta name="referrer" content="no-referrer" />
+    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="经典垃圾收集器, Nekoo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>经典垃圾收集器 | Nekoo</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Nekoo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Nekoo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">经典垃圾收集器</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JVM/" class="post-category">
+                                JVM
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-03-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>并行：多条垃圾收集器线程之间的关系，说明同一时间有多条这样的线程在工作，用户线程默认是处于等待状态的。</li>
+<li>并发：垃圾收集器线程与用户线程之间的关系，说明同一时间垃圾收集器线程与用户线程都在运行，此时应用程序的处理的吞吐量将受到一定影响。</li>
+</ol>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/16/8acc580aa08b3d2051dad2e3d26fdeaa.jpg" alt="垃圾收集器.jpg"></p>
+<h2 id="Serial-收集器（新生代）"><a href="#Serial-收集器（新生代）" class="headerlink" title="Serial 收集器（新生代）"></a>Serial 收集器（新生代）</h2><p>是一个单线程工作的收集器，不仅仅是说明它只会使用一个处理器或一条收集线程去完成垃圾收集工作，更重要的是强调在它进行垃圾收集时，必须暂停其他所有工作线程，直到它收集结束</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/16/Serial.jpg" alt="Serial.jpg"></p>
+<p>对运行在客户端模式下的虚拟机来说是一个很好的选择。</p>
+<h2 id="ParNEW-收集器（新生代）"><a href="#ParNEW-收集器（新生代）" class="headerlink" title="ParNEW 收集器（新生代）"></a>ParNEW 收集器（新生代）</h2><p>是<code>Serial</code>收集器的多线程并行版本</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/16/ParNew.jpg" alt="ParNew.jpg"></p>
+<p>支持多线程并行收集，除了<code>Serial</code>收集器外，目前只有它能与<code>CMS</code>收集器配合工作，但从<code>JDK9</code>开始，<code>ParNew</code>和<code>CMS</code>收集器的组合就不再是官方推荐的服务端模式下的收集器解决方案了。而且取消了 <code>-XX:+UseParNewGC</code>参数，意味着<code>ParNew</code>和<code>CMS</code>只能相互搭配使用，再也没有其他收集器和它们配合，可以理解为<code>ParNew</code>合并进入<code>CMS</code>，成为它专门处理新生代的组成部分。</p>
+<h2 id="CMS-收集器（老年代）"><a href="#CMS-收集器（老年代）" class="headerlink" title="CMS 收集器（老年代）"></a>CMS 收集器（老年代）</h2><p>是一种以获取最短回收停顿时间为目标的收集器，使用的是<strong>标记-清除</strong>算法，经常适用于互联网网站和基于浏览器的<code>B/S</code>系统的服务器上，这类应用通常会关注服务的响应速度，希望系统停顿时间尽可能短。</p>
+<p>第一款真正意义上支持并发的垃圾收集器，首次实现了让垃圾收集线程与用户线程（基本上）同时工作。分为四个步骤：</p>
+<ol>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>重新标记</li>
+<li>并发清除</li>
+</ol>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/16/CMS.png" alt="CMS.png"></p>
+<p><code>CMS</code> 以流水线方式拆分了收集周期，将耗时长的操作单元保持与应用线程并发执行。只将那些必需<code>STW</code> 才能执行的操作单元单独拎出来，控制这些单元在恰当的时机运行，并能保证仅需短暂的时间就可以完成。这样，在整个收集周期内，只有<strong>两次短暂的暂停（初始标记和重新标记）</strong>，<strong>达到了近似并发的目的</strong>。</p>
+<p>主要优点：并发收集、低停顿</p>
+<p>缺点：</p>
+<ol>
+<li>占用系统资源，降低总吞吐量</li>
+<li>无法处理“浮动垃圾”，主要是并发标记和并发清理阶段，程序还在运行，自然伴随着新的垃圾对象产生。如果垃圾收集阶段无法给用户线程提供足够的内存空间，会触发“并发失败（<code>Current Mode Failure</code>）”。启动预备方案，临时启用<code>Serial Old</code>收集器来重新进行老年代的垃圾收集，这样停顿时间就更长了。</li>
+<li>使用标记-清除算法，导致收集结束后有空间碎片产生，会给分配大对象带来麻烦。<code>CMS</code>提供了<code>-XX:+UseCMSCompactAtFullCollection</code>(默认是开启的，此参数从<code>JDK9</code>废弃)，用于在<code>CMS</code>收集器不得不进行<code>Full GC</code>时开启内存碎片整理合并过程，但涉及到移动对象，无法并发，空间碎片问题解决了，但是停顿时间会变长。又提供一个参数<code>-XXL:CMSFullGCsBeforeCompaction</code>(此参数从<code>JDK9</code>废弃)，表示在若干次不整理空间的<code>Full GC</code>之后，下一次进入<code>Full GC</code>前会先进行碎片整理（默认值为0，表示每次进入<code>Full GC</code>前都进行碎片整理）。</li>
+</ol>
+<h2 id="Parallel-Scavenge-收集器（新生代）"><a href="#Parallel-Scavenge-收集器（新生代）" class="headerlink" title="Parallel Scavenge 收集器（新生代）"></a>Parallel Scavenge 收集器（新生代）</h2><p>是一款新生代收集器，基于标记-复制算法，能够并行收集的多线程收集器。和其他收集器不同，<code>CMS</code>关注尽可能的缩短垃圾收集时用户线程的停顿时间，而<code>Parallel Scavenge</code>收集器的目标则是达到一个<strong>可控制的吞吐量（处理器用于运行用户代码的时间与处理器总消耗时间的比值）</strong>。</p>
+<blockquote>
+<p>停顿时间短适合需要与用户交互或者保证服务响应的质量，良好的相应速度能提升用户体验；而高吞吐量则可以高效率地利用处理器资源，尽快完成程序的运算任务，适合于在后台运算而交互不多的场景。</p>
+</blockquote>
+<p>控制吞吐量的两个参数<code>-XX:MaxGCPauseMillis</code>(控制最大垃圾收集停顿时间)、<code>-XX:GCTimeRatio</code>(直接设置吞吐量大小)，不要把停顿时间设的太小，主要是以牺牲吞吐量和新生代空间为代价的，会导致垃圾收集频繁。停顿时间会下降，但吞吐量也会下降。</p>
+<p>示意图和<code>parallel Old</code>一样。</p>
+<h3 id="自适应调节策略"><a href="#自适应调节策略" class="headerlink" title="自适应调节策略"></a>自适应调节策略</h3><p><code>-XX:+UseAdaptiveSizePolicy</code>，是一个开关，当这个参数被激活的时候，不需要人工指定新生代大小、<code>Eden</code>和<code>Survivor</code>比例、晋升老年代对象的大小等细节参数了，虚拟机会根据系统运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或者最大的吞吐量。</p>
+<p>它也是和<code>ParNew</code>收集器区别之一。</p>
+<h2 id="Serial-Old-收集器（标记-整理）"><a href="#Serial-Old-收集器（标记-整理）" class="headerlink" title="Serial Old 收集器（标记-整理）"></a>Serial Old 收集器（标记-整理）</h2><p>是<code>Serial</code>收集器的老年代版本，单线程收集器，使用标记-整理算法。</p>
+<p>在客户端模式中可以使用。</p>
+<p>在服务端模式下，有两种用途：</p>
+<ol>
+<li>在<code>JDK 5</code>之前的版本中与<code>Parallel Scavenge</code>收集器搭配使用。</li>
+<li>在<code>CMS</code>收集器失败时（“并发失败”）的后备方案。</li>
+</ol>
+<p>示意图和<code>Serial</code>收集器一样</p>
+<h2 id="Parallel-Old-收集器（标记-整理）"><a href="#Parallel-Old-收集器（标记-整理）" class="headerlink" title="Parallel Old 收集器（标记-整理）"></a>Parallel Old 收集器（标记-整理）</h2><p>是<code>Parallel Scavenge</code>收集器的老年代版本，支持多线程并发收集，基于标记-整理算法。在<code>JDK6</code>提供，至此，“吞吐量优先”收集器有了名副其实的搭配，在注重吞吐量或处理器资源不足的情况下，可以考虑使用<code>Parallel Old</code>和<code>Parallel Scavenge</code>收集器这个组合。</p>
+<p><img src="http://www.qxnekoo.cn:8888/images/2020/03/16/Parallel-OldParallel-Scavenge.jpg" alt="Parallel-OldParallel-Scavenge.jpg"></p>
+<h2 id="Garbage-First-收集器（重点）"><a href="#Garbage-First-收集器（重点）" class="headerlink" title="Garbage First 收集器（重点）"></a>Garbage First 收集器（重点）</h2><p>也成为<code>G1</code>收集器，<strong>开创了收集器面向局部收集的设计思路和基于<code>Region</code>的内存布局形式</strong>。之前所有的垃圾收集器包括<code>CMS</code>，垃圾收集的目标要么是整个新生代（<code>Minor GC</code>），要么是这个老年代（<code>Major GC</code>），要么就是整个堆（<code>Full GC</code>）,<code>G1</code>则跳出了这个模式。想要建立起“<strong>停顿时间模型</strong>”的垃圾收集器，也就是能够支持指定在一个长度为<code>M</code>毫米的时间片段内，消耗在垃圾收集上的时间大概率不超过<code>N</code>毫秒这样的目标。</p>
+<p><code>G1</code>提供并发的类卸载功能的支持，是一款主要面向服务器应用的垃圾收集器，期望可以替换掉<code>CMS</code>收集器。<code>JDK9</code>中<code>G1</code>取代了<code>Parallel Scavnege</code>和<code>Parallel Old</code>组合，称为服务端模式下默认的垃圾收集器，而<code>CMS</code>则已不被推荐了。</p>
+<p><code>G1</code>可以面向对内存的任何部分来组成回收集进行回收，衡量标准不再是它属于哪个分代，而是哪块内存中存放的垃圾数量最多，回收收益最大，这就是<code>G1</code>收集器的<code>Mixed GC</code>模式。</p>
+<p>其开创的基于<code>Region</code>的内存布局是实现整个目标的关键，虽然仍是遵循分代收集理论设计的，但和其他收集器有着明显的差别。</p>
+<blockquote>
+<p>不再坚持固定大小以及固定数量的分代区域划分，而是把连续的 <code>Java</code> 堆划分为多个大小相等的独立区域(<code>Region</code>)，每一个<code>Region</code>都可以根据需要，扮演新生代的<code>Eden</code>空间、<code>Survivor</code>空间，或者老年代空间。收集器能够对扮演不同角色的<code>Region</code>采用不同的策略去处理。新生代、老年代都是一系列（不需要连续）的动态集合。</p>
+</blockquote>
+<p><code>Region</code>中还有一类特殊的<code>Humongous</code>的区域，专门用来存储大对象。只要大小超过了一个<code>Region</code>容量一半的对象即可判定为大对象。对于超过了整个<code>Region</code>容量的超级大对象，将会存放在<code>N</code>个连续的<code>Humongous Region</code>之中，<code>G1</code>的大多数行为都把<code>Humongous Region</code>作为老年代的一部分来进行看待。</p>
+<p>之所以能够建立<strong>可预测的停顿时间模型</strong>，是因为将<code>Region</code>作为单次回收的最小单元，即每次收集到的内存空间都是<code>Region</code>大小的整数倍，有计划地避免在整个<code>Java</code>堆中进行全区域的垃圾收集。</p>
+<p>具体的做法是让<code>G1</code>收集器去跟踪各个<code>Region</code>里面的垃圾堆积的“价值大小”，价值即回收所获得的空间大小以及回收所需时间的经验值，然后在后台维护一个优先级列表，每次根据用户允许设定的收集停顿时间（默认200毫秒），优先处理回收价值收益最大的那些<code>region</code>,这就是<code>Garbage First</code>名字的由来。<strong>这种使用<code>Region</code>划分内存空间，以及具有优先级的区域回收方式，保证了<code>G1</code>收集器在有限的时间内获取尽可能高的收集效率。</strong></p>
+<p>可以由用户指定期望的停顿时间是很强大的一个功能，但是这个期望值必须是符合实际的。如果停顿时间太短，会导致每次回收的回收集只占堆内存很小的一部分空间，收集器的速度跟不上分配器的分配速度，导致垃圾慢慢堆积，时间长了会引发<code>Full GC</code>降低性能，一般来说设置为一两百毫秒或者两三百毫秒比较合理。（参数<code>-XX:MaxGCPauseMillis</code>,默认值200）</p>
+<p>相比<code>CMS</code>，优点有如下：</p>
+<ol>
+<li>指定最大停顿时间</li>
+<li>分<code>Region</code>的内存布局</li>
+<li>按收益动态确定回收集</li>
+<li><code>G1</code>整体上来看是基于“标记-整理的算法”，但从局部上来看（两个<code>Region</code>之间）又是基于“标记-复制”算法实现，意味着运作期间不会产生空间内存碎片，垃圾收集完成之后能提供规整的可用内存，有利于程序的长时间运作。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>无论是垃圾收集产生的内存占用还是程序运行时的额外执行负载都要比<code>CMS</code>要高。</li>
+<li>处理跨代指针，<code>G1</code>卡表实现更为复杂。</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://nekoozero.github.io/2020/03/18/%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">http://nekoozero.github.io/2020/03/18/%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/03/19/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="类加载机制">
+                        
+                        <span class="card-title">类加载机制</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/15/%E5%9E%83%E5%9C%BE%E7%AE%97%E6%B3%95%E7%BB%86%E8%8A%82%E5%90%8D%E8%AF%8D/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="垃圾算法细节名词">
+                        
+                        <span class="card-title">垃圾算法细节名词</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <!--
+ * @Author: your name
+ * @Date: 2021-05-30 14:06:24
+ * @LastEditTime: 2021-07-16 12:38:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\footer.ejs
+-->
+<footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6782589134"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <!-- <div class="col s12 m8 l8 copy-right">
+            
+        </div> -->
+        <!-- <div class="col s12 m8 l8 copy-right">高堂明镜悲白发，朝如青丝暮成雪</div> -->
+        <div class="col s12 m8 l8 copy-right">
+            <!-- Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span> -->
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici-author"></span>
+            <div style="float:right"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备18027893号</a></div>
+            <!-- <a href="/about" target="_blank">qxnekoo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+            
+            
+            
+            
+            <br>
+
+            <script type="text/javascript"> 
+                function getGushici() {
+                    $.ajax({url:"https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=iwbPjlHvayxXYk7KgpZQGcAHdGZ18T87",success:function(result){
+                        
+                        $('#gushici').html(result.data.content);
+                        $('#gushici-author').html(" --"+result.data.origin.author);
+                    }});
+                }
+                $("#gushici").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $("#gushici-author").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $(document).ready(function(){ 
+                    getGushici();
+                }); 
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

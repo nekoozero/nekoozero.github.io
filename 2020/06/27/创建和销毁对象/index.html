@@ -1,0 +1,1063 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+       
+        <meta name="referrer" content="no-referrer" />
+    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="第一章：创建和销毁对象, Nekoo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>第一章：创建和销毁对象 | Nekoo</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Nekoo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Nekoo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">第一章：创建和销毁对象</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/EFFECTIVE/" class="post-category">
+                                EFFECTIVE
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-06-27
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <ol>
+<li>用静态工厂方法代替构造器</li>
+<li>遇到多个构造器参数时要考虑使用构建器</li>
+<li>用私有构造器或者枚举类型强化 Singleton 属性</li>
+<li>通过私有构造器强化不可实例化的能力</li>
+<li>优先考虑依赖注入来引用资源</li>
+<li>避免创建不必要的对象</li>
+<li>消除过期的对象引用</li>
+<li>避免使用终结方法和清除方法</li>
+<li>try-with-resources 优先于 try-finally</li>
+</ol>
+<h2 id="1-用静态工厂方法代替构造器"><a href="#1-用静态工厂方法代替构造器" class="headerlink" title="1.用静态工厂方法代替构造器"></a>1.用静态工厂方法代替构造器</h2><p>一个类获取实例，最传统的就是通过共有的构造器。除此之外：类可以提供一个共有的<strong>静态工厂方法（static factory metod）</strong>，它只是返回类的实例的静态方法。</p>
+<p>示例：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> Boolean <span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> b<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> b <span class="token operator">?</span> Boolean<span class="token punctuation">.</span>TRUE <span class="token operator">:</span> Boolean<span class="token punctuation">.</span>FALSE<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>与设计模式中的工厂方法模式不同，不直接对应于设计模式的工厂方法。</p>
+<p>优势：</p>
+<ol>
+<li><p>有名称。当一个类需要多个带有相同签名得构造器时，用静态工厂方法代替构造器，并且仔细选择名称以便突出静态工厂之间的区别。</p>
+</li>
+<li><p>不必在每次调用它们的时候都创建一个新对象。（类似享元模式，用于经常请求创建相同的对象的场景）</p>
+</li>
+<li><p>他们可以返回原返回类型的任何子类型的对象。这样在选择返回对象的类时就有了更大的灵活性。（使用这种静态工厂方法时，甚至要求客户端通过接口来引用被返回的对象，而不是通过它的实现类来引用被返回的对象，这是一种良好的习惯）</p>
+</li>
+<li><p>所返回对象的类可以随着每次调用而发生变化，这取决于静态工厂方法的参数值。（只要是已声明的返回类型的子类型，都是允许的）参考 EnumSet，实现类对客户端来说是不可见的，客户端也无需去关心。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>E<span class="token operator">>></span> EnumSet<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">noneOf</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>E<span class="token operator">></span> elementType<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    Enum<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> universe <span class="token operator">=</span> <span class="token function">getUniverse</span><span class="token punctuation">(</span>elementType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>universe <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ClassCastException</span><span class="token punctuation">(</span>elementType <span class="token operator">+</span> <span class="token string">" not an enum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>universe<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> <span class="token number">64</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RegularEnumSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>elementType<span class="token punctuation">,</span> universe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JumboEnumSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>elementType<span class="token punctuation">,</span> universe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不存在。比如 服务提供者框架、SPI，在具体的就是 JDBC。</p>
+<blockquote>
+<p>服务提供者框架：多个服务提供者实现一个服务，系统为服务提供者的客户端提供多个实现，并把它们从多个实现中解耦出来。</p>
+<p>三个重要的组件：服务接口（Service Interface），提供者用来注册实现的。服务访问API（Provider Registration API）,客户端用于获取服务实例，即客户端指定某种选择实现的条件，如果没有，就会返回一个默认的或者允许客户端遍历所有可用的实现。是灵活的“静态工厂”。</p>
+<p>第四个组件就是服务提供者接口(Service Provider Interface)，他是可选的。表示产生服务接口之实例的工厂对象。如果没有服务提供者接口，实现就通过反射的方式进行实例化。</p>
+</blockquote>
+<p>对于 JDBC 来说，Connection 就是服务接口的一部分，DriverManager.registerDriver 是提供者注册 API，DriverManager.getConnection 是服务访问 API，Driver 是服务提供接口。（jdk1.6 后 Java 平台提供了一个通用的服务提供者框架 java.util.ServiceLoader）.</p>
+</li>
+</ol>
+<p>静态工厂方法的惯用名称：</p>
+<ul>
+<li>Date d  = Date.from(instant)</li>
+<li>Set&lt;Rank&gt; faceCards = EnumSet.of(JACK,QUEEN)</li>
+<li>BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE)</li>
+<li>StackWalker luke = StackWalker.getInstance(options)</li>
+<li>Object newArray = Array.newInstance(classObject,arrayLen)</li>
+<li>FileStore fs = Files.getFileStore(path)</li>
+<li>BufferedReader br = Files.newBufferedReader(path)</li>
+<li>List&lt;Complaint&gt; litany = Collection.list(legacyLitany)</li>
+</ul>
+<h2 id="2-遇到多个构造器参数时要考虑使用构建器"><a href="#2-遇到多个构造器参数时要考虑使用构建器" class="headerlink" title="2.遇到多个构造器参数时要考虑使用构建器"></a>2.遇到多个构造器参数时要考虑使用构建器</h2><p>静态工厂和构造器有个共同的局限性：<strong>不能很好地扩展大量的可选参数</strong>。也就是除了必要的参数，还有很多可选的参数。</p>
+<p>这种类，一般有两种方式：</p>
+<ol>
+<li>重叠构造器：第一个构造器只有必要的参数，第二个构造器有一个可选的参数，第三个构造器有两个可选的参数，以此类推，最后一个构造器包含了所有的可选参数。</li>
+<li>JavaBean 模式：也是用的最多的，先调用一个无参构造器来创建对象，然后再调用 setter 方法来设置必要的参数以及可选的参数。</li>
+</ol>
+<p>第一种方式可行，但当有很多参数的时候，客户端的代码将会很难编写，而且不易阅读。</p>
+<p>第二种方式很简便，但是在构造过程中 JavaBean 可能处于不一致的状态。JavaBeans 模式使得把类做成不可变的可能性不复存在。</p>
+<p>第三种方式：<strong>建造者模式</strong></p>
+<p>他不直接生成想要的对象，而是让<strong>客户端利用所有必要的参数调用构造器（或者静态工厂），得到一个 builder 对象。然后客户端在 builder 对象上调用类似于 setter 的方法，来设置每个相关的可选参数。最后客户端调用无参的 build 方法来生成通常是不可变的对象</strong>。 这个 builder 通常是它构建的类的静态成员类。</p>
+<p>Builder 模式也可以用于类层次结构。抽象类有抽象类的 builder，具体类有具体类的 builder。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> nekoo<span class="token punctuation">.</span>effictive<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>EnumSet<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Objects<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Set<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ *
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Pizza</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">enum</span> Topping <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>HAM<span class="token punctuation">,</span> MUSHROOM<span class="token punctuation">,</span> ONION<span class="token punctuation">,</span> PEPPER<span class="token punctuation">,</span> SAUSAGE<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">final</span> Set<span class="token operator">&lt;</span>Topping<span class="token operator">></span> toppings<span class="token punctuation">;</span>
+
+    <span class="token keyword">abstract</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Builder</span><span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Builder</span><span class="token operator">&lt;</span>T<span class="token operator">>></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        EnumSet<span class="token operator">&lt;</span>Topping<span class="token operator">></span> toppings <span class="token operator">=</span> EnumSet<span class="token punctuation">.</span><span class="token function">noneOf</span><span class="token punctuation">(</span>Topping<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> T <span class="token function">addTopping</span><span class="token punctuation">(</span>Topping topping<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            toppings<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>topping<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">abstract</span> Pizza <span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">/**
+         * 子类必须重写这个方法来返回this
+         *
+         * @return this
+         */</span>
+        <span class="token keyword">protected</span> <span class="token keyword">abstract</span> T <span class="token function">self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token function">Pizza</span><span class="token punctuation">(</span>Builder<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> builder<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        toppings <span class="token operator">=</span> builder<span class="token punctuation">.</span>toppings<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> nekoo<span class="token punctuation">.</span>effictive<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Objects<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token keyword">static</span> nekoo<span class="token punctuation">.</span>effictive<span class="token punctuation">.</span>Pizza<span class="token punctuation">.</span>Topping<span class="token punctuation">.</span>ONION<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NyPizza</span> <span class="token keyword">extends</span> <span class="token class-name">Pizza</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">enum</span> Size <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>SMALL<span class="token punctuation">,</span> MEDIUM<span class="token punctuation">,</span> LARGE<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> Size size<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//带有递归类型的参数</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Builders</span> <span class="token keyword">extends</span> <span class="token class-name">Pizza<span class="token punctuation">.</span>Builder</span><span class="token operator">&lt;</span>Builders<span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token keyword">final</span> Size size<span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token function">Builders</span><span class="token punctuation">(</span>Size size<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        NyPizza <span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">NyPizza</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> Builders <span class="token function">self</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token function">NyPizza</span><span class="token punctuation">(</span>Builders builder<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>builder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        size <span class="token operator">=</span> builder<span class="token punctuation">.</span>size<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        NyPizza n <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NyPizza<span class="token punctuation">.</span>Builders</span><span class="token punctuation">(</span>Size<span class="token punctuation">.</span>SMALL<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTopping</span><span class="token punctuation">(</span>ONION<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>builder 模式也有他自身的不足。为了创建对象，必须先创建它的构建器。而且builder 模式比重叠构造器更加冗长，因此只有在很多参数的时候才会使用。</p>
+<p><strong>如果类的构造器或者静态工厂中具有多个参数，设计这种类时，Builder 模式就是一种不错的选择。</strong></p>
+<h2 id="3-用私有构造器或者枚举类型强化-Signleton-属性"><a href="#3-用私有构造器或者枚举类型强化-Signleton-属性" class="headerlink" title="3.用私有构造器或者枚举类型强化 Signleton 属性"></a>3.用私有构造器或者枚举类型强化 Signleton 属性</h2><p>实现 Singleton 有两种常见的方法。</p>
+<p>这两个方法都要保持构造器为私有的，并导出公有的静态成员，以便允许客户端能够访问该类的唯一实例。</p>
+<ol>
+<li><p>共有静态成员是个 final 域。（饿汉）</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Elvis</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Elvis INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Elvis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token function">Elvis</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>但这样的方式有个缺点就是，客户端仍然可以通过反射机制来调用到私有的构造器，比如 AccessibleObject.setAccessible 方法。抵御这种攻击可以修改构造器，让他在要求创建第二个实例的时候抛出异常。</p>
+</li>
+<li><p>公有的成员是个静态工厂方法。（饿汉）</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Elvis</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Elvis INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Elvis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token function">Elvis</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Elvis <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token keyword">return</span> INSTANCE<span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>它的优势在于：公有的静态域是 final的，所以该域总是包含相同的对象引用。还有就是它更简单。还可以通过方法引用作为提供者。Elvis::getInstance 就是一个 Supplier&lt;Elivs&gt;。</p>
+<p>上述两种方式想让类变成可序列化的，仅仅是 implements Serializable 是不够的，还需要提供一个 readResolve 方法。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> Object <span class="token function">readResolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> INSTANCE<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ol>
+<p>第三种方式就是声明一个包含单个元素的枚举类型。</p>
+<p>无偿提供了序列化机制，绝对防止多次实例化，即使是在面对复杂序列化或者反射攻击的时候也是的。是实现单例模式的最佳实践。这个就不多说了。</p>
+<blockquote>
+<p>如果 Signleton 必须扩展一个超类，而不是扩展 Enum 的时候，就不宜使用这个方法。（虽然可以申明枚举去实现接口）</p>
+</blockquote>
+<blockquote>
+<p>时间： 2020/7/21</p>
+</blockquote>
+<h2 id="4-通过私有构造器强化不可实例化的能力"><a href="#4-通过私有构造器强化不可实例化的能力" class="headerlink" title="4.通过私有构造器强化不可实例化的能力"></a>4.通过私有构造器强化不可实例化的能力</h2><p>有时候可能需要编写只包含静态方法和静态域的类。这样的<strong>工具类</strong>不希望被实例化，因为没有任何意义。</p>
+<p>所以需要将其包含一个私有的构造器，保证不能被实例化。另外，通过将类做成抽象类来强制该类不可被实例化是行不通的。（这样做甚至会误导用户）</p>
+<p>进一步来说，私有的构造器保证了从外部不可以实例化该类，但是还是可以在该类的内部去访问，所以可以在私有的构造器中抛出一个 AsserttionError。</p>
+<h2 id="5-优先考虑依赖注入来引用资源"><a href="#5-优先考虑依赖注入来引用资源" class="headerlink" title="5.优先考虑依赖注入来引用资源"></a>5.优先考虑依赖注入来引用资源</h2><p>许多类会依赖一个或多个底层的资源。可以把类实现为静态工具类（方法和属性都是 static）。也可以将这些类实现为 Singleton 。</p>
+<p>比如，拼写检查器需要依赖词典。静态工具类和 Singleton 类不适于需要引用底层资源的类。</p>
+<p>一种简单的依赖注入形式就是，当创建一个实例时，就将该资源传到构造器中，在创建拼写检查器时就将词典注入其中。</p>
+<p>依赖注入同样适用于构造器、静态工厂和构建器。另一种变体是将资源工厂传给构造器。工厂是可以被重复调用来创建类型实例的一个对象。工厂具体表现为<strong>工厂方法模式</strong>，比如 JAVA8 新增的接口 Supplier&lt;T&gt;，适用于表示工厂。</p>
+<p>总而言之，不要用 Singleton 和静态工厂工具类来实现依赖一个或多个底层资源类，且该资源的行为会影响到该类的行为；也不要直接用这个类来创建这些资源。而应该将这些资源或者工厂传给构造器，通过他们来创建类。</p>
+<h2 id="6-避免创建不必要的对象"><a href="#6-避免创建不必要的对象" class="headerlink" title="6.避免创建不必要的对象"></a>6.避免创建不必要的对象</h2><p>对于同时提供静态工厂方法和构造器的不可变类，通常优先使用静态工厂方法而不是构造器，以避免创建不必要的对象。</p>
+<p>比如，Boolean.valueOf(String) 几乎总是优先于构造器 Boolean(String)，Boolean(String)在 Java9 中已经被废弃了。</p>
+<blockquote>
+<p>时间： 2020/7/21</p>
+</blockquote>
+<h2 id="7-消除过期引用的对象引用"><a href="#7-消除过期引用的对象引用" class="headerlink" title="7.消除过期引用的对象引用"></a>7.消除过期引用的对象引用</h2><p>经常在看源码的过程中会看到这样的代码：<code>elements[size] = null;</code>，有点理解不了，因为并不是逻辑上要求它为空，而是突然就给了一个 <code>null</code>。</p>
+<p>但其实这样做的原因，很大一部分程度上为了<strong>消除过期引用的对象引用</strong>，也就是永远都不会被解除的引用，他们不会被 Java 的垃圾收集机制所收集，一但出现问题，很难复现和排查。</p>
+<p>最常见的就是栈。凡是在 elements 数组的“活动部分”之外的任何引用都是过期的。活动部分是指 elements 中下标小于 size 的那些元素。（因为栈是可伸缩的，先增长，然后再收缩，从栈中弹出来的对象将不会被当作垃圾回收，即使栈的程序不在引用这些对象）</p>
+<ol>
+<li>只要类是自己管理内存，程序员就该警惕内存泄露的问题。一旦元素被释放，则该元素中包含的任何对象引用都应该被清空。</li>
+<li>内存泄漏第二个常见的来源是缓存。（WeakHashMap）</li>
+<li>第三个常见的来源是监听器和其他回调。（WeakHashMap）</li>
+</ol>
+<p>内存泄漏通常不会表现明显的失败，所以他们可以在系统中存在很多年，只有通过分析代码或者 Heap 解析工具（Heap Profiler）才能发现内存泄漏问题。</p>
+<h2 id="8-避免使用终结方法和清除方法"><a href="#8-避免使用终结方法和清除方法" class="headerlink" title="8.避免使用终结方法和清除方法"></a>8.避免使用终结方法和清除方法</h2><h2 id="9-try-with-resources-优先于-try-finally"><a href="#9-try-with-resources-优先于-try-finally" class="headerlink" title="9.try-with-resources 优先于 try-finally"></a>9.try-with-resources 优先于 try-finally</h2><p>Java7 引入了 try-with-resources 语句。要使用这个构造的资源，必须先实现 AutoCloseable 接口，其中包含了单个返回 void 的 close 方法。如果编写了一个类，它代表是必须被关闭的资源，那么这个类也应该实现 AutoCloseable。</p>
+<p>在处理必须关闭的资源时，始终要优先考虑用 try-with-resources，而不是用 try-finally。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://nekoozero.github.io/2020/06/27/%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E5%AF%B9%E8%B1%A1/">http://nekoozero.github.io/2020/06/27/%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E5%AF%B9%E8%B1%A1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/08/10/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="第二章：对于所有对象都通用的方法">
+                        
+                        <span class="card-title">第二章：对于所有对象都通用的方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/EFFECTIVE/" class="post-category">
+                                    EFFECTIVE
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/09/AQS/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="AQS">
+                        
+                        <span class="card-title">AQS</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CONCURRENT/" class="post-category">
+                                    CONCURRENT
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <!--
+ * @Author: your name
+ * @Date: 2021-05-30 14:06:24
+ * @LastEditTime: 2021-07-16 12:38:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\footer.ejs
+-->
+<footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6782589134"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <!-- <div class="col s12 m8 l8 copy-right">
+            
+        </div> -->
+        <!-- <div class="col s12 m8 l8 copy-right">高堂明镜悲白发，朝如青丝暮成雪</div> -->
+        <div class="col s12 m8 l8 copy-right">
+            <!-- Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span> -->
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici-author"></span>
+            <div style="float:right"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备18027893号</a></div>
+            <!-- <a href="/about" target="_blank">qxnekoo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+            
+            
+            
+            
+            <br>
+
+            <script type="text/javascript"> 
+                function getGushici() {
+                    $.ajax({url:"https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=iwbPjlHvayxXYk7KgpZQGcAHdGZ18T87",success:function(result){
+                        
+                        $('#gushici').html(result.data.content);
+                        $('#gushici-author').html(" --"+result.data.origin.author);
+                    }});
+                }
+                $("#gushici").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $("#gushici-author").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $(document).ready(function(){ 
+                    getGushici();
+                }); 
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

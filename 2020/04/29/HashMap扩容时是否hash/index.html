@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -381,17 +384,17 @@
 <p>这个是具体的 <code>hash()</code> 方法，还是很好找的，不过计算哈希桶位置的代码在 <code>jdk8</code> 中变了，但是 <code>put()</code> 方法中肯定会调用的，接着往下找就好了，</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/29/compute_buket.png" alt="compute_buket.png"></p>
 <p>计算数组的位置，其实也就是哈希桶的位置了。下面针对这两个方法研究：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token string">"nekooaa"</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" hashCode值 h"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//h>>>16   这里前面加上16个零，主要是为了对齐，方便我们肉眼观察</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"0000000000000000"</span><span class="token operator">+</span>Integer<span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>h <span class="token operator">>>></span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" h>>>16"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token string">"nekooaa"</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" hashCode值 h"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//h>>>16   这里前面加上16个零，主要是为了对齐，方便我们肉眼观察</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"0000000000000000"</span><span class="token operator">+</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>h <span class="token operator">>>></span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" h>>>16"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> x <span class="token operator">=</span> h <span class="token operator">^</span> <span class="token punctuation">(</span>h <span class="token operator">>>></span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//h ^ h >>> 16</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" h ^ h >>> 16 这个值会赋给hash"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// length-1 &amp; hash  supplement函数的作用也是为了对齐</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token function">supplement</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span><span class="token string">" length-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">&amp;</span> <span class="token number">15</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" length-1 &amp; hash"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token comment">//h ^ h >>> 16</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" h ^ h >>> 16 这个值会赋给hash"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// length-1 &amp; hash  supplement函数的作用也是为了对齐</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token function">supplement</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span><span class="token string">" length-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">&amp;</span> <span class="token number">15</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" length-1 &amp; hash"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>代码其实很简单，挑一个字符串的字符串，<code>HashMap</code> 的哈希桶个数我就使用默认的 16 来测试，通过计算来得到这个字符串如果放到 <code>HashMap</code> 中的具体位置。运行一下看看结果：</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/29/result_hash.png" alt="result_hash.png"></p>
 <p>也就是说，16 个哈希桶，使用这个字符串，将会放到第 10 个 <code>hash</code> 桶。</p>
@@ -400,7 +403,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/29/result_hash2.png" alt="result_hash2.png"></p>
 <p><u>2 的 n 次幂减去 1 得到的二进制，有效位一定都是 1，在进行与运算（&amp;）时就会有奇效了，而且在这种扩容是原来容量 2 倍的情况下，这边的 <code>length-1</code> 得到的二进制数会比扩容之前的 <code>length-1</code> 左边多一个 1 出来</u>，(比如上面，15 的时候二进制数为 1111，31 的时候就是 11111),所以在与 <code>h ^ h &gt;&gt;&gt; 16</code>计算的时候只要关注多出来的那个 1 对应 <code>h ^ h &gt;&gt;&gt; 16</code>的数字是 0 还是 1，如果是 0，则结果不变（就是上面 31 的例子），如果是 1 则运行结果左边会多出一个 1 出来。</p>
 <p>按照上面的例子当扩容之后的 <code>length-1</code> 到这个位置的时候，位置就会变化：</p>
-<p><a target="_blank" rel="noopener" href="http://www.qxnekoo.cn:8888/image/MKJU"><img src="http://www.qxnekoo.cn:8888/images/2020/04/29/hash_result3.png" alt="hash_result3.png"></a></p>
+<p><a href="http://www.qxnekoo.cn:8888/image/MKJU"><img src="http://www.qxnekoo.cn:8888/images/2020/04/29/hash_result3.png" alt="hash_result3.png"></a></p>
 <p>那个位置是 127 的位置，也就是说扩容为 128 时，这个字符串对应的哈希桶的位置会发生变化，将 31 改为 127，验证一下：</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/29/hash_result4.png" alt="hash_result4.png"></p>
 <p>哈希桶的位置变为 74，也就是 10+64=74，这个 64 就是扩容为 128 之前的大小了，这一切就呼应上了。</p>
@@ -469,7 +472,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2020/04/29/HashMap%E6%89%A9%E5%AE%B9%E6%97%B6%E6%98%AF%E5%90%A6hash/">http://nekoozero.github.io/2020/04/29/HashMap%E6%89%A9%E5%AE%B9%E6%97%B6%E6%98%AF%E5%90%A6hash/</a>
+                    <a href="http://www.qxnekoo.cn/2020/04/29/HashMap%E6%89%A9%E5%AE%B9%E6%97%B6%E6%98%AF%E5%90%A6hash/">http://www.qxnekoo.cn/2020/04/29/HashMap%E6%89%A9%E5%AE%B9%E6%97%B6%E6%98%AF%E5%90%A6hash/</a>
                 </span>
             </div>
             <div class="reprint__notice">

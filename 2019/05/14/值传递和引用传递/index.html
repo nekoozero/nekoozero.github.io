@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -334,71 +337,71 @@
 </blockquote>
 <h2 id="值和引用"><a href="#值和引用" class="headerlink" title="值和引用"></a>值和引用</h2><p>对于基本类型来说，变量里面保存的就是值，对于引用类型而言，变量中保存的实际对象的地址。称这个变量为“引用”，引用指向实际的对象。</p>
 <h2 id="的作用"><a href="#的作用" class="headerlink" title="= 的作用"></a>= 的作用</h2><p>虽然叫的最多是等于号，但是最确切的叫法是<strong>赋值运算符</strong>，那么他最简单的用法该去怎么理解呢？</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-String str <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//str 存的是一个引用 引用指向实际的对象</span>
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>   <span class="token comment">//str 存的是一个引用 引用指向实际的对象</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>对于基本类型，<code>num = 20;</code> 赋值运算符会直接改变变量的值，原来的值被覆盖掉。</p>
 <p>对于引用类型，赋值运算符会改变引用中所保存的地址，<code>str = &quot;world&quot;</code> 导致引用被改变，指向了新的对象，<strong>而原来的引用不变，原来的对象也不会被改变</strong>。</p>
 <p>= 的详细内容还有很多，就不展开说了。</p>
 <h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>一句话：<strong>参数传递基本上就是赋值操作。</strong></p>
 <p>我之前在参数调用的过程中，默认将函数调用的参数等同于我们定义的变量，这是错误的想法。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
-String str <span class="token operator">=</span> <span class="token string">'北城槐'</span><span class="token punctuation">;</span>
-<span class="token function">someMethod</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//传入参数的时候其实做了赋值运算 n = num; s = str;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">'北城槐'</span><span class="token punctuation">;</span>
+<span class="token function">someMethod</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//传入参数的时候其实做了赋值运算 n = num; s = str;</span>
 
-<span class="token comment" spellcheck="true">//函数定义</span>
-<span class="token keyword">void</span> <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span>String s<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//do something</span>
+<span class="token comment">//函数定义</span>
+<span class="token keyword">void</span> <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span><span class="token class-name">String</span> s<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//do something</span>
      n <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
      s <span class="token operator">=</span> <span class="token string">'qxnekoo'</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>所以函数里的操作实际上还是对参数 n 和 s 的操作,并不会真正影响到 num 和 str 的值。</p>
-<pre class=" language-java"><code class="language-java">User u <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">User</span> u <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 u<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"nekoo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>u<span class="token punctuation">.</span>getUsername<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//nekoo</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>u<span class="token punctuation">.</span>getUsername<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//nekoo</span>
 
-<span class="token keyword">void</span> <span class="token function">change</span><span class="token punctuation">(</span>User u<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//将变量u的引用赋值给参数u</span>
-    u <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//参数u的引用已经改变了 </span>
+<span class="token keyword">void</span> <span class="token function">change</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  <span class="token comment">//将变量u的引用赋值给参数u</span>
+    u <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//参数u的引用已经改变了 </span>
     u<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"qx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
-<p>对比一下：</p>
-<pre class=" language-java"><code class="language-java">User u <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-u<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"nekoo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>u<span class="token punctuation">.</span>getUsername<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//qx</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token keyword">void</span> <span class="token function">change</span><span class="token punctuation">(</span>User u<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//将变量u的引用赋值给参数u</span>
-    u<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"qx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//参数u的引用没有发生改变</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<p>对比一下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">User</span> u <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+u<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"nekoo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>u<span class="token punctuation">.</span>getUsername<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//qx</span>
+
+<span class="token keyword">void</span> <span class="token function">change</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  <span class="token comment">//将变量u的引用赋值给参数u</span>
+    u<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"qx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//参数u的引用没有发生改变</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>再详细一点：</p>
-<pre class=" language-java"><code class="language-java">第一个例子：基本类型
-<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">第一个例子：基本类型
+<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     value <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token function">foo</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// num 没有被改变</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">foo</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// num 没有被改变</span>
 
 第二个例子：没有提供改变自身方法的引用类型
-<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span>String text<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token class-name">String</span> text<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     text <span class="token operator">=</span> <span class="token string">"windows"</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token function">foo</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// str 也没有被改变</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">foo</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// str 也没有被改变</span>
 
 第三个例子：提供了改变自身方法的引用类型
-StringBuilder sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">"iphone"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span>StringBuilder builder<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token class-name">StringBuilder</span> sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">"iphone"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token class-name">StringBuilder</span> builder<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token function">foo</span><span class="token punctuation">(</span>sb<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sb 被改变了，变成了"iphone4"。</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">foo</span><span class="token punctuation">(</span>sb<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// sb 被改变了，变成了"iphone4"。</span>
 
 第四个例子：提供了改变自身方法的引用类型，但是不使用，而是使用赋值运算符。
-StringBuilder sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">"iphone"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span>StringBuilder builder<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token class-name">StringBuilder</span> sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">"iphone"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token class-name">StringBuilder</span> builder<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">"ipad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token function">foo</span><span class="token punctuation">(</span>sb<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sb 没有被改变，还是 "iphone"。</span>
-</code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token function">foo</span><span class="token punctuation">(</span>sb<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// sb 没有被改变，还是 "iphone"。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>值得一提的是，String等immutable类型因为没有提供自身修改的函数，<strong>每次操作</strong>都是新生成一个对象，所以要特殊对待，常量池也是要注意的。</p>
 <blockquote>
 <p>补充于2020/5/7</p>
@@ -464,7 +467,7 @@ StringBuilder sb <span class="token operator">=</span> <span class="token keywor
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2019/05/14/%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/">http://nekoozero.github.io/2019/05/14/%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</a>
+                    <a href="http://www.qxnekoo.cn/2019/05/14/%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/">http://www.qxnekoo.cn/2019/05/14/%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</a>
                 </span>
             </div>
             <div class="reprint__notice">

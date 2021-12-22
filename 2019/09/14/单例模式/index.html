@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -335,106 +338,106 @@
 </ul>
 <h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>如果一个类对外提供了public的构造方法，那么外界就可以任意创建该类的对象。所以，要想限制对象的产生，一个办法就是将构造函数变为私有的（至少是受保护的），使外面的类不能通过引用来产生对象。同时为了保证类的可用性，就必须提供一个自己的对象以及访问这个对象的静态方法。</p>
 <h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><p>简单的单例实现</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//创建一个Singleton对象</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> Sileton instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//将构造方法设为私有的</span>
-    <span class="token keyword">private</span> <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//创建一个Singleton对象</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Sileton</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//将构造方法设为私有的</span>
+    <span class="token keyword">private</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//向外提供获取这个对象的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//向外提供获取这个对象的方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Singleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>通过static的静态初始化方式，在该类第一次被加载的时候，就有一个Singleton的实例被创建出来了，这样就保证在第一次使用该对象的时候后，他已经被初始化好了。</p>
 <p>由于该<strong>实例在类被加载的</strong>时候就创建出来了，所以也避免了线程安全问题</p>
 <blockquote>
 <p>饿汉式单例，在类被加载的时候就会实例化。这也许会造成不必要的消耗，因为可能这个实例根本就不会被用到。而且，如果这个类被多次加载的话也会造成多次实例化。解决方法：静态内部类的形式、懒汉式。</p>
 </blockquote>
-<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><pre class=" language-java"><code class="language-java">
-<span class="token comment" spellcheck="true">/**
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token comment">/**
  * 静态内部类/类初始化
    该方式不会出现线程安全的问题，即使发生重排序，其他线程也是无法看到的
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StaticInnerClassSingleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//在静态内部类中初始化实例对象</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">SingletonHolder</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span>  StaticInnerClassSingleton INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StaticInnerClassSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//私有的构造方法</span>
-    <span class="token keyword">private</span> <span class="token function">StaticInnerClassSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StaticInnerClassSingleton</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//在静态内部类中初始化实例对象</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">SingletonHolder</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span>  <span class="token class-name">StaticInnerClassSingleton</span> INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StaticInnerClassSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//私有的构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">StaticInnerClassSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//对外提供获取实例的静态方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> StaticInnerClassSingleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> SingletonHolder<span class="token punctuation">.</span>INSTANCE<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//对外提供获取实例的静态方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">StaticInnerClassSingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">SingletonHolder</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>同样利用classloder的机制来保证初始化instance时只有一个线程。</p>
 <p>差别：饿汉式只要类被装载了，那么instance就会被实例化（没有达到lazy loading的效果）。而内部静态类的方法，在StaticInnerClassSingleton被加载的时候，INSTANCE不一定会被初始化，因为SingletonHolder没有被主动使用，因为只有显式通过调用getInstance方法时，才会显式装载SingletonHolder类，从而实例化INSTANCE。</p>
 <h3 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h3><p>在该对象真正被使用的时候才会实例化的单例模式—懒汉模式。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LazySingleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//声明变量</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> LazySingleton lazySingleton<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//私有的构造方法</span>
-    <span class="token keyword">private</span> <span class="token function">LazySingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LazySingleton</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//声明变量</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">LazySingleton</span> lazySingleton<span class="token punctuation">;</span>
+    <span class="token comment">//私有的构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">LazySingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//对外提供获取对象的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> LazySingleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>lazySingleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//对外提供获取对象的方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">LazySingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>lazySingleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             lazySingleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LazySingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> lazySingleton<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
     
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>懒汉式是不会提前将对象初始化出来，只有当调用getInstance方法的时候才会去初始化对象，如果已经初始化过了，那么就返回初始化好的对象。</p>
 <p>但是，上面的代码有一个致命的问题：</p>
 <p>存在线程安全问题，在多线程的情况下，如果两个或者两个以上线程同时进入if语句中，并且对象也没有被初始化，那么么这些线程就会去new一个对象（这些对象都不是同一个对象）出来。</p>
 <h3 id="线程安全的懒汉式"><a href="#线程安全的懒汉式" class="headerlink" title="线程安全的懒汉式"></a>线程安全的懒汉式</h3><p>给创建对象的步骤加锁</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SynchronizeLazySingleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//声明变量</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> SynchronizeLazySingleton synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//私有的构造方法</span>
-    <span class="token keyword">private</span> <span class="token function">SynchronizeLazySingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SynchronizeLazySingleton</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//声明变量</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SynchronizeLazySingleton</span> synchronizeLazySingleton<span class="token punctuation">;</span>
+    <span class="token comment">//私有的构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">SynchronizeLazySingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//对外提供获取对象的方法 对该方法加锁</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> SynchronizeLazySingleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//对外提供获取对象的方法 对该方法加锁</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> <span class="token class-name">SynchronizeLazySingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             synchronizeLazySingleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SynchronizeLazySingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>其实就是加了一个synchronized关键字，很简单，但是上面的效率很低，因为99%的情况下是不需要做同步处理的。上面的写法时该方法执行都需要同步，但是其实只有第一次创建的情况下才需要同步，其他的情况都是直接return synchronizeLazySingleton就可以了，是不需要做同步的。</p>
 <h3 id="双重校验锁"><a href="#双重校验锁" class="headerlink" title="双重校验锁"></a>双重校验锁</h3><p>锁的范围既然太大了，只要缩小锁的范围就可以了:</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SynchronizeLazySingletonAdvance</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//声明变量</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> SynchronizeLazySingletonAdvance synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//私有的构造方法</span>
-    <span class="token keyword">private</span> <span class="token function">SynchronizeLazySingletonAdvance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SynchronizeLazySingletonAdvance</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//声明变量</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SynchronizeLazySingletonAdvance</span> synchronizeLazySingleton<span class="token punctuation">;</span>
+    <span class="token comment">//私有的构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">SynchronizeLazySingletonAdvance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//对外提供获取对象的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span>  SynchronizeLazySingletonAdvance <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// problem</span>
-            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>SynchronizeLazySingletonAdvance<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//对外提供获取对象的方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span>  <span class="token class-name">SynchronizeLazySingletonAdvance</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token comment">// problem</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">SynchronizeLazySingletonAdvance</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                     synchronizeLazySingleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SynchronizeLazySingletonAdvance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这样不是新建对象的线程就不需要走synchronized块了，与上面相比，双重校验就是用来缩小synchronized块的。再准确点说就是，第一个判断是判断线程是否要走synchroniezd快，第二个判断就是判断走synchronized块的线程是否需要去创建对象。</p>
 <p>这样看来，实现了惰性初始化，解决了同步问题，还减小了锁的范围，提高了效率。但还是存在隐患，主要和JMM有关。</p>
 <p>假设A线程进入synchronized块对对象进行初始化，由于某些编程语言的语义，编译器生成的代码允许在线程A执行完变量的初始化<strong>之前</strong>，更新变量并将其指向<strong>部分初始化的对象</strong>。</p>
@@ -442,76 +445,76 @@
 <ul>
 <li><p>问题的根源</p>
 <p>instance = new Singleton();创建一个对象，分解为如下三步代码：</p>
-<pre class=" language-java"><code class="language-java">memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//1.分配对象的内存空间</span>
-<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//2.初始化对象</span>
-instance <span class="token operator">=</span> memory<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//3.设置instance指向刚分配的内存地址</span>
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//1.分配对象的内存空间</span>
+<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//2.初始化对象</span>
+instance <span class="token operator">=</span> memory<span class="token punctuation">;</span>     <span class="token comment">//3.设置instance指向刚分配的内存地址</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>在2和3中，可能会被重排序（在JIT编译器上，这种重排序是真实发生的）。</p>
-<pre class=" language-java"><code class="language-java">memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//1.分配对象的内存空间</span>
-instance <span class="token operator">=</span> memory<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//3.设置instance指向刚分配的内存地址</span>
-                       <span class="token comment" spellcheck="true">//此时对象还没有被初始化</span>
-<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//2.初始化对象</span>
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//1.分配对象的内存空间</span>
+instance <span class="token operator">=</span> memory<span class="token punctuation">;</span>     <span class="token comment">//3.设置instance指向刚分配的内存地址</span>
+                       <span class="token comment">//此时对象还没有被初始化</span>
+<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//2.初始化对象</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>不正确的实现双重检查锁导致异常结果可能会间歇性出现，重现异常是十分困难的。</p>
 </li>
 </ul>
-<h3 id="使用volatile"><a href="#使用volatile" class="headerlink" title="使用volatile"></a>使用volatile</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h3 id="使用volatile"><a href="#使用volatile" class="headerlink" title="使用volatile"></a>使用volatile</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * volatile
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VolatileSingleton</span> <span class="token keyword">implements</span> <span class="token class-name">Serilizable</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//声明变量</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> VolatileSingleton synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//私有的构造方法</span>
-    <span class="token keyword">private</span> <span class="token function">VolatileSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VolatileSingleton</span> <span class="token keyword">implements</span> <span class="token class-name">Serilizable</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//声明变量</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> <span class="token class-name">VolatileSingleton</span> synchronizeLazySingleton<span class="token punctuation">;</span>
+    <span class="token comment">//私有的构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">VolatileSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//对外提供获取对象的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> VolatileSingleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>VolatileSingleton<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//对外提供获取对象的方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">VolatileSingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">VolatileSingleton</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>synchronizeLazySingleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                     synchronizeLazySingleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VolatileSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
     
-    <span class="token comment" spellcheck="true">//该方法可以防止序列化对单例的破坏</span>
-    <span class="token keyword">private</span> Object <span class="token function">readResolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment">//该方法可以防止序列化对单例的破坏</span>
+    <span class="token keyword">private</span> <span class="token class-name">Object</span> <span class="token function">readResolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> synchronizeLazySingleton<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这个解决了刚才提到的问题，<strong>volatile关键字禁止重排序</strong>（volatile还有其他作用，这边不详说）。</p>
 <p>这种方式遇到序列化的时候也可能存在问题。readResolve()方法可以帮忙解决。</p>
-<h3 id="使用final"><a href="#使用final" class="headerlink" title="使用final"></a>使用final</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">FinalWrapper</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">final</span> T value<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">FinalWrapper</span><span class="token punctuation">(</span>T value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h3 id="使用final"><a href="#使用final" class="headerlink" title="使用final"></a>使用final</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">FinalWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token class-name">T</span> value<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">FinalWrapper</span><span class="token punctuation">(</span><span class="token class-name">T</span> value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FinalSingleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> FinalWrapper<span class="token operator">&lt;</span>FinalSingleton<span class="token operator">></span> helperWrapper <span class="token operator">=</span> null<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> FinalSingleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        FinalWrapper<span class="token operator">&lt;</span>FinalSingleton<span class="token operator">></span> wrapper <span class="token operator">=</span> helperWrapper<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>wrapper<span class="token operator">==</span>null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>helperWrapper <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                    helperWrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FinalWrapper</span><span class="token operator">&lt;</span>FinalSingleton<span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FinalSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FinalSingleton</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">FinalWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FinalSingleton</span><span class="token punctuation">></span></span> helperWrapper <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">FinalSingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">FinalWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FinalSingleton</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> helperWrapper<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>wrapper<span class="token operator">==</span><span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>helperWrapper <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    helperWrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FinalWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FinalSingleton</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FinalSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
                 wrapper <span class="token operator">=</span> helperWrapper<span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> wrapper<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
-<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> Singleton <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">Singleton</span> <span class="token punctuation">&#123;</span>
     INSTANCE<span class="token punctuation">;</span>
-    <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>枚举避免多线程的问题，防止反序列化重新创建对象</p>
 <blockquote>
 <p>补充于2020/5/7</p>
@@ -540,41 +543,43 @@ instance <span class="token operator">=</span> memory<span class="token punctuat
 <h2 id="如何破坏单例"><a href="#如何破坏单例" class="headerlink" title="如何破坏单例"></a>如何破坏单例</h2><h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>单例模式其实对外隐藏了构造函数，保证用户无法主动创建它，但是仍然是可以有办法去破坏它。最简单的就是<strong>反射</strong>。</p>
 <p>对于双重校验锁的单例，我们可以通过反射，简简单单就可以破坏单例了。（调用私有的构造方法）</p>
 <p>避免方式：在构造函数中加一些判断就可以了</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token function">VolatileSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>synchronizeLazySingleton<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">VolatileSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>synchronizeLazySingleton<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
          <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"Singleton constructor is called... "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>但个人觉得这样并没有完全解决问题，万一在反射调用构造方法之前没有调用过 <code>getInstance()</code>方法，那么就还是没有避免。</p>
 <h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>通过先将单例对象序列化后保存到临时文件中，然后再从临时文件中反序列化出来，先序列化再反序列化的方式，可获取到一个新的单例对象，这就破坏了单例。因为在对象反序列化的过程中，序列化会通过反射调用无参数的构造方法创建一个新的对象，所以，通过反序列化也能破坏单例。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest</span> <span class="token punctuation">&#123;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Singleton singleton <span class="token operator">=</span> Singleton<span class="token punctuation">.</span><span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Singleton</span> singleton <span class="token operator">=</span> <span class="token class-name">Singleton</span><span class="token punctuation">.</span><span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token comment" spellcheck="true">//Write Obj to file</span>
-        ObjectOutputStream oos <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment">//Write Obj to file</span>
+        <span class="token class-name">ObjectOutputStream</span> oos <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
             oos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectOutputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token string">"tempFile"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             oos<span class="token punctuation">.</span><span class="token function">writeObject</span><span class="token punctuation">(</span>singleton<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//Read Obj from file</span>
-            File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"tempFile"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//Read Obj from file</span>
+            <span class="token class-name">File</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"tempFile"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            ObjectInputStream ois <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Singleton singletonBySerialize <span class="token operator">=</span> <span class="token punctuation">(</span>Singleton<span class="token punctuation">)</span>ois<span class="token punctuation">.</span><span class="token function">readObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//判断是否是同一个对象</span>
+            <span class="token class-name">ObjectInputStream</span> ois <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Singleton</span> singletonBySerialize <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Singleton</span><span class="token punctuation">)</span>ois<span class="token punctuation">.</span><span class="token function">readObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//判断是否是同一个对象</span>
 
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"singleton : "</span> <span class="token operator">+</span> singleton<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"singletonBySerialize : "</span> <span class="token operator">+</span> singletonBySerialize<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"singleton == singletonBySerialize : "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> singletonBySerialize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"singleton : "</span> <span class="token operator">+</span> singleton<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"singletonBySerialize : "</span> <span class="token operator">+</span> singletonBySerialize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"singleton == singletonBySerialize : "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> singletonBySerialize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <p>避免方法，上面也提到了：</p>
 <p>只需要在Sinleton中增加readResolve方法，并在该方法中指定要返回的对象的生成策略就可以了。</p>
 <p>因为反序列化过程中，在反序列化执行过程中会执行到ObjectInputStream#readOrdinaryObject方法，这个方法会判断对象是否包含readResolve方法，如果包含的话会直接调用这个方法获得对象实例。</p>
@@ -605,7 +610,7 @@ instance <span class="token operator">=</span> memory<span class="token punctuat
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2019/09/14/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">http://nekoozero.github.io/2019/09/14/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</a>
+                    <a href="http://www.qxnekoo.cn/2019/09/14/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">http://www.qxnekoo.cn/2019/09/14/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">

@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -329,88 +332,89 @@
 <h2 id="如何理解"><a href="#如何理解" class="headerlink" title="如何理解"></a>如何理解</h2><p>英文全称是 Open Closed Principle，简写为 OCP，翻译过来就是：<strong>软件实体（模块、类、方法）应该“多扩展开发、对修改关闭”。</strong></p>
 <p>开闭原则可以用于不同粒度的代码中，可以是模块，也可以是类，还可以是方法（及其属性），同一个代码改动，在粗粒度下，被认为是“修改”，在细代码粒度下，又可以被认定为“扩展”。实际上也没有必要去纠结一个代码是“修改”还是“扩展”，只要他没有 破坏原有代码的正常运行，没有破坏原有的单元测试，就可以说是一个合格的测试。</p>
 <p>下面是一个 API 接口监控告警的代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Alert</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>AlertHandler<span class="token operator">></span> alertHandlers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Alert</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">AlertHandler</span><span class="token punctuation">></span></span> alertHandlers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addAlertHandler</span><span class="token punctuation">(</span>AlertHandler alertHandler<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addAlertHandler</span><span class="token punctuation">(</span><span class="token class-name">AlertHandler</span> alertHandler<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>alertHandlers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>alertHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
     
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span>ApiStatInfo apiStatInfo<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>AlertHandler handler <span class="token operator">:</span> alertHandlers<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token class-name">ApiStatInfo</span> apiStatInfo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">AlertHandler</span> handler <span class="token operator">:</span> alertHandlers<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             handler<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AlertHandler</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">protected</span> AlertRule rule<span class="token punctuation">;</span>
-    <span class="token keyword">protected</span> Notification notification<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">AlertHandler</span><span class="token punctuation">(</span>AlertRule rule<span class="token punctuation">,</span>Notification notification<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AlertHandler</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">protected</span> <span class="token class-name">AlertRule</span> rule<span class="token punctuation">;</span>
+    <span class="token keyword">protected</span> <span class="token class-name">Notification</span> notification<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">AlertHandler</span><span class="token punctuation">(</span><span class="token class-name">AlertRule</span> rule<span class="token punctuation">,</span><span class="token class-name">Notification</span> notification<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>rule <span class="token operator">=</span> rule<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>notification <span class="token operator">=</span> notification<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span>ApiStatInfo apiStatInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token class-name">ApiStatInfo</span> apiStatInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TpsAlertHandler</span> <span class="token keyword">extends</span> <span class="token class-name">AlertHandler</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">TpsAlertHandler</span><span class="token punctuation">(</span>ALertRule rule<span class="token punctuation">,</span> Notification notification<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TpsAlertHandler</span> <span class="token keyword">extends</span> <span class="token class-name">AlertHandler</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token class-name">TpsAlertHandler</span><span class="token punctuation">(</span><span class="token class-name">ALertRule</span> rule<span class="token punctuation">,</span> <span class="token class-name">Notification</span> notification<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">super</span><span class="token punctuation">(</span>rule<span class="token punctuation">,</span>notification<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span>ApiStatInfo apiStatInfo<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token class-name">ApiStatInfo</span> apiStatInfo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">long</span> tps <span class="token operator">=</span> apiStatInfo<span class="token punctuation">.</span><span class="token function">getRequestCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>apiStatInfo<span class="token punctuation">.</span><span class="token function">getDurationOfSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>tps<span class="token operator">></span>rule<span class="token punctuation">.</span><span class="token function">getMatchedRule</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">.</span><span class="token function">getApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMaxTps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            notification<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span>NotificationEmergencyLevel<span class="token punctuation">.</span>URGENCY<span class="token punctuation">,</span><span class="token string">"..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>tps<span class="token operator">></span>rule<span class="token punctuation">.</span><span class="token function">getMatchedRule</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">.</span><span class="token function">getApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMaxTps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            notification<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token class-name">NotificationEmergencyLevel</span><span class="token punctuation">.</span>URGENCY<span class="token punctuation">,</span><span class="token string">"..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ErrorAlertHandler</span> <span class="token keyword">extends</span> <span class="token class-name">AlertHandler</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">ErrorALertHandler</span><span class="token punctuation">(</span>AlertRule rule<span class="token punctuation">,</span>Notification notification<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ErrorAlertHandler</span> <span class="token keyword">extends</span> <span class="token class-name">AlertHandler</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token class-name">ErrorALertHandler</span><span class="token punctuation">(</span><span class="token class-name">AlertRule</span> rule<span class="token punctuation">,</span><span class="token class-name">Notification</span> notification<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">super</span><span class="token punctuation">(</span>rule<span class="token punctuation">,</span>notification<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span>ApiStatInfo apiStatInfo<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>     
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token class-name">ApiStatInfo</span> apiStatInfo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>     
         <span class="token keyword">long</span> errorCount <span class="token operator">=</span> apiStatInfp<span class="token punctuation">.</span><span class="token function">getErrorCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>errorCount<span class="token operator">></span>rule<span class="token punctuation">.</span><span class="token function">getMatchedRule</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">.</span><span class="token function">getApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMaxErrorCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            notification<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span>NotificationEmergenccyLevel<span class="token punctuation">.</span>SERVER<span class="token punctuation">,</span><span class="token string">"..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>errorCount<span class="token operator">></span>rule<span class="token punctuation">.</span><span class="token function">getMatchedRule</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">.</span><span class="token function">getApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMaxErrorCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            notification<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token class-name">NotificationEmergenccyLevel</span><span class="token punctuation">.</span>SERVER<span class="token punctuation">,</span><span class="token string">"..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>使用：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ApplicationContext</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> AlertRule alertRule<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Notification notification<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Alert alert<span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ApplicationContext</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">AlertRule</span> alertRule<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Notification</span> notification<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Alert</span> alert<span class="token punctuation">;</span>
     
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initializeBeans</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        alertRule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AlertRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//省略初始化参数</span>
-        notification <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Notification</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//省略初始化参数</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initializeBeans</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        alertRule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AlertRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//省略初始化参数</span>
+        notification <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Notification</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//省略初始化参数</span>
         alert <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Alert</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         alert<span class="token punctuation">.</span><span class="token function">addAlertHandler</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TpsAlertHandler</span><span class="token punctuation">(</span>alertRule<span class="token punctuation">,</span>notification<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         alert<span class="token punctuation">.</span><span class="token function">addAlertHandler</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ErrorAlertHandler</span><span class="token punctuation">(</span>alertRule<span class="token punctuation">,</span>notification<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> Alert <span class="token function">getAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token keyword">return</span> alert<span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//饿汉模式</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> ApplicatioContext applicationContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token function">ApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Alert</span> <span class="token function">getAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token keyword">return</span> alert<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+    <span class="token comment">//饿汉模式</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">ApplicatioContext</span> applicationContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">ApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token function">initializeBeans</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">getSingleInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">getSingleInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> applicationContext<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        ApiStatInfo apiStatInfo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApiStatInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//省略设置 apiStatInfo 属性的代码</span>
-        ApplicationContext<span class="token punctuation">.</span><span class="token function">getSingleIntance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">ApiStatInfo</span> apiStatInfo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApiStatInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//省略设置 apiStatInfo 属性的代码</span>
+        <span class="token class-name">ApplicationContext</span><span class="token punctuation">.</span><span class="token function">getSingleIntance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span>apiStatInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>如果我们想添加新的告警逻辑，只需要基于扩展的方法创建新的 handler 类即可，不需要改动原来 check() 函数的逻辑。</p>
 <h2 id="修改代码意味着违背开闭原则？"><a href="#修改代码意味着违背开闭原则？" class="headerlink" title="修改代码意味着违背开闭原则？"></a>修改代码意味着违背开闭原则？</h2><p>添加一个新的功能，不可能任何模块、类、方法的代码都不“修改”，类需要创建、组装、并且做一些初始化操作，才能构建可运行的程序。<strong>我们要做的就是尽量让修改操作更集中、更少、更上层，尽量让最核心、最复杂的逻辑代码满足开闭原则。</strong></p>
 <h2 id="如何做到"><a href="#如何做到" class="headerlink" title="如何做到"></a>如何做到</h2><p>需要更加偏向顶层的指导思想：<strong>时刻具备扩展意识、抽象意识、封装意识。</strong></p>
@@ -419,38 +423,38 @@
 <p>多态、依赖注入、基于接口而非实现编程，以及前面提到的抽象意识，都是用一种设计思路，<strong>只是从不同的角度、不同的层面来阐述而已。</strong></p>
 </blockquote>
 <p>代码中通过 Kafka 来发送异步消息。对于这样一个功能的开发，我们要学会将其抽象成一组跟具体消息队列（Kafka）无关的异步消息接口。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MessageQueue</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">KafakaMessageQueue</span> <span class="token keyword">implements</span> <span class="token class-name">MessageQueue</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RocketMQMessageQueue</span> <span class="token keyword">implements</span> <span class="token class-name">MessageQueue</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MessageQueue</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">KafakaMessageQueue</span> <span class="token keyword">implements</span> <span class="token class-name">MessageQueue</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RocketMQMessageQueue</span> <span class="token keyword">implements</span> <span class="token class-name">MessageQueue</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MessageFromatter</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonMessageFromatter</span> <span class="token keyword">implements</span> <span class="token class-name">MessageFromatter</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProtoBufMessageFromatter</span> <span class="token keyword">implements</span> <span class="token class-name">MessageFromatter</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MessageFromatter</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonMessageFromatter</span> <span class="token keyword">implements</span> <span class="token class-name">MessageFromatter</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProtoBufMessageFromatter</span> <span class="token keyword">implements</span> <span class="token class-name">MessageFromatter</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> MessageQueue msgQueue<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//基于接口而非实现编程</span>
-    <span class="token keyword">public</span> <span class="token function">Demo</span><span class="token punctuation">(</span>MessageQueue msgQueue<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">MessageQueue</span> msgQueue<span class="token punctuation">;</span> <span class="token comment">//基于接口而非实现编程</span>
+    <span class="token keyword">public</span> <span class="token class-name">Demo</span><span class="token punctuation">(</span><span class="token class-name">MessageQueue</span> msgQueue<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>msgQueue <span class="token operator">=</span> msgQueue<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// msgFormatter：多态、依赖注入 </span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sendNotification</span><span class="token punctuation">(</span>Notification notification<span class="token punctuation">,</span> MessageFormatter msgFormatter<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
-        <span class="token comment" spellcheck="true">//... </span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-   
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// msgFormatter：多态、依赖注入 </span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sendNotification</span><span class="token punctuation">(</span><span class="token class-name">Notification</span> notification<span class="token punctuation">,</span> <span class="token class-name">MessageFormatter</span> msgFormatter<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+        <span class="token comment">//... </span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="如何应用"><a href="#如何应用" class="headerlink" title="如何应用"></a>如何应用</h2><p>最合理的做法是，对于一些比较确定的、短期内可能就会扩展，或者需求改动对代码结构影响比较大的情况，或者实现成本不高的扩展点，在编写代码的时候之后，我们就可以事先做些扩展性设计。但对于一些不确定未来是否要支持的需求，或者实现起来比较复杂的扩展点，我们可以等到有需求驱动的时候，再通过重构代码的方式来支持扩展的需求。</p>
 
                 
@@ -478,7 +482,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2021/08/18/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/">http://nekoozero.github.io/2021/08/18/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/</a>
+                    <a href="http://www.qxnekoo.cn/2021/08/18/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/">http://www.qxnekoo.cn/2021/08/18/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/</a>
                 </span>
             </div>
             <div class="reprint__notice">

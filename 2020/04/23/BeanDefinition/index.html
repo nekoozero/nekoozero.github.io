@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,16 +320,19 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>源码中的注释，结合英文看：</p>
-<pre><code>bean定义描述了一个bean实例，该实例具有属性值、构造函数参数值和由具体实现提供的进一步信息。
+<pre class="line-numbers language-none"><code class="language-none">bean定义描述了一个bean实例，该实例具有属性值、构造函数参数值和由具体实现提供的进一步信息。
 
-这只是一个最小的接口:主要目的是允许&#123;@link BeanFactoryPostProcessor&#125;内省和修改属性值和其他bean元数据。
-</code></pre>
+这只是一个最小的接口:主要目的是允许&#123;@link BeanFactoryPostProcessor&#125;内省和修改属性值和其他bean元数据。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p><code>BeanDefinition</code> 是 <code>Spring</code> 对 <code>Bean</code> 的抽象。容器中每一个 <code>bean</code> 都会有一个对应的 <code>BeanDefinition</code> 实例，该实例负责保存 <code>bean</code> 对象的所有必要信息，包括 <code>bean</code> 对象的 <code>class</code> 类型、是否抽象类、构造方法、参数、其他属性等。是用来描述 <code>Bean</code> 的。</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/21/BeanDefinition.png" alt="BeanDefinition.png"></p>
 <ul>
@@ -341,39 +344,39 @@
 </li>
 </ul>
 <p>源码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>config<span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span>
 
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>BeanMetadataElement<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>MutablePropertyValues<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>AttributeAccessor<span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//BeanDefinition描述了一个bean实例，该实例具有属性值、构造函数参数值和由具体实现提供的进一步信息。</span>
-<span class="token comment" spellcheck="true">//这只是一个最小的接口:主要目的是允许BeanFactoryPostProcessor内省和修改属性值和其他bean元数据。</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BeanDefinition</span> <span class="token keyword">extends</span> <span class="token class-name">AttributeAccessor</span><span class="token punctuation">,</span> BeanMetadataElement <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    String SCOPE_SINGLETON <span class="token operator">=</span> <span class="token string">"singleton"</span><span class="token punctuation">;</span>
-    String SCOPE_PROTOTYPE <span class="token operator">=</span> <span class="token string">"prototype"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span></span><span class="token class-name">BeanMetadataElement</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span></span><span class="token class-name">MutablePropertyValues</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">AttributeAccessor</span><span class="token punctuation">;</span>
+<span class="token comment">//BeanDefinition描述了一个bean实例，该实例具有属性值、构造函数参数值和由具体实现提供的进一步信息。</span>
+<span class="token comment">//这只是一个最小的接口:主要目的是允许BeanFactoryPostProcessor内省和修改属性值和其他bean元数据。</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BeanDefinition</span> <span class="token keyword">extends</span> <span class="token class-name">AttributeAccessor</span><span class="token punctuation">,</span> <span class="token class-name">BeanMetadataElement</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> SCOPE_SINGLETON <span class="token operator">=</span> <span class="token string">"singleton"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> SCOPE_PROTOTYPE <span class="token operator">=</span> <span class="token string">"prototype"</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> ROLE_APPLICATION <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> ROLE_SUPPORT <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> ROLE_INFRASTRUCTURE <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">void</span> <span class="token function">setParentName</span><span class="token punctuation">(</span>String var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">setParentName</span><span class="token punctuation">(</span><span class="token class-name">String</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String <span class="token function">getParentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 设置 Bean 的类名称，将来是要通过反射来生成实例的</span>
-    <span class="token keyword">void</span> <span class="token function">setBeanClassName</span><span class="token punctuation">(</span>String var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 获取 Bean 的类名称</span>
-    String <span class="token function">getBeanClassName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token function">getParentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置 Bean 的类名称，将来是要通过反射来生成实例的</span>
+    <span class="token keyword">void</span> <span class="token function">setBeanClassName</span><span class="token punctuation">(</span><span class="token class-name">String</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 获取 Bean 的类名称</span>
+    <span class="token class-name">String</span> <span class="token function">getBeanClassName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">void</span> <span class="token function">setScope</span><span class="token punctuation">(</span>String var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">setScope</span><span class="token punctuation">(</span><span class="token class-name">String</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String <span class="token function">getScope</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token function">getScope</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">void</span> <span class="token function">setLazyInit</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">boolean</span> <span class="token function">isLazyInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">void</span> <span class="token function">setDependsOn</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">setDependsOn</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getDependsOn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getDependsOn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">void</span> <span class="token function">setAutowireCandidate</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -382,18 +385,18 @@
     <span class="token keyword">void</span> <span class="token function">setPrimary</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">boolean</span> <span class="token function">isPrimary</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//有些实例不是用反射生成的，而是用工厂模式生成的</span>
-    <span class="token keyword">void</span> <span class="token function">setFactoryBeanName</span><span class="token punctuation">(</span>String var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//有些实例不是用反射生成的，而是用工厂模式生成的</span>
+    <span class="token keyword">void</span> <span class="token function">setFactoryBeanName</span><span class="token punctuation">(</span><span class="token class-name">String</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String <span class="token function">getFactoryBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token function">getFactoryBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">void</span> <span class="token function">setFactoryMethodName</span><span class="token punctuation">(</span>String var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">setFactoryMethodName</span><span class="token punctuation">(</span><span class="token class-name">String</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String <span class="token function">getFactoryMethodName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//获取构造器参数</span>
-    ConstructorArgumentValues <span class="token function">getConstructorArgumentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//Bean 中的属性值，后面给 bean 注入属性值的时候会说到</span>
-    MutablePropertyValues <span class="token function">getPropertyValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token function">getFactoryMethodName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//获取构造器参数</span>
+    <span class="token class-name">ConstructorArgumentValues</span> <span class="token function">getConstructorArgumentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//Bean 中的属性值，后面给 bean 注入属性值的时候会说到</span>
+    <span class="token class-name">MutablePropertyValues</span> <span class="token function">getPropertyValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">boolean</span> <span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -403,13 +406,13 @@
 
     <span class="token keyword">int</span> <span class="token function">getRole</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String <span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    BeanDefinition <span class="token function">getOriginatingBeanDefinition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token class-name">BeanDefinition</span> <span class="token function">getOriginatingBeanDefinition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>BeanDefinition</code>仅仅是一个最简单的接口，主要功能是允许<code>BeanFactoryPostProcessor</code> 例如<code>PropertyPlaceHolderConfigure</code> 能够检索并修改属性值和别的bean的元数据。</p>
 <p>附加一张 <code>Bean</code> 的生命周期</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/23/Bean_lifeCycle.jpg" alt="Bean_lifeCycle.jpg"></p>
@@ -450,7 +453,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2020/04/23/BeanDefinition/">http://nekoozero.github.io/2020/04/23/BeanDefinition/</a>
+                    <a href="http://www.qxnekoo.cn/2020/04/23/BeanDefinition/">http://www.qxnekoo.cn/2020/04/23/BeanDefinition/</a>
                 </span>
             </div>
             <div class="reprint__notice">

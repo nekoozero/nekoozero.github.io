@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -345,12 +348,10 @@
 <li><p>不要让 equals 方法试图太聪明。例如，File 类不应该试图将引用的符号连接等同于同一文件对象。</p>
 </li>
 <li><p>在 equals 时方法声明中，不要将参数 Object 替换成其他类型。换了的话就不是重写，而是重载了。</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//错误示范</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//错误示范</span>
 <span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>MyClass o<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
-</li>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">MyClass</span> o<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <p>总之，除非必须，在很多情况下，不要重写 equals 方法，从 Object 继承的实现完全可能就是想要的。如果确实重写了 equals 方法，那么一定要比较这个类的所有重要属性，并且以保护前面 equals 约定里五个规定的方式去比较。</p>
 <h2 id="11-覆盖-equals-时总要覆盖-hashCode"><a href="#11-覆盖-equals-时总要覆盖-hashCode" class="headerlink" title="11.覆盖 equals 时总要覆盖 hashCode"></a>11.覆盖 equals 时总要覆盖 hashCode</h2><p>在每个覆盖 equals 方法的类中，都必须覆盖 hashCode 方法。</p>
@@ -369,13 +370,13 @@
 <p>实现 Comparable 接口，可以让类与所有依赖此接口的通用算法和集合实现进行互操作，几乎 Java 平台所有平台类库中的所有值类以及所有枚举类型都实现了 Comparable 接口。编写具有明显自然顺序（字母顺序，数字顺序或时间顺序）的值类，则应该实现 Comparable 接口。</p>
 <p>考虑到 BigDecimal 类，其 compareTo 方法与 equals 不一致，如果创建一个空的 HashSet 实例，然后添加 new BigDecimal(“1.0”) 和 new BigDecimal(“1.00”)，则该集合将包含两个元素，因为与 equals 方法进行比较时，添加到集合的两个 BigDecimal 实例是不相等的。但是如果使用 TreeSet，则集合只包含一个元素，因为使用 compareTo 方法进行比较时，两个 BigDecimal 实例是相等的。</p>
 <p>在 Java 8 中 Comparator 接口提供了一系列比较器方法，可以使比较器流畅地构建。 这些比较器可以用来实 现 compareTo 方法，就像 Comparable 接口所要求的那样。 在使用这种方法时，考虑使用 Java 的静态导入，以便可以通过其简单名称来引用比较器静态方法，以使其清晰简洁。 </p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Comparator<span class="token operator">&lt;</span>User<span class="token operator">></span> COMPARATOR <span class="token operator">=</span> Comparator<span class="token punctuation">.</span><span class="token function">comparingInt</span><span class="token punctuation">(</span><span class="token punctuation">(</span>User u<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>u<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Comparator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">></span></span> COMPARATOR <span class="token operator">=</span> <span class="token class-name">Comparator</span><span class="token punctuation">.</span><span class="token function">comparingInt</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token operator">-></span>u<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compareTo</span><span class="token punctuation">(</span>User o<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compareTo</span><span class="token punctuation">(</span><span class="token class-name">User</span> o<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> COMPARATOR<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>总而言之，无论何时实现具有合理排序的值类，你都应该让该类实现 Comparable 接口，以便在基于比较的集合中轻松对其实例进行排序，搜索和使用。 比较 compareTo 方法的实现中的字段值时，请避免使用”&lt;”和”&gt;”运算 符。 相反，使用包装类中的静态 compare 方法或 Comparator 接口中的构建方法。</p>
 <h2 id="15-使类和成员的可访问性最小化"><a href="#15-使类和成员的可访问性最小化" class="headerlink" title="15.使类和成员的可访问性最小化"></a>15.使类和成员的可访问性最小化</h2><p>将设计良好的组件与设计不佳的组件区分开来的最重要的因素是，组件将其内部数据和其他组件的其他实现细节隐藏起来。一个设计良好的组件隐藏了它的所有实现细节，干净地将它的 API 与它的实现分离开来。然后组件只通过他们的 API 进行通信，并且对彼此内部的工作一无所知。这称为信息隐藏或封装，是软件设计的基本原则。</p>
 <p>对于顶层（非嵌套的）类和接口，只有两个可能的访问级别：包级私有和公共的。</p>
@@ -417,7 +418,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2020/08/10/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95/">http://nekoozero.github.io/2020/08/10/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95/</a>
+                    <a href="http://www.qxnekoo.cn/2020/08/10/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95/">http://www.qxnekoo.cn/2020/08/10/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">

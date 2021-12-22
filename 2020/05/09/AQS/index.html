@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,17 +320,20 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>首先还是看一下源码中的注释</p>
-<pre><code>Provides a framework for implementing blocking locks and related synchronizers (semaphores, events, etc) that rely on first-in-first-out (FIFO) wait queues.  This class is designed to be a useful basis for most kinds of synchronizers that rely on a single atomic &#123;@code int state&#125; value to represent state. Subclasses must define the protected methods that change this state, and which define what that state means in terms of this object being acquired or released.  Given these, the other methods in this class carry out all queuing and blocking mechanics. Subclasses can maintain other state fields, but only the atomically updated &#123;@code int state&#125; value manipulated using methods &#123;@link #getState&#125;, &#123;@link #setState&#125; and &#123;@link #compareAndSetState&#125; is tracked with respect to synchronization.
+<pre class="line-numbers language-none"><code class="language-none">Provides a framework for implementing blocking locks and related synchronizers (semaphores, events, etc) that rely on first-in-first-out (FIFO) wait queues.  This class is designed to be a useful basis for most kinds of synchronizers that rely on a single atomic &#123;@code int state&#125; value to represent state. Subclasses must define the protected methods that change this state, and which define what that state means in terms of this object being acquired or released.  Given these, the other methods in this class carry out all queuing and blocking mechanics. Subclasses can maintain other state fields, but only the atomically updated &#123;@code int state&#125; value manipulated using methods &#123;@link #getState&#125;, &#123;@link #setState&#125; and &#123;@link #compareAndSetState&#125; is tracked with respect to synchronization.
 
 Subclasses should be defined as non-public internal helper classes that are used to implement the synchronization properties of their enclosing class.  Class &#123;@code AbstractQueuedSynchronizer&#125; does not implement any synchronization interface.  Instead it defines methods such as &#123;@link #acquireInterruptibly&#125; that can be invoked as appropriate by concrete locks and related synchronizers to implement their public methods.
 
-This class supports either or both a default &lt;em&gt;exclusive&lt;/em&gt; mode and a &lt;em&gt;shared&lt;/em&gt; mode. When acquired in exclusive mode,attempted acquires by other threads cannot succeed. Shared mode acquires by multiple threads may (but need not) succeed. This class does not &amp;quot;understand&amp;quot; these differences except in the mechanical sense that when a shared mode acquire succeeds, the next waiting thread (if one exists) must also determine whether it can acquire as well. Threads waiting in the different modes share the same FIFO queue. Usually, implementation subclasses support only one of these modes, but both can come into play for example in a &#123;@link ReadWriteLock&#125;. Subclasses that support only exclusive or only shared modes need not define the methods supporting the unused mode.
+This class supports either or both a default &lt;em&gt;exclusive&lt;&#x2F;em&gt; mode and a &lt;em&gt;shared&lt;&#x2F;em&gt; mode. When acquired in exclusive mode,attempted acquires by other threads cannot succeed. Shared mode acquires by multiple threads may (but need not) succeed. This class does not &quot;understand&quot; these differences except in the mechanical sense that when a shared mode acquire succeeds, the next waiting thread (if one exists) must also determine whether it can acquire as well. Threads waiting in the different modes share the same FIFO queue. Usually, implementation subclasses support only one of these modes, but both can come into play for example in a &#123;@link ReadWriteLock&#125;. Subclasses that support only exclusive or only shared modes need not define the methods supporting the unused mode.
 
 This class defines a nested &#123;@link ConditionObject&#125; class that can be used as a &#123;@link Condition&#125; implementation by subclasses supporting exclusive mode for which method &#123;@link  #isHeldExclusively&#125; reports whether synchronization is exclusively held with respect to the current thread, method &#123;@link #release&#125; invoked with the current &#123;@link #getState&#125; value fully releases this object, and &#123;@link #acquire &#125;, given this saved state value,eventually restores this object to its previous acquired state.  No &#123;@code AbstractQueuedSynchronizer&#125; method otherwise creates such a condition, so if this constraint cannot be met, do not use it.  The behavior of &#123;@link ConditionObject&#125; depends of course on the semantics of its synchronizer implementation.
 
@@ -339,7 +342,7 @@ Serialization of this class stores only the underlying atomic integer maintainin
  
  Usage
  
-To use this class as the basis of a synchronizer, redefine the following methods, as applicable, by inspecting and/or modifying the synchronization state using &#123;@link #getState&#125;, &#123;@link #setState&#125; and/or &#123;@link #compareAndSetState&#125;:
+To use this class as the basis of a synchronizer, redefine the following methods, as applicable, by inspecting and&#x2F;or modifying the synchronization state using &#123;@link #getState&#125;, &#123;@link #setState&#125; and&#x2F;or &#123;@link #compareAndSetState&#125;:
  
  
   &#123;@link #tryAcquire&#125;
@@ -349,7 +352,7 @@ To use this class as the basis of a synchronizer, redefine the following methods
   &#123;@link #isHeldExclusively&#125;
  
  
-Each of these methods by default throws &#123;@link UnsupportedOperationException&#125;.  Implementations of these methods must be internally thread-safe, and should in general be short and not block. Defining these methods is the &lt;em&gt;only&lt;/em&gt; supported means of using this class. All other methods are declared &#123;@code final&#125; because they cannot be independently varied.
+Each of these methods by default throws &#123;@link UnsupportedOperationException&#125;.  Implementations of these methods must be internally thread-safe, and should in general be short and not block. Defining these methods is the &lt;em&gt;only&lt;&#x2F;em&gt; supported means of using this class. All other methods are declared &#123;@code final&#125; because they cannot be independently varied.
 
 You may also find the inherited methods from &#123;@link AbstractOwnableSynchronizer&#125; useful to keep track of the thread owning an exclusive synchronizer.  You are encouraged to use them -- this enables monitoring and diagnostic tools to assist users in determining which threads hold locks.
 
@@ -358,25 +361,26 @@ Even though this class is based on an internal FIFO queue, it does not automatic
  
  * Acquire:
  *     while (!tryAcquire(arg)) &#123;
- *        &lt;em&gt;enqueue thread if it is not already queued&lt;/em&gt;;
- *        &lt;em&gt;possibly block current thread&lt;/em&gt;;
+ *        &lt;em&gt;enqueue thread if it is not already queued&lt;&#x2F;em&gt;;
+ *        &lt;em&gt;possibly block current thread&lt;&#x2F;em&gt;;
  *     &#125;
  *
  * Release:
  *     if (tryRelease(arg))
- *        &lt;em&gt;unblock the first queued thread&lt;/em&gt;;
+ *        &lt;em&gt;unblock the first queued thread&lt;&#x2F;em&gt;;
 
 
 (Shared mode is similar but may involve cascading signals.)
 
-Because checks in acquire are invoked before enqueuing, a newly acquiring thread may barge ahead of others that are blocked and queued.  However, you can, if desired,define &#123;@code tryAcquire&#125; and/or &#123;@code tryAcquireShared&#125; to disable barging by internally invoking one or more of the inspection methods, thereby providing a fair FIFO acquisition order.In particular, most fair synchronizers can define &#123;@code tryAcquire&#125; to return &#123;@code false&#125; if &#123;@link #hasQueuedPredecessors&#125; (a method specifically designed to be used by fair synchronizers) returns &#123;@code true&#125;.  Other variations are possible.
+Because checks in acquire are invoked before enqueuing, a newly acquiring thread may barge ahead of others that are blocked and queued.  However, you can, if desired,define &#123;@code tryAcquire&#125; and&#x2F;or &#123;@code tryAcquireShared&#125; to disable barging by internally invoking one or more of the inspection methods, thereby providing a fair FIFO acquisition order.In particular, most fair synchronizers can define &#123;@code tryAcquire&#125; to return &#123;@code false&#125; if &#123;@link #hasQueuedPredecessors&#125; (a method specifically designed to be used by fair synchronizers) returns &#123;@code true&#125;.  Other variations are possible.
 
-Throughput and scalability are generally highest for the default barging (also known as greedy,renouncement, and convoy-avoidance) strategy. While this is not guaranteed to be fair or starvation-free, earlier queued threads are allowed to recontend before later queued threads, and each recontention has an unbiased chance to succeed against incoming threads.  Also, while acquires do not &amp;quot;spin&amp;quot; in the usual sense, they may perform multiple invocations of &#123;@code tryAcquire&#125; interspersed with other computations before blocking.  This gives most of the benefits of spins when exclusive synchronization is only briefly held, without most of the liabilities when it isn&#39;t. If so desired, you can augment this by preceding calls to acquire methods with &quot;fast-path&quot; checks, possibly prechecking &#123;@link #hasContended&#125; and/or &#123;@link #hasQueuedThreads&#125; to only do so if the synchronizer is likely not to be contended.
+Throughput and scalability are generally highest for the default barging (also known as greedy,renouncement, and convoy-avoidance) strategy. While this is not guaranteed to be fair or starvation-free, earlier queued threads are allowed to recontend before later queued threads, and each recontention has an unbiased chance to succeed against incoming threads.  Also, while acquires do not &quot;spin&quot; in the usual sense, they may perform multiple invocations of &#123;@code tryAcquire&#125; interspersed with other computations before blocking.  This gives most of the benefits of spins when exclusive synchronization is only briefly held, without most of the liabilities when it isn&#39;t. If so desired, you can augment this by preceding calls to acquire methods with &quot;fast-path&quot; checks, possibly prechecking &#123;@link #hasContended&#125; and&#x2F;or &#123;@link #hasQueuedThreads&#125; to only do so if the synchronizer is likely not to be contended.
 
 This class provides an efficient and scalable basis for synchronization in part by specializing its range of use to synchronizers that can rely on &#123;@code int&#125; state, acquire, and release parameters, and an internal FIFO wait queue. When this does not suffice, you can build synchronizers from a lower level using &#123;@link java.util.concurrent.atomic atomic&#125; classes, your own custom &#123;@link java.util.Queue&#125; classes, and &#123;@link LockSupport&#125; blocking support.
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>中文（之后会对翻译不好的地方手动翻译一下）</p>
-<pre><code>提供一个框架，用于实现依赖于先进先出（FIFO）等待队列的阻塞锁和相关的同步器（信号灯，事件等）。此类旨在为大多数依赖单个原子&#123;@code int state&#125;值表示状态的同步器提供有用的基础。子类必须定义更改此状态的受保护方法，并定义该状态对于获取或释放此对象而言意味着什么。鉴于这些，此类中的其他方法将执行所有排队和阻塞机制。子类可以维护其他状态字段，但是仅跟踪关于同步的使用方法&#123;@link #getState&#125;，&#123;@ link #setState&#125;和&#123;@link #compareAndSetState&#125;操作的原子更新的&#123;@code int state&#125;值。
+<pre class="line-numbers language-none"><code class="language-none">提供一个框架，用于实现依赖于先进先出（FIFO）等待队列的阻塞锁和相关的同步器（信号灯，事件等）。此类旨在为大多数依赖单个原子&#123;@code int state&#125;值表示状态的同步器提供有用的基础。子类必须定义更改此状态的受保护方法，并定义该状态对于获取或释放此对象而言意味着什么。鉴于这些，此类中的其他方法将执行所有排队和阻塞机制。子类可以维护其他状态字段，但是仅跟踪关于同步的使用方法&#123;@link #getState&#125;，&#123;@ link #setState&#125;和&#123;@link #compareAndSetState&#125;操作的原子更新的&#123;@code int state&#125;值。
 
 子类应该定义为用于实现其封闭类的同步属性的非公共内部帮助器类。类&#123;@code AbstractQueuedSynchronizer&#125;没有实现任何同步接口。相反，它定义了&#123;@link #acquireInterruptible&#125;之类的方法，可以通过具体的锁和相关的同步器适当地调用这些方法来实现其公共方法。
 
@@ -389,7 +393,7 @@ This class provides an efficient and scalable basis for synchronization in part 
 
  用法
  
-要将此类用作同步器的基础，请使用&#123;@link #getState&#125;，&#123;@ link #setState&#125;和/或&#123;@link #compareAndSetState检查和/或修改同步状态，重新定义以下方法（如适用） &#125;：
+要将此类用作同步器的基础，请使用&#123;@link #getState&#125;，&#123;@ link #setState&#125;和&#x2F;或&#123;@link #compareAndSetState检查和&#x2F;或修改同步状态，重新定义以下方法（如适用） &#125;：
 
   &#123;@link #tryAcquire&#125;
   &#123;@link #tryRelease&#125;
@@ -398,29 +402,29 @@ This class provides an efficient and scalable basis for synchronization in part 
   &#123;@link #isHeldExclusively&#125;
 
 
-默认情况下，这些方法中的每一个都会引发&#123;@link UnsupportedOperationException&#125;。这些方法的实现必须在内部是线程安全的，并且通常应简短且不阻塞。定义这些方法是&lt;em&gt; only &lt;/ em&gt;支持的使用此类的方法。所有其他方法都声明为&#123;@code final&#125;，因为它们不能独立变化。
+默认情况下，这些方法中的每一个都会引发&#123;@link UnsupportedOperationException&#125;。这些方法的实现必须在内部是线程安全的，并且通常应简短且不阻塞。定义这些方法是&lt;em&gt; only &lt;&#x2F; em&gt;支持的使用此类的方法。所有其他方法都声明为&#123;@code final&#125;，因为它们不能独立变化。
 
 您可能还会发现从&#123;@link AbstractOwnableSynchronizer&#125;继承的方法对于跟踪拥有独占同步器的线程很有用。鼓励您使用它们-这将启用监视和诊断工具，以帮助用户确定哪些线程持有锁。
 
 即使此类基于内部FIFO队列，它也不会自动执行FIFO获取策略。独占同步的核心采取以下形式：
  * Acquire:
  *     while (!tryAcquire(arg)) &#123;
- *        &lt;em&gt;如果线程尚未进行排队，则对其进行排队&lt;/em&gt;;
- *        &lt;em&gt;可能阻塞当前线程&lt;/em&gt;;
+ *        &lt;em&gt;如果线程尚未进行排队，则对其进行排队&lt;&#x2F;em&gt;;
+ *        &lt;em&gt;可能阻塞当前线程&lt;&#x2F;em&gt;;
  *     &#125;
  *
  * Release:
  *     if (tryRelease(arg))
- *        &lt;em&gt;解除第一个排队线程的阻塞&lt;/em&gt;;
+ *        &lt;em&gt;解除第一个排队线程的阻塞&lt;&#x2F;em&gt;;
  
  （共享模式相似，但可能涉及级联信号。）
 
-因为获取队列中的获取检查是在排队之前被调用的，所以新获取线程可能会在其他被阻塞和排队的线程之前进行插入。但是，如果需要，您可以定义&#123;@code tryAcquire&#125;和/或&#123;@code tryAcquireShared&#125;以通过内部调用一种或多种检查方法来禁用插入，从而提供公平的FIFO获取顺序。尤其是大多数公平的同步器如果&#123;@link #hasQueuedPredecessors&#125;（一种专门设计用于公平同步器的方法）返回&#123;@code true&#125;，则可以定义&#123;@code tryAcquire&#125;以返回&#123;@code false&#125;。其他变化也是可能的。
+因为获取队列中的获取检查是在排队之前被调用的，所以新获取线程可能会在其他被阻塞和排队的线程之前进行插入。但是，如果需要，您可以定义&#123;@code tryAcquire&#125;和&#x2F;或&#123;@code tryAcquireShared&#125;以通过内部调用一种或多种检查方法来禁用插入，从而提供公平的FIFO获取顺序。尤其是大多数公平的同步器如果&#123;@link #hasQueuedPredecessors&#125;（一种专门设计用于公平同步器的方法）返回&#123;@code true&#125;，则可以定义&#123;@code tryAcquire&#125;以返回&#123;@code false&#125;。其他变化也是可能的。
 
-对于默认插入（也称为贪婪，放弃和避免通信）策略，吞吐量和可伸缩性通常最高。尽管不能保证这是公平的，也不会出现饥饿现象，但是可以让较早排队的线程在较晚排队的线程之前进行重新竞争，并且每个重新争用都可以毫无偏向地成功抵御传入线程。同样，尽管获取不是通常意义上的旋转，但它们可能会在阻塞之前执行&#123;@code tryAcquire&#125;的多次调用，并插入其他计算。当仅短暂地保持排他同步时，这将提供旋转的大部分好处，而在不进行排他同步时，则不会带来很多负担。如果需要的话，您可以通过在调用之前对获取方法进行“快速路径”检查来增强此功能，可能会预先检查&#123;@link #hasContended&#125;和/或&#123;@link #hasQueuedThreads&#125;以仅在同步器可能不这样做的情况下这样做争辩。
+对于默认插入（也称为贪婪，放弃和避免通信）策略，吞吐量和可伸缩性通常最高。尽管不能保证这是公平的，也不会出现饥饿现象，但是可以让较早排队的线程在较晚排队的线程之前进行重新竞争，并且每个重新争用都可以毫无偏向地成功抵御传入线程。同样，尽管获取不是通常意义上的旋转，但它们可能会在阻塞之前执行&#123;@code tryAcquire&#125;的多次调用，并插入其他计算。当仅短暂地保持排他同步时，这将提供旋转的大部分好处，而在不进行排他同步时，则不会带来很多负担。如果需要的话，您可以通过在调用之前对获取方法进行“快速路径”检查来增强此功能，可能会预先检查&#123;@link #hasContended&#125;和&#x2F;或&#123;@link #hasQueuedThreads&#125;以仅在同步器可能不这样做的情况下这样做争辩。
 
-这个类为同步提供了一个有效的和可扩展的基础，部分是通过将它的使用范围专门化为同步器，这些同步器可以依赖于&#123;@code int&#125;state、获取和释放参数，以及一个内部FIFO等待队列。当这还不够时，您可以使用&#123;@link java.util.concurrent从较低的层次构建同步器。原子原子&#125;类，您自己的自定义&#123;@link java.util。队列&#125;类和&#123;@link LockSupport&#125;阻塞支持。
-</code></pre>
+这个类为同步提供了一个有效的和可扩展的基础，部分是通过将它的使用范围专门化为同步器，这些同步器可以依赖于&#123;@code int&#125;state、获取和释放参数，以及一个内部FIFO等待队列。当这还不够时，您可以使用&#123;@link java.util.concurrent从较低的层次构建同步器。原子原子&#125;类，您自己的自定义&#123;@link java.util。队列&#125;类和&#123;@link LockSupport&#125;阻塞支持。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>总结一下：</p>
 <p>全称：<code>AbstractQueuedSynchronizer</code> 抽象的队列式同步器（抽象类）。值得注意的是它使用的是**<u>模板方法模式的设计模式</u>**。搞清楚它的设计模式对理解它的源代码很有帮助。</p>
 <blockquote>
@@ -439,55 +443,55 @@ This class provides an efficient and scalable basis for synchronization in part 
 <p><strong>通过定义一个算法骨架，而将算法中的步骤延迟到子类，这样子类就可以复写这些步骤的实现来实现特定的算法。</strong></p>
 <p>是类的一种行为，只需要准备一个抽象类，将逻辑用具体方法和构造函数的形式来表现，<strong>后声明一些抽象方法来迫使子类必须实现其逻辑</strong>，不同的子类可以实现不同的方法，从而可以让剩余的逻辑有不同的实现。即可以定义抽象的方法，让子类实现剩余的逻辑。</p>
 <p>代码示例：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Game</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Game</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">startPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">endPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">//模板 算法骨架 子类也无法重写其算法逻辑 但是具体方法的逻辑可以交给子类重写</span>
-    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment">//模板 算法骨架 子类也无法重写其算法逻辑 但是具体方法的逻辑可以交给子类重写</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">startPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">endPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>子类 <code>Cricket</code></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Cricket</span> <span class="token keyword">extends</span> <span class="token class-name">Game</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Cricket</span> <span class="token keyword">extends</span> <span class="token class-name">Game</span> <span class="token punctuation">&#123;</span>
    <span class="token annotation punctuation">@Override</span>
-   <span class="token keyword">void</span> <span class="token function">endPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cricket Game Finished!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   <span class="token keyword">void</span> <span class="token function">endPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cricket Game Finished!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
  
    <span class="token annotation punctuation">@Override</span>
-   <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cricket Game Initialized! Start playing."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cricket Game Initialized! Start playing."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
  
    <span class="token annotation punctuation">@Override</span>
-   <span class="token keyword">void</span> <span class="token function">startPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cricket Game Started. Enjoy the game!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+   <span class="token keyword">void</span> <span class="token function">startPlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cricket Game Started. Enjoy the game!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>调用：</p>
-<pre class=" language-java"><code class="language-java">Clicket  c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Clicket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-c<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Clicket</span>  c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Clicket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+c<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>比如源码中的acquire方法（模板方法）：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">tryAcquire</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
-        <span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token function">addWaiter</span><span class="token punctuation">(</span>Node<span class="token punctuation">.</span>EXCLUSIVE<span class="token punctuation">)</span><span class="token punctuation">,</span> arg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token function">addWaiter</span><span class="token punctuation">(</span><span class="token class-name">Node</span><span class="token punctuation">.</span>EXCLUSIVE<span class="token punctuation">)</span><span class="token punctuation">,</span> arg<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token function">selfInterrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>首先，这个方法是 <code>final</code>，也就是说这个方法是不会被子类重写的，再看看tryAcquire()</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">UnsupportedOperationException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>虽然这个方法不是 <code>abstract</code> 的，但是也能很清楚的知道，该方法需要被子类重写逻辑，方法里面的逻辑可以由各个子类来重写自己的逻辑，但方法的调用逻辑是由父类这边来操控的。</p>
 <p><code>acquire</code> 这个方法的主要逻辑是</p>
 <ul>
@@ -593,120 +597,120 @@ c<span class="token punctuation">.</span><span class="token function">play</span
 <blockquote>
 <p>这是一个不可重入的互斥锁类，它使用值0表示解锁状态，使用值1表示锁定状态。虽然非重入锁并不严格要求记录当前所有者线程，但是这个类这样做是为了使使用更容易监控。它还支持 condition，并公开其中一种instrumentation 的方法:</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java">
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Mutex</span> <span class="token keyword">implements</span> <span class="token class-name">Lock</span><span class="token punctuation">,</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//同步器 使用内部静态类</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Sync</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractQueuedSynchronizer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Mutex</span> <span class="token keyword">implements</span> <span class="token class-name">Lock</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span>Serializable</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//同步器 使用内部静态类</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Sync</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractQueuedSynchronizer</span> <span class="token punctuation">&#123;</span>
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">isHeldExclusively</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">isHeldExclusively</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             <span class="token keyword">return</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> acquires<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span>Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> acquires<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
             <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">tryRelease</span><span class="token punctuation">(</span><span class="token keyword">int</span> release<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">tryRelease</span><span class="token punctuation">(</span><span class="token keyword">int</span> release<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
-                <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">setState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
 
-        Condition <span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token class-name">Condition</span> <span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ConditionObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
 
-        <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">readObject</span><span class="token punctuation">(</span>ObjectInputStream s<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ClassNotFoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">readObject</span><span class="token punctuation">(</span><span class="token class-name">ObjectInputStream</span> s<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ClassNotFoundException</span> <span class="token punctuation">&#123;</span>
             s<span class="token punctuation">.</span><span class="token function">defaultReadObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">setState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">final</span> Sync sync <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Sync</span> sync <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         sync<span class="token punctuation">.</span><span class="token function">acquire</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">lockInterruptibly</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">lockInterruptibly</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
         sync<span class="token punctuation">.</span><span class="token function">acquireInterruptibly</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> sync<span class="token punctuation">.</span><span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token keyword">long</span> time<span class="token punctuation">,</span> TimeUnit unit<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token keyword">long</span> time<span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span> unit<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> sync<span class="token punctuation">.</span><span class="token function">tryAcquireNanos</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> unit<span class="token punctuation">.</span><span class="token function">toNanos</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         sync<span class="token punctuation">.</span><span class="token function">release</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Condition <span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Condition</span> <span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> sync<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasQueuedThreads</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasQueuedThreads</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> sync<span class="token punctuation">.</span><span class="token function">hasQueuedThreads</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>还有一个可共享的例子(同时只能有两个线程能够获得锁)：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TwinsLock</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TwinsLock</span> <span class="token punctuation">&#123;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Sync</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractQueuedSynchronizer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">public</span> <span class="token function">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Sync</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractQueuedSynchronizer</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">public</span> <span class="token class-name">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">protected</span> <span class="token keyword">int</span> <span class="token function">tryAcquireShared</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//return super.tryAcquireShared(arg);</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">protected</span> <span class="token keyword">int</span> <span class="token function">tryAcquireShared</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">//return super.tryAcquireShared(arg);</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                 <span class="token keyword">int</span> newState <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> arg<span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>newState <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newState<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>newState <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newState<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                     <span class="token keyword">return</span> newState<span class="token punctuation">;</span>
-                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
 
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">tryReleaseShared</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//return super.tryReleaseShared(arg);</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">tryReleaseShared</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">//return super.tryReleaseShared(arg);</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                 <span class="token keyword">int</span> newState <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> arg<span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newState<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newState<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
 
-    <span class="token keyword">private</span> Sync sync <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Sync</span> sync <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         sync<span class="token punctuation">.</span><span class="token function">acquireShared</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         sync<span class="token punctuation">.</span><span class="token function">releaseShared</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>AQS</code> 的内容确实复杂难懂，尤其是源码，以后再来补充吧。(目前我知道的是 tryAcquire 和 tryRelease 返回 true是代表抢占成功、释放成功。还不知道对不对)</p>
 
                 
@@ -734,7 +738,7 @@ c<span class="token punctuation">.</span><span class="token function">play</span
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2020/05/09/AQS/">http://nekoozero.github.io/2020/05/09/AQS/</a>
+                    <a href="http://www.qxnekoo.cn/2020/05/09/AQS/">http://www.qxnekoo.cn/2020/05/09/AQS/</a>
                 </span>
             </div>
             <div class="reprint__notice">

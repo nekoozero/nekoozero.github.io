@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,108 +320,111 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>抽象类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 抽象类</span>
-<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Logger</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 抽象类</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Logger</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
   <span class="token keyword">private</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">;</span>
-  <span class="token keyword">private</span> Level minPermittedLevel<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token class-name">Level</span> minPermittedLevel<span class="token punctuation">;</span>
 
-  <span class="token keyword">public</span> <span class="token function">Logger</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">,</span> Level minPermittedLevel<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">Logger</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">,</span> <span class="token class-name">Level</span> minPermittedLevel<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>enabled <span class="token operator">=</span> enabled<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>minPermittedLevel <span class="token operator">=</span> minPermittedLevel<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
-    <span class="token comment" spellcheck="true">//需注意这几行的代码，最终对外暴露的方法是log()，log()方法中统一对参数进行检查，已达到代码复用的目的。doLog是抽象方法，在不同的实现类中重写。</span>
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">log</span><span class="token punctuation">(</span>Level level<span class="token punctuation">,</span> String message<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment">//需注意这几行的代码，最终对外暴露的方法是log()，log()方法中统一对参数进行检查，已达到代码复用的目的。doLog是抽象方法，在不同的实现类中重写。</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Level</span> level<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">boolean</span> loggable <span class="token operator">=</span> enabled <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>minPermittedLevel<span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> level<span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>loggable<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token function">doLog</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">doLog</span><span class="token punctuation">(</span>Level level<span class="token punctuation">,</span> String message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 抽象类的子类：输出日志到文件</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileLogger</span> <span class="token keyword">extends</span> <span class="token class-name">Logger</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">private</span> Writer fileWriter<span class="token punctuation">;</span>
+  <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">doLog</span><span class="token punctuation">(</span><span class="token class-name">Level</span> level<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 抽象类的子类：输出日志到文件</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileLogger</span> <span class="token keyword">extends</span> <span class="token class-name">Logger</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">private</span> <span class="token class-name">Writer</span> fileWriter<span class="token punctuation">;</span>
 
-  <span class="token keyword">public</span> <span class="token function">FileLogger</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">,</span>
-    Level minPermittedLevel<span class="token punctuation">,</span> String filepath<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">FileLogger</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">,</span>
+    <span class="token class-name">Level</span> minPermittedLevel<span class="token punctuation">,</span> <span class="token class-name">String</span> filepath<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> enabled<span class="token punctuation">,</span> minPermittedLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>fileWriter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileWriter</span><span class="token punctuation">(</span>filepath<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
   <span class="token annotation punctuation">@Override</span>
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doLog</span><span class="token punctuation">(</span>Level level<span class="token punctuation">,</span> String mesage<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 格式化level和message,输出到日志文件</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doLog</span><span class="token punctuation">(</span><span class="token class-name">Level</span> level<span class="token punctuation">,</span> <span class="token class-name">String</span> mesage<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 格式化level和message,输出到日志文件</span>
     fileWriter<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 抽象类的子类: 输出日志到消息中间件(比如kafka)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MessageQueueLogger</span> <span class="token keyword">extends</span> <span class="token class-name">Logger</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">private</span> MessageQueueClient msgQueueClient<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 抽象类的子类: 输出日志到消息中间件(比如kafka)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MessageQueueLogger</span> <span class="token keyword">extends</span> <span class="token class-name">Logger</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">private</span> <span class="token class-name">MessageQueueClient</span> msgQueueClient<span class="token punctuation">;</span>
   
-  <span class="token keyword">public</span> <span class="token function">MessageQueueLogger</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">,</span>
-    Level minPermittedLevel<span class="token punctuation">,</span> MessageQueueClient msgQueueClient<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">MessageQueueLogger</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> enabled<span class="token punctuation">,</span>
+    <span class="token class-name">Level</span> minPermittedLevel<span class="token punctuation">,</span> <span class="token class-name">MessageQueueClient</span> msgQueueClient<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> enabled<span class="token punctuation">,</span> minPermittedLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>msgQueueClient <span class="token operator">=</span> msgQueueClient<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
   <span class="token annotation punctuation">@Override</span>
-  <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doLog</span><span class="token punctuation">(</span>Level level<span class="token punctuation">,</span> String mesage<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 格式化level和message,输出到消息中间件</span>
+  <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doLog</span><span class="token punctuation">(</span><span class="token class-name">Level</span> level<span class="token punctuation">,</span> <span class="token class-name">String</span> mesage<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 格式化level和message,输出到消息中间件</span>
     msgQueueClient<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li>抽象类不允许被实例化，只能被继承。</li>
 <li>抽象类可以包含属性和方法，方法及可以包括代码实现，也可以不包括代码实现。不包含代码实现的方法叫做抽象方法。</li>
 <li>子类继承抽象方法，必须实现抽象类中的所有抽象方法。</li>
 </ul>
 <p>接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 接口</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Filter</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>RpcRequest req<span class="token punctuation">)</span> <span class="token keyword">throws</span> RpcException<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 接口实现类：鉴权过滤器</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthencationFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 接口</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Filter</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span><span class="token class-name">RpcRequest</span> req<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">RpcException</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 接口实现类：鉴权过滤器</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthencationFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token punctuation">&#123;</span>
   <span class="token annotation punctuation">@Override</span>
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>RpcRequest req<span class="token punctuation">)</span> <span class="token keyword">throws</span> RpcException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...鉴权逻辑..</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 接口实现类：限流过滤器</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RateLimitFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span><span class="token class-name">RpcRequest</span> req<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">RpcException</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...鉴权逻辑..</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 接口实现类：限流过滤器</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RateLimitFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token punctuation">&#123;</span>
   <span class="token annotation punctuation">@Override</span>
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>RpcRequest req<span class="token punctuation">)</span> <span class="token keyword">throws</span> RpcException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...限流逻辑...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 过滤器使用Demo</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// filters.add(new AuthencationFilter());</span>
-  <span class="token comment" spellcheck="true">// filters.add(new RateLimitFilter());</span>
-  <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Filter<span class="token operator">></span> filters <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span><span class="token class-name">RpcRequest</span> req<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">RpcException</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...限流逻辑...</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 过滤器使用Demo</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// filters.add(new AuthencationFilter());</span>
+  <span class="token comment">// filters.add(new RateLimitFilter());</span>
+  <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Filter</span><span class="token punctuation">></span></span> filters <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRpcRequest</span><span class="token punctuation">(</span>RpcRequest req<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token keyword">for</span> <span class="token punctuation">(</span>Filter filter <span class="token operator">:</span> filters<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRpcRequest</span><span class="token punctuation">(</span><span class="token class-name">RpcRequest</span> req<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Filter</span> filter <span class="token operator">:</span> filters<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         filter<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>RpcException e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">// ...处理过滤结果...</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ...省略其他处理逻辑...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">RpcException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// ...处理过滤结果...</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// ...省略其他处理逻辑...</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li>一般来说，接口不能包含属性（成员变量）。<strong>成员变量默认且只能是public static final的</strong>。</li>
 <li>一般来说，接口只能声明方法，方法不能包含代码实现。<strong>default修饰的方法</strong>是可以有方法实现的，为子类提供默认实现。多实现的情况下<strong>如果父接口中的default方法有重复，则子类必须重写此方法</strong>。</li>
@@ -467,7 +470,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2021/05/26/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/">http://nekoozero.github.io/2021/05/26/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/</a>
+                    <a href="http://www.qxnekoo.cn/2021/05/26/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/">http://www.qxnekoo.cn/2021/05/26/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -554,13 +557,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/05/27/%E5%A4%9A%E7%94%A8%E7%BB%84%E5%90%88%E5%B0%91%E7%94%A8%E7%BB%A7%E6%89%BF/">
+                <a href="/2021/05/26/%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="多用组合少用继承">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="基于接口而非实现">
                         
-                        <span class="card-title">多用组合少用继承</span>
+                        <span class="card-title">基于接口而非实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -571,7 +574,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
                         </span>
                         <span class="publish-author">
                             
@@ -603,13 +606,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/26/%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0/">
+                <a href="/2021/05/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="基于接口而非实现">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="字符串匹配算法">
                         
-                        <span class="card-title">基于接口而非实现</span>
+                        <span class="card-title">字符串匹配算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -620,14 +623,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/DESIGN-PATTERNS/" class="post-category">
-                                    DESIGN PATTERNS
+                            <a href="/categories/DATA-STRUCTURE/" class="post-category">
+                                    DATA STRUCTURE
                                 </a>
                             
                             

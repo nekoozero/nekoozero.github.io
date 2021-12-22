@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -335,19 +338,19 @@
 <p>第一条很简单，一般都知道，但是第二条发现网上很多资料或者博客都没有提到这个。</p>
 <p>只有是<code>Spring</code>代理的对象来调用目标方法，事务才会生效，正如上面所说，**不只是事务，只要是<code>Spring</code>做的<code>AOP</code>**，都必须是要代理对象来调用才会生效。</p>
 <p>下面典型的错误示例：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span>
 <span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token function">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 <span class="token annotation punctuation">@Transactional</span>
 <span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>A</code>和<code>B</code>都是实现<code>Service</code>层接口中的方法。其实代码运行出来，大部分情况下效果能符合我们的预期，但是<strong>这是错误的用法，因为直接<code>B()</code>，调用B方法的不是Spring的代理对象，而是当前类的对象，<code>AOP</code>不会生效</strong>。</p>
 <p>当有别的地方对<code>B()</code>方法做了<code>AOP</code>,比如说做了个日志记录的<code>Aspect</code>,那么在这边A方法调用<code>B</code>方法的时候，<code>Aspect</code>不会生效。</p>
 <p>或者将<code>B</code>上的<code>@Transactional</code>，改为<code>@Transactional(propagation = Propagation.REQUIRES_NEW)</code>,从详细的日志也可以看到，执行<code>B</code>方法并没有给我们重新开启一个事务。</p>
@@ -357,28 +360,28 @@
 <p>有机会会把自己之前测得代码拉上来。</p>
 <h2 id="Transaction-rolled-back-because-it-has-been-marked-as-rollback-only"><a href="#Transaction-rolled-back-because-it-has-been-marked-as-rollback-only" class="headerlink" title="Transaction rolled back because it has been marked as rollback-only"></a>Transaction rolled back because it has been marked as rollback-only</h2><p>这个错也很常见，理解起来也不难，在事务默认的传播机制下，<strong>子方法抛出异常，将事务标记为<code>rollback-only</code>,但是父方法调用子方法时<code>try catch</code>了，父方法执行完之后想提交事务发现事务已经是<code>rollback-only</code>了，所以抛出异常。</strong></p>
 <p>这边我仔细拿出来测试了一下，想看一下具体的场景，测试代码很简单，<code>USER</code>和<code>BOOK</code>两个表,各往其插入一条数据，主要是两个方法：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token comment" spellcheck="true">//@Transactional(rollbackFor = Exception.class)</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token comment">//@Transactional(rollbackFor = Exception.class)</span>
 <span class="token annotation punctuation">@Transactional</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod7</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    userMapper<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//USER表插一条数据</span>
-    <span class="token keyword">try</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>UserService<span class="token punctuation">)</span> AopContext<span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// userMethod8();</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod7</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+    userMapper<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//USER表插一条数据</span>
+    <span class="token keyword">try</span><span class="token punctuation">&#123;</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">UserService</span><span class="token punctuation">)</span> <span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// userMethod8();</span>
+    <span class="token punctuation">&#125;</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
 <span class="token annotation punctuation">@Override</span>
-<span class="token comment" spellcheck="true">//@Transactional(rollbackFor = Exception.class)</span>
+<span class="token comment">//@Transactional(rollbackFor = Exception.class)</span>
 <span class="token annotation punctuation">@Transactional</span>
-<span class="token comment" spellcheck="true">//@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    bookMapper<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//BOOK表插一条数据</span>
-    <span class="token comment" spellcheck="true">//throw new Exception("抛出Exception");</span>
+<span class="token comment">//@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+    bookMapper<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//BOOK表插一条数据</span>
+    <span class="token comment">//throw new Exception("抛出Exception");</span>
     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"抛出RunTimeException"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>两个方法都是实现<code>Service</code>层的方法，7 调用 8，因为看网上有人说和<code>Exception</code>和<code>RunTimeException</code>有关，这边我分别都测一下。</p>
 <ul>
 <li>上面先测一下<code>RunTimeException</code>，运行结果</li>
@@ -389,28 +392,28 @@
 <ul>
 <li>下面测试一下<code>Exception</code>,修改代码：</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> Exception<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">//@Transactional</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod7</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token comment">//@Transactional</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod7</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
     userMapper<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">try</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>UserService<span class="token punctuation">)</span> AopContext<span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// userMethod8();     </span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span><span class="token punctuation">&#123;</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">UserService</span><span class="token punctuation">)</span> <span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// userMethod8();     </span>
+    <span class="token punctuation">&#125;</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
 <span class="token annotation punctuation">@Override</span>
-<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> Exception<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">//@Transactional</span>
-<span class="token comment" spellcheck="true">//@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token comment">//@Transactional</span>
+<span class="token comment">//@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">userMethod8</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
     bookMapper<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"抛出Exception"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//throw new RuntimeException("抛出RunTimeException");</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+    <span class="token comment">//throw new RuntimeException("抛出RunTimeException");</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>运行结果：</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/10/rollback-only.png" alt="rollback-only.png"></p>
 <p>也会报出这个错误。</p>
@@ -453,7 +456,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2020/04/10/Spring%20AOP%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/">http://nekoozero.github.io/2020/04/10/Spring%20AOP%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/</a>
+                    <a href="http://www.qxnekoo.cn/2020/04/10/Spring%20AOP%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/">http://www.qxnekoo.cn/2020/04/10/Spring%20AOP%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">

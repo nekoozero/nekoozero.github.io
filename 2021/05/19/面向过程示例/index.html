@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,59 +320,62 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="滥用-getter、setter-方法"><a href="#滥用-getter、setter-方法" class="headerlink" title="滥用 getter、setter 方法"></a>滥用 getter、setter 方法</h2><p>违反了面向对象编程的封装特性，相当于将面向对象编程风格退化成面向过程编程风格。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShoppingCart</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShoppingCart</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">private</span> <span class="token keyword">int</span> itemsCount<span class="token punctuation">;</span>
   <span class="token keyword">private</span> <span class="token keyword">double</span> totalPrice<span class="token punctuation">;</span>
-  <span class="token keyword">private</span> List<span class="token operator">&lt;</span>ShoppingCartItem<span class="token operator">></span> items <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ShoppingCartItem</span><span class="token punctuation">></span></span> items <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getItemsCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getItemsCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemsCount<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setItemsCount</span><span class="token punctuation">(</span><span class="token keyword">int</span> itemsCount<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setItemsCount</span><span class="token punctuation">(</span><span class="token keyword">int</span> itemsCount<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>itemsCount <span class="token operator">=</span> itemsCount<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">getTotalPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">getTotalPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalPrice<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTotalPrice</span><span class="token punctuation">(</span><span class="token keyword">double</span> totalPrice<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTotalPrice</span><span class="token punctuation">(</span><span class="token keyword">double</span> totalPrice<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>totalPrice <span class="token operator">=</span> totalPrice<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
 
-  <span class="token keyword">public</span> List<span class="token operator">&lt;</span>ShoppingCartItem<span class="token operator">></span> <span class="token function">getItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ShoppingCartItem</span><span class="token punctuation">></span></span> <span class="token function">getItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>items<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addItem</span><span class="token punctuation">(</span>ShoppingCartItem item<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addItem</span><span class="token punctuation">(</span><span class="token class-name">ShoppingCartItem</span> item<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     items<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
     itemsCount<span class="token operator">++</span><span class="token punctuation">;</span>
     totalPrice <span class="token operator">+=</span> item<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// ...省略其他方法...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">// ...省略其他方法...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>itemsCount 和 totalPrice。虽然我们将它们定义成 private 私有属性，但是提供了 public 的 getter、setter 方法，这就跟将这两个属性定义为 public 公有属性，没有什么两样了。外部可以通过 setter 方法随意地修改这两个属性的值。除此之外，任何代码都可以随意调用 setter 方法，来重新设置 itemsCount、totalPrice 属性的值，这也会导致其跟 items 属性的值不一致。</p>
 <blockquote>
 <p>通过访问权限控制，隐藏内部数据，外部仅能通过类提供的有限的接口访问、修改内部数据。所以，暴露不应该暴露的 setter 方法，明显违反了面向对象的封装特性。数据没有访问权限控制，任何代码都可以随意修改它，代码就退化成了面向过程编程风格的了。</p>
 </blockquote>
 <p>items 属性的 getter 方法，返回的是一个 List集合容器。外部调用者在拿到这个容器之后，是可以操作容器内部数据的，<code>cart.getItems().clear(); // 清空购物车</code>，清空购物车虽然很合理，但是不应该将清空购物车的业务逻辑暴露给上层代码</p>
-<pre class=" language-JAVA"><code class="language-JAVA">public class ShoppingCart &#123;
-  // ...省略其他代码...
+<pre class="line-numbers language-JAVA" data-language="JAVA"><code class="language-JAVA">public class ShoppingCart &#123;
+  &#x2F;&#x2F; ...省略其他代码...
   public void clear() &#123;
     items.clear();
-    itemsCount = 0;
-    totalPrice = 0.0;
+    itemsCount &#x3D; 0;
+    totalPrice &#x3D; 0.0;
   &#125;
-&#125;
-</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>如果想要查看购物车，可以通过 Java 提供的 Collections.unmodifiableList() 方法，让 getter 方法返回一个不可被修改的 UnmodifiableList 集合容器，而这个容器类重写了 List 容器中跟修改数据相关的方法，比如 add()、clear() 等方法。一旦我们调用这些修改数据的方法，代码就会抛出 UnsupportedOperationException 异常，这样就避免了容器中的数据被修改。</p>
 <h2 id="滥用全局变量和全局方法"><a href="#滥用全局变量和全局方法" class="headerlink" title="滥用全局变量和全局方法"></a>滥用全局变量和全局方法</h2><p>静态方法将方法与数据分离，破坏了封装特性，是典型的面向过程风格。定义一个大而全的 Constants 类，并不是一种很好的设计思路。</p>
 <ol>
@@ -435,7 +438,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2021/05/19/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%A4%BA%E4%BE%8B/">http://nekoozero.github.io/2021/05/19/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%A4%BA%E4%BE%8B/</a>
+                    <a href="http://www.qxnekoo.cn/2021/05/19/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%A4%BA%E4%BE%8B/">http://www.qxnekoo.cn/2021/05/19/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%A4%BA%E4%BE%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">

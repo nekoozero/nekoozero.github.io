@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -332,42 +335,42 @@
 <p>基于抽象而非实现编程:</p>
 <p>越抽象、越顶层、越脱离具体某一实现的设计，越能提高代码的灵活性，越能应对未来的需求变化。好的代码设计，不仅能应对当下的需求，而且在将来需求发生变化的时候，仍然能够在不破坏原有代码设计的情况下灵活应对</p>
 </blockquote>
-<h2 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AliyunImageStore</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//...省略属性、构造函数等...</span>
+<h2 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AliyunImageStore</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">//...省略属性、构造函数等...</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span>String bucketName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ...创建bucket代码逻辑...</span>
-    <span class="token comment" spellcheck="true">// ...失败会抛出异常..</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span><span class="token class-name">String</span> bucketName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// ...创建bucket代码逻辑...</span>
+    <span class="token comment">// ...失败会抛出异常..</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> String <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ...根据accesskey/secrectkey等生成access token</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// ...根据accesskey/secrectkey等生成access token</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> String <span class="token function">uploadToAliyun</span><span class="token punctuation">(</span>Image image<span class="token punctuation">,</span> String bucketName<span class="token punctuation">,</span> String accessToken<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...上传图片到阿里云...</span>
-    <span class="token comment" spellcheck="true">//...返回图片存储在阿里云上的地址(url）...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">uploadToAliyun</span><span class="token punctuation">(</span><span class="token class-name">Image</span> image<span class="token punctuation">,</span> <span class="token class-name">String</span> bucketName<span class="token punctuation">,</span> <span class="token class-name">String</span> accessToken<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...上传图片到阿里云...</span>
+    <span class="token comment">//...返回图片存储在阿里云上的地址(url）...</span>
+  <span class="token punctuation">&#125;</span>
   
-  <span class="token keyword">public</span> Image <span class="token function">downloadFromAliyun</span><span class="token punctuation">(</span>String url<span class="token punctuation">,</span> String accessToken<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...从阿里云下载图片...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">Image</span> <span class="token function">downloadFromAliyun</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> accessToken<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...从阿里云下载图片...</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token comment" spellcheck="true">// AliyunImageStore类的使用举例</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ImageProcessingJob</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String BUCKET_NAME <span class="token operator">=</span> <span class="token string">"ai_images_bucket"</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//...省略其他无关代码...</span>
+<span class="token comment">// AliyunImageStore类的使用举例</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ImageProcessingJob</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> BUCKET_NAME <span class="token operator">=</span> <span class="token string">"ai_images_bucket"</span><span class="token punctuation">;</span>
+  <span class="token comment">//...省略其他无关代码...</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    Image image <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//处理图片，并封装为Image对象</span>
-    AliyunImageStore imageStore <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AliyunImageStore</span><span class="token punctuation">(</span><span class="token comment" spellcheck="true">/*省略参数*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Image</span> image <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span> <span class="token comment">//处理图片，并封装为Image对象</span>
+    <span class="token class-name">AliyunImageStore</span> imageStore <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AliyunImageStore</span><span class="token punctuation">(</span><span class="token comment">/*省略参数*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     imageStore<span class="token punctuation">.</span><span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span>BUCKET_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    String accessToken <span class="token operator">=</span> imageStore<span class="token punctuation">.</span><span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> accessToken <span class="token operator">=</span> imageStore<span class="token punctuation">.</span><span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     imagestore<span class="token punctuation">.</span><span class="token function">uploadToAliyun</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> BUCKET_NAME<span class="token punctuation">,</span> accessToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>系统中有很多涉及图片处理和存储的业务逻辑。图片经过处理之后被上传到阿里云上。为了代码复用，封装了图片存储相关的代码逻辑，提供了一个统一的 AliyunImageStore 类，供整个系统来使用。</p>
 <p>如果某一天忽然说不要用阿里云了，用自己的私有云。那么需要重新设计一个 PrivateImageStore 类与替换掉项目中所有的 AliyunImageStore 类了，不仅如此，AliyunImageStore 所有 public 方法都要在 PrivateImageStore 重新设计。问题如下：</p>
 <ol>
@@ -381,66 +384,66 @@
 <li>为实现类定义抽象的接口，具体的实现类都依赖统一的接口定义，遵从一致的上传功能协议。使用者依赖接口，而不是具体的实现类来编程。</li>
 </ul>
 <p>修改代码如下：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ImageStore</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  String <span class="token function">upload</span><span class="token punctuation">(</span>Image image<span class="token punctuation">,</span> String bucketName<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  Image <span class="token function">download</span><span class="token punctuation">(</span>String url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ImageStore</span> <span class="token punctuation">&#123;</span>
+  <span class="token class-name">String</span> <span class="token function">upload</span><span class="token punctuation">(</span><span class="token class-name">Image</span> image<span class="token punctuation">,</span> <span class="token class-name">String</span> bucketName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">Image</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AliyunImageStore</span> <span class="token keyword">implements</span> <span class="token class-name">ImageStore</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//...省略属性、构造函数等...</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AliyunImageStore</span> <span class="token keyword">implements</span> <span class="token class-name">ImageStore</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">//...省略属性、构造函数等...</span>
 
-  <span class="token keyword">public</span> String <span class="token function">upload</span><span class="token punctuation">(</span>Image image<span class="token punctuation">,</span> String bucketName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">upload</span><span class="token punctuation">(</span><span class="token class-name">Image</span> image<span class="token punctuation">,</span> <span class="token class-name">String</span> bucketName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span>bucketName<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    String accessToken <span class="token operator">=</span> <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...上传图片到阿里云...</span>
-    <span class="token comment" spellcheck="true">//...返回图片在阿里云上的地址(url)...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> accessToken <span class="token operator">=</span> <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//...上传图片到阿里云...</span>
+    <span class="token comment">//...返回图片在阿里云上的地址(url)...</span>
+  <span class="token punctuation">&#125;</span>
 
-  <span class="token keyword">public</span> Image <span class="token function">download</span><span class="token punctuation">(</span>String url<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    String accessToken <span class="token operator">=</span> <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...从阿里云下载图片...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">Image</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> accessToken <span class="token operator">=</span> <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//...从阿里云下载图片...</span>
+  <span class="token punctuation">&#125;</span>
 
-  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span>String bucketName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ...创建bucket...</span>
-    <span class="token comment" spellcheck="true">// ...失败会抛出异常..</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span><span class="token class-name">String</span> bucketName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// ...创建bucket...</span>
+    <span class="token comment">// ...失败会抛出异常..</span>
+  <span class="token punctuation">&#125;</span>
 
-  <span class="token keyword">private</span> String <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ...根据accesskey/secrectkey等生成access token</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">generateAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// ...根据accesskey/secrectkey等生成access token</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token comment" spellcheck="true">// 上传下载流程改变：私有云不需要支持access token</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrivateImageStore</span> <span class="token keyword">implements</span> <span class="token class-name">ImageStore</span>  <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">public</span> String <span class="token function">upload</span><span class="token punctuation">(</span>Image image<span class="token punctuation">,</span> String bucketName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token comment">// 上传下载流程改变：私有云不需要支持access token</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrivateImageStore</span> <span class="token keyword">implements</span> <span class="token class-name">ImageStore</span>  <span class="token punctuation">&#123;</span>
+  <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">upload</span><span class="token punctuation">(</span><span class="token class-name">Image</span> image<span class="token punctuation">,</span> <span class="token class-name">String</span> bucketName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span>bucketName<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...上传图片到私有云...</span>
-    <span class="token comment" spellcheck="true">//...返回图片的url...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment">//...上传图片到私有云...</span>
+    <span class="token comment">//...返回图片的url...</span>
+  <span class="token punctuation">&#125;</span>
 
-  <span class="token keyword">public</span> Image <span class="token function">download</span><span class="token punctuation">(</span>String url<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//...从私有云下载图片...</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">Image</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//...从私有云下载图片...</span>
+  <span class="token punctuation">&#125;</span>
 
-  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span>String bucketName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ...创建bucket...</span>
-    <span class="token comment" spellcheck="true">// ...失败会抛出异常..</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">createBucketIfNotExisting</span><span class="token punctuation">(</span><span class="token class-name">String</span> bucketName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// ...创建bucket...</span>
+    <span class="token comment">// ...失败会抛出异常..</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="token comment" spellcheck="true">// ImageStore的使用举例</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ImageProcessingJob</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String BUCKET_NAME <span class="token operator">=</span> <span class="token string">"ai_images_bucket"</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//...省略其他无关代码...</span>
+<span class="token comment">// ImageStore的使用举例</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ImageProcessingJob</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> BUCKET_NAME <span class="token operator">=</span> <span class="token string">"ai_images_bucket"</span><span class="token punctuation">;</span>
+  <span class="token comment">//...省略其他无关代码...</span>
   
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    Image image <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//处理图片，并封装为Image对象</span>
-    ImageStore imageStore <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrivateImageStore</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Image</span> image <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span><span class="token comment">//处理图片，并封装为Image对象</span>
+    <span class="token class-name">ImageStore</span> imageStore <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrivateImageStore</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     imagestore<span class="token punctuation">.</span><span class="token function">upload</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> BUCKET_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>切记，不要通过实现类反推接口的定义，可能会导致接口定义不够抽象，依赖具体的实现，没有意义。<strong>一定要有抽象意识、封装意识、接口意识。在定义接口的时候，不要暴露任何是实现细节。接口的定义只表明做什么，而不是怎么做</strong>，要考虑接口设计是否足够通用，是否能够做到在替换具体的接口实现的时候，不需要任何接口定义的改动。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li><p>“基于接口而非实现编程”，这条原则的另一个表述方式，是“基于抽象而非实现编程”。后者的表述方式其实更能体现这条原则的设计初衷。我们在做软件开发的时候，一定要有抽象意识、封装意识、接口意识。越抽象、越顶层、越脱离具体某一实现的设计，越能提高代码的灵活性、扩展性、可维护性。</p>
@@ -476,7 +479,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2021/05/26/%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0/">http://nekoozero.github.io/2021/05/26/%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0/</a>
+                    <a href="http://www.qxnekoo.cn/2021/05/26/%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0/">http://www.qxnekoo.cn/2021/05/26/%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -563,13 +566,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/05/26/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+                <a href="/2021/05/27/%E5%A4%9A%E7%94%A8%E7%BB%84%E5%90%88%E5%B0%91%E7%94%A8%E7%BB%A7%E6%89%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="接口与抽象类">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="多用组合少用继承">
                         
-                        <span class="card-title">接口与抽象类</span>
+                        <span class="card-title">多用组合少用继承</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -580,7 +583,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
                         </span>
                         <span class="publish-author">
                             
@@ -612,13 +615,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">
+                <a href="/2021/05/26/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="字符串匹配算法">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="接口与抽象类">
                         
-                        <span class="card-title">字符串匹配算法</span>
+                        <span class="card-title">接口与抽象类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -629,14 +632,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/DATA-STRUCTURE/" class="post-category">
-                                    DATA STRUCTURE
+                            <a href="/categories/DESIGN-PATTERNS/" class="post-category">
+                                    DESIGN PATTERNS
                                 </a>
                             
                             

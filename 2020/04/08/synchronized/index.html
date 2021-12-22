@@ -3,7 +3,7 @@
     <head>
        
         <meta name="referrer" content="no-referrer" />
-    <meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <head>
@@ -320,6 +320,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -353,26 +356,28 @@
 <p>Monitor对象结构：</p>
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/25/Monitor.png" alt="Monitor"></p>
 <p>ObjectMonitor:</p>
-<pre class=" language-c++"><code class="language-c++">ObjectMonitor() &#123;
-    _header       = NULL;//markOop对象头
-    _count        = 0;
-    _waiters      = 0,//等待线程数
-    _recursions   = 0;//重入次数
-    _object       = NULL;//监视器锁寄生的对象。锁不是平白出现的，而是寄托存储于对象中。
-    _owner        = NULL;//指向获得ObjectMonitor对象的线程或基础锁
-    _WaitSet      = NULL;//处于wait状态的线程，会被加入到wait set；
-    _WaitSetLock  = 0 ;
-    _Responsible  = NULL ;
-    _succ         = NULL ;
-    _cxq          = NULL ;
-    FreeNext      = NULL ;
-    _EntryList    = NULL ;//处于等待锁block状态的线程，会被加入到entry set；
-    _SpinFreq     = 0 ;
-    _SpinClock    = 0 ;
-    OwnerIsThread = 0 ;// _owner is (Thread *) vs SP/BasicLock
-    _previous_owner_tid = 0;// 监视器前一个拥有者线程的ID
-&#125;
-</code></pre>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ObjectMonitor() &#123;
+    _header       &#x3D; NULL;&#x2F;&#x2F;markOop对象头
+    _count        &#x3D; 0;
+    _waiters      &#x3D; 0,&#x2F;&#x2F;等待线程数
+    _recursions   &#x3D; 0;&#x2F;&#x2F;重入次数
+    _object       &#x3D; NULL;&#x2F;&#x2F;监视器锁寄生的对象。锁不是平白出现的，而是寄托存储于对象中。
+    _owner        &#x3D; NULL;&#x2F;&#x2F;指向获得ObjectMonitor对象的线程或基础锁
+    _WaitSet      &#x3D; NULL;&#x2F;&#x2F;处于wait状态的线程，会被加入到wait set；
+    _WaitSetLock  &#x3D; 0 ;
+    _Responsible  &#x3D; NULL ;
+    _succ         &#x3D; NULL ;
+    _cxq          &#x3D; NULL ;
+    FreeNext      &#x3D; NULL ;
+    _EntryList    &#x3D; NULL ;&#x2F;&#x2F;处于等待锁block状态的线程，会被加入到entry set；
+    _SpinFreq     &#x3D; 0 ;
+    _SpinClock    &#x3D; 0 ;
+    OwnerIsThread &#x3D; 0 ;&#x2F;&#x2F; _owner is (Thread *) vs SP&#x2F;BasicLock
+    _previous_owner_tid &#x3D; 0;&#x2F;&#x2F; 监视器前一个拥有者线程的ID
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <p><img src="http://www.qxnekoo.cn:8888/images/2020/04/25/ObjectMonitor.png" alt="ObjectMonitor"></p>
 <p>这部分的内容、原理确实比较复杂，贴上大佬的文章：</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dennyzhangdd/p/6734638.html#_label2">https://www.cnblogs.com/dennyzhangdd/p/6734638.html#_label2</a></p>
@@ -458,7 +463,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nekoozero.github.io/2020/04/08/synchronized/">http://nekoozero.github.io/2020/04/08/synchronized/</a>
+                    <a href="http://www.qxnekoo.cn/2020/04/08/synchronized/">http://www.qxnekoo.cn/2020/04/08/synchronized/</a>
                 </span>
             </div>
             <div class="reprint__notice">

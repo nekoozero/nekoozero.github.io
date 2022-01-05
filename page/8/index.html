@@ -314,6 +314,54 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/04/06/%E9%94%81%E4%BC%98%E5%8C%96/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="锁优化">
+                            
+                            <span class="card-title">锁优化</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                自旋锁与自适应锁互斥同步对性能最大的影响就是阻塞的实现，挂起线程和恢复线程的操作都需要转入内核态去完成。
+如果物理机器有一个以上的处理器或者处理器核心，能让两个或以上的线程同时执行，就可以让后面请求锁的线程稍等一会儿，但不放弃处理器的执行时
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/CONCURRENT/" class="post-category">
+                                    CONCURRENT
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/04/04/JMM/">
                         <div class="card-image">
                             
@@ -555,54 +603,6 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/26/JUC%E5%B8%B8%E7%94%A8%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="JUC 常用并发工具类">
-                            
-                            <span class="card-title">JUC 常用并发工具类</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CountDownLatchCountDownLatch允许一个或多个线程等待其他线程完成操作。
-定义了一个就计数器和一个阻塞队列，当计数器的值递减为0之前，阻塞队列里面的线程处于挂起状态，当计数器递减为0时会唤醒阻塞队列所有线程，在Cou
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -620,7 +620,7 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">8 / 11</div>
+            <div class="center-align b-text-gray">8 / 12</div>
         </div>
         <div class="col s6 m4 l4">
             
@@ -708,7 +708,7 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
         <div class="col s12 m8 l8 copy-right">
             <!-- Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span> -->
             <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>

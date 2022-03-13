@@ -1,0 +1,998 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+       
+        <meta name="referrer" content="no-referrer" />
+    <meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="hzero 基础服务, Nekoo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>hzero 基础服务 | Nekoo</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Nekoo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Nekoo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">hzero 基础服务</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                                <span class="chip bg-color">工作</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/HZERO/" class="post-category">
+                                HZERO
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="注册中心（hzero-register）"><a href="#注册中心（hzero-register）" class="headerlink" title="注册中心（hzero-register）"></a>注册中心（hzero-register）</h2><p><a target="_blank" rel="noopener" href="https://open.hand-china.com/hzero-docs/v1.3/zh/docs/service/register/">https://open.hand-china.com/hzero-docs/v1.3/zh/docs/service/register/</a></p>
+<p>基于Eureka的平台注册中心服务</p>
+<p>功能：</p>
+<ul>
+<li>服务注册发现</li>
+<li>服务健康检查</li>
+<li>服务监控</li>
+<li>注册中心其他功能</li>
+</ul>
+<h2 id="平台治理-hzero-admin"><a href="#平台治理-hzero-admin" class="headerlink" title="平台治理(hzero-admin)"></a>平台治理(hzero-admin)</h2><p><a target="_blank" rel="noopener" href="https://open.hand-china.com/hzero-docs/v1.3/zh/docs/service/admin/">https://open.hand-china.com/hzero-docs/v1.3/zh/docs/service/admin/</a></p>
+<p>管理服务，基础服务之一，把路由、限流、熔断等功能易用化，集中在管理服务来管控，提供自动化的路由刷新、权限刷新、swagger信息刷新服务，提供界面化的服务、配置、路由、限流、熔断管理功能以及Spring Boot Admin控制台。</p>
+<p>功能：</p>
+<ul>
+<li>服务管理</li>
+<li>配置管理</li>
+<li>路由管理</li>
+<li>限流规则管理</li>
+<li>熔断规则管理</li>
+<li>服务监控管理</li>
+</ul>
+<h3 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h3><p>功能说明：</p>
+<ul>
+<li>创建服务</li>
+<li>删除服务</li>
+<li>修改服务</li>
+<li>查询服务</li>
+</ul>
+<p>需要注意的是，服务对应的服务名和服务编码应该保持一致，且与微服务的spring.application.name保持一致。</p>
+<p>一般情况下，<strong>一个新服务hzero-demo按hzero规范注册到注册中心后，hzero-admin服务会监听到该hzero-demo服务的注册，并自动为其创建服务、路由，最后将路由信息应用到网关并为其api生成权限信息及swagger信息，此时该服务自动成为hzero体系中的一个可访问服务</strong>。</p>
+<p>如果hzero-admin服务未开启自动刷新功能，则需要手动维护路由信息、权限信息及swagger信息，而手动维护路由信息需要先手动创建服务并关联该服务创建路由。</p>
+<h3 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h3><p>功能说明：</p>
+<ul>
+<li>创建配置</li>
+<li>删除配置</li>
+<li>更新配置</li>
+<li>查询配置</li>
+<li>刷新配置</li>
+</ul>
+<p>通过服务名和服务版本定位到实例，表示配置与服务的绑定关系，如果不指定服务版本，则表示该配置会应用到该服务的所有实例。</p>
+<p>在创建配置、删除配置、更新配置时均会触发刷新配置，将配置信息应用到绑定服务上。</p>
+<p>ps. 刷新配置过程有可能由于网络原因失败，所以需要再次手动刷新配置。</p>
+<h3 id="路由管理"><a href="#路由管理" class="headerlink" title="路由管理"></a>路由管理</h3><p>界面定位：Hzero菜单-&gt;服务治理-&gt;路由管理</p>
+<p>功能说明：</p>
+<ul>
+<li>创建路由</li>
+<li>删除路由</li>
+<li>更新路由</li>
+<li>查询路由</li>
+<li>刷新路由</li>
+</ul>
+<p>在创建路由、删除路由、更新路由时均会触发刷新路由，将路由信息应用到网关服务上。</p>
+<p>ps. 刷新路由过程有可能由于网络原因失败，所以需要再次手动刷新路由。</p>
+<h3 id="监听服务注册并刷新路由、权限、swagger信息"><a href="#监听服务注册并刷新路由、权限、swagger信息" class="headerlink" title="监听服务注册并刷新路由、权限、swagger信息"></a>监听服务注册并刷新路由、权限、swagger信息</h3><p>此功能分解为三个：监听服务注册并刷新路由（添加网关到服务到映射关系）、监听服务注册并刷新权限（允许请求到服务到鉴权通过）、 监听服务注册并刷新swagger信息（允许查看api信息和模拟调用）</p>
+<ol>
+<li><p><strong>监听服务注册并刷新路由</strong>:服务注册后，hzero-admin服务会监听到服务注册事件并从该服务拉取路由信息， 如果路由信息符合规范且与现有路由不冲突，则为其创建路由并应用到网关，使之可以通过网关访问。</p>
+<p>Note: 路由信息是由hzero-admin服务管理的，拉取、解析路由信息以及通知网关的工作均由hzero-admin服务完成； 另外，可能在网络抖动等原因出现刷新失败或网关未应用路由的情况，这时需要手动调用路由刷新接口（POST /v1/refresh/route）。</p>
+</li>
+<li><p><strong>监听服务注册并刷新权限</strong>:服务注册后，hzero-admin服务会监听到服务注册事件并<strong>通知hzero-iam服务</strong>从该服务拉取权限信息， 解析后存储到数据库和redis，存储到redis后，网关可获取到相应到权限信息。</p>
+<p>Note: 监听和通知的工作由hzero-admin完成，真正的权限刷新（拉取、解析、保存权限信息及刷新到缓存）工作由hzero-iam完成； 另外，可能在网络抖动等原因出现刷新失败或缓存不一致的情况，这时需要手动调用权限刷新接口（POST /v1/refresh/permission）。</p>
+</li>
+<li><p><strong>监听服务注册并刷新swagger信息</strong>：服务注册后，hzero-admin服务会监听到服务注册事件并<strong>通知hzero-swagger服务</strong>从该服务拉取swagger信息， 存储到数据库，存储到数据库后，hzero-swagger可获取到相应的swagger信息。</p>
+<p>Note: 监听和通知的工作由hzero-admin完成，真正的权限刷新（拉取、解析、保存swagger信息）工作由hzero-swagger完成； 另外，可能在网络抖动等原因出现刷新失败或api不一致的情况，这时需要手动调用swagger刷新接口（POST /v1/refresh/swagger）。</p>
+</li>
+</ol>
+<h2 id="网关服务（hzero-gateway）"><a href="#网关服务（hzero-gateway）" class="headerlink" title="网关服务（hzero-gateway）"></a>网关服务（hzero-gateway）</h2><p>基于Spring Cloud Gateway的微服务网关服务</p>
+<p>功能：</p>
+<ul>
+<li>用户鉴权</li>
+<li>限流</li>
+<li>整体运维</li>
+<li>动态路由</li>
+</ul>
+<h3 id="启动类配置"><a href="#启动类配置" class="headerlink" title="启动类配置"></a>启动类配置</h3><p>需要注意的是，在编写引导类时需要指定web环境为REACTIVE类型，由于Spring Cloud Gateway基于webflux包开发，其web容器是REACTIVE类型，而hzero-starter-core包中依赖了web包，如果不指定web容器将会默认走webmvc而冲突。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableHZeroGateway</span>
+<span class="token annotation punctuation">@EnableDiscoveryClient</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GatewayApplication</span> <span class="token punctuation">&#123;</span> 
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+        <span class="token keyword">new</span> <span class="token class-name">SpringApplicationBuilder</span><span class="token punctuation">(</span><span class="token class-name">GatewayApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>  <span class="token punctuation">.</span><span class="token function">web</span><span class="token punctuation">(</span><span class="token class-name">WebApplicationType</span><span class="token punctuation">.</span>REACTIVE<span class="token punctuation">)</span> <span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="GatewayHelper"><a href="#GatewayHelper" class="headerlink" title="GatewayHelper"></a>GatewayHelper</h3><ul>
+<li>hzero 提供了 hzero-gateway-helper-api 鉴权接口包 和 hzero-gateway-helper-default 默认实现。</li>
+<li>如果需要对鉴权逻辑进行整体改造，可以通过实现 org.hzero.gateway.helper.api.AuthenticationHelper 接口来完全定制化鉴权的部分。</li>
+<li>如果仅需要对现有鉴权逻辑新增逻辑，可以通过实现 org.hzero.gateway.helper.api.HelperFilter 接口来新增鉴权逻辑。</li>
+</ul>
+<h2 id="OAuth-认证服务"><a href="#OAuth-认证服务" class="headerlink" title="OAuth 认证服务"></a>OAuth 认证服务</h2><p>hzero-oauth 服务是基于 Spring Security、Spring OAuth2、JWT 实现的统一认证服务中心，登录基于 spring security 的标准登录流程，客户端授权支持 oauth2.0 的四种授权模式：<strong>授权码模式</strong>、<strong>简化模式</strong>、<strong>密码模式</strong>、<strong>客户端模式</strong>，授权流程跟标准的 oauth2 流程一致。web 端采用简化模式(implicit)登录系统，移动端可使用密码模式(password)登录系统 。并支持基于 Spring Social 的三方账号登录方式(如微信)。</p>
+<p>功能：</p>
+<ul>
+<li>统一登录界面</li>
+<li>账户、手机、邮箱登录</li>
+<li>短信登录</li>
+<li>第三方登录功能</li>
+<li>可客制化登录模板</li>
+</ul>
+<p><img src="/2021/11/20/hzero%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1/D2C2E054-B051-44A1-BE28-FD8B4332A3D7.png"></p>
+<h2 id="IAM服务-hzero-iam"><a href="#IAM服务-hzero-iam" class="headerlink" title="IAM服务(hzero-iam)"></a>IAM服务(hzero-iam)</h2><p>权限管理服务，平台统一的权限体系架构</p>
+<ul>
+<li>功能：</li>
+<li>角色管理</li>
+<li>菜单管理</li>
+<li>帐户管理</li>
+<li>用户组管理</li>
+<li>租户管理</li>
+<li>权限刷新</li>
+<li>单据权限管理</li>
+</ul>
+<h3 id="接口权限自动刷新机制"><a href="#接口权限自动刷新机制" class="headerlink" title="接口权限自动刷新机制"></a>接口权限自动刷新机制</h3><p>IAM 服务保存了接口权限信息，一般情况下，（按照HZERO规范生成的）新服务注册到注册中心后， 系统会自动从该服务拉取该服务接口权限信息，并通过IAM权限刷新接口保存到数据库和缓存中， 这时新服务的api在网关的鉴权（网关从redis中获取权限信息）才能通过。</p>
+<p>这里HZERO为用户做了三件事：</p>
+<p><strong>1.自动监听服务注册事件，并从新服务拉取接口权限信息（该工作由hzero-admin服务完成）</strong></p>
+<p><strong>2.hzero-admin服务通过远程调用通知hzero-iam服务完成权限刷新工作</strong></p>
+<p><strong>3.hzero-iam从新服务拉取权限接口信息，并保存到数据库和缓存</strong></p>
+<p>所以如果出现这样到情况，新服务注册后，接口权限没有刷新到IAM，导致网关鉴权失败，报错permission mismatch。 则原因可能是：</p>
+<ul>
+<li>hzero-admin服务不可用，无法监听到服务注册事件</li>
+<li>hzero-iam服务不可用或hzero-admin与hzero-iam网络不通或网络抖动，hzero-admin远程调用hzero-iam失败</li>
+<li>新服务不符合HZERO规范</li>
+</ul>
+<p>在hzero-admin、hzero-iam均可用，且网络可达的情况下，依然有很小的概率由于网络抖动原因而调用失败， 这时需要手动调用hzero-iam服务的权限刷新接口或hzero-admin服务的权限刷新接口。</p>
+<p>ps.推荐使用hzero-admin服务的接口（路由刷新、swagger刷新等管理功能集中在hzero-admin服务，便于操作）</p>
+<h2 id="平台基础服务-hzero-platform"><a href="#平台基础服务-hzero-platform" class="headerlink" title="平台基础服务(hzero-platform)"></a>平台基础服务(hzero-platform)</h2><p>平台功能基础服务，主要涵盖平台开发支持功能、平台主数据模块、系统管理模块等</p>
+<p>功能：</p>
+<ul>
+<li><p>系统配置</p>
+</li>
+<li><p>值列表维护、值列表视图</p>
+</li>
+<li><p>多语言描述维护</p>
+</li>
+<li><p>编码规则管理</p>
+</li>
+<li><p>配置管理</p>
+</li>
+<li><p>规则引擎</p>
+</li>
+<li><p>数据源、数据库管理</p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.qxnekoo.cn/2021/11/20/hzero%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1/">http://www.qxnekoo.cn/2021/11/20/hzero%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                                    <span class="chip bg-color">工作</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/11/25/hzero%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="hzero 服务注册">
+                        
+                        <span class="card-title">hzero 服务注册</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/HZERO/" class="post-category">
+                                    HZERO
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                        <span class="chip bg-color">工作</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/14/%E5%BF%AB%E9%80%9F%E5%B9%82/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="快速幂">
+                        
+                        <span class="card-title">快速幂</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/DATA-STRUCTURE/" class="post-category">
+                                    DATA STRUCTURE
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <!--
+ * @Author: your name
+ * @Date: 2021-05-30 14:06:24
+ * @LastEditTime: 2021-07-16 12:38:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\footer.ejs
+-->
+<footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6782589134"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <!-- <div class="col s12 m8 l8 copy-right">
+            
+        </div> -->
+        <!-- <div class="col s12 m8 l8 copy-right">高堂明镜悲白发，朝如青丝暮成雪</div> -->
+        <div class="col s12 m8 l8 copy-right">
+            <!-- Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span> -->
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici-author"></span>
+            <div style="float:right"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备18027893号</a></div>
+            <!-- <a href="/about" target="_blank">qxnekoo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+            
+            
+            
+            
+            <br>
+
+            <script type="text/javascript"> 
+                function getGushici() {
+                    $.ajax({url:"https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=iwbPjlHvayxXYk7KgpZQGcAHdGZ18T87",success:function(result){
+                        
+                        $('#gushici').html(result.data.content);
+                        $('#gushici-author').html(" --"+result.data.origin.author);
+                    }});
+                }
+                $("#gushici").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $("#gushici-author").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $(document).ready(function(){ 
+                    getGushici();
+                }); 
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

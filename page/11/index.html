@@ -281,9 +281,13 @@
 <script>
 
 window.onload=function(){
+    
     $.ajax({url:"https://infinity-api.infinitynewtab.com/random-wallpaper",success:function(result){
         var bannerUrl = result.data[0].src.originalSrc;
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');                
+        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')'); 
+        
+
+        
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
@@ -314,32 +318,136 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/05/31/%E7%88%B6%E5%AD%90%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F/">
+                    <a href="/2020/03/14/%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%B4%BB%E5%92%8C%E5%BC%95%E7%94%A8/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="父子类中的初始化顺序">
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="对象存活和引用">
                             
-                            <span class="card-title">父子类中的初始化顺序</span>
+                            <span class="card-title">对象存活和引用</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                开始记一些特别基础的东西吧，
-父类：
-package com.qxnekoo.extend;
+                                
+哪些内存需要回收？
 
-public class Father &#123;
-	String str = "father";
-	static&#123;
-		Syste
+在Java内存运行时区域的各个部分，其中程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭，栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。当方法结束或者线程结束的时候，内存自然就跟着回收
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-14
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/12/TLAB/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="TLAB 解读">
+                            
+                            <span class="card-title">TLAB 解读</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                问题虚拟机创建对象、分配内存是很频繁的一件事，那么，在多线程运行的情况下，怎么保证虚拟机在堆中给对象划分内存时候的线程安全？
+其实虚拟机有两种解决方案：
+
+对虚拟机划分内存的这个动作进行同步操作，可能通过CAS和失败重试机制来保证线程安全。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/JVM/" class="post-category">
+                                    JVM
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/02/18/stream/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Stream">
+                            
+                            <span class="card-title">Stream</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+stream自己不会存储元素
+stream不会改变源对象，相反，他们会返回一个持有结果的新stream
+stream操作是延迟的。这意味着他们会等到需要结果的时候才执行
+
+步骤
+
+创建stream
+一个数据源，获取一个流
+
+中间操作
+一个
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-18
                             </span>
                             <span class="publish-author">
                                 
@@ -357,8 +465,8 @@ public class Father &#123;
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">笔记</span>
                         </a>
                         
                     </div>
@@ -368,33 +476,49 @@ public class Father &#123;
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/05/30/ThreadLocal%E5%9F%BA%E7%A1%80/">
+                    <a href="/2019/11/03/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="ThreadLocal基础">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="函数式接口">
                             
-                            <span class="card-title">ThreadLocal基础</span>
+                            <span class="card-title">函数式接口</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Thread.join()如果一个线程A执行了thread.join()，其含义是：当线程A等待thread线程终止之后才从thread.join()返回。（即线程A会从等待处继续执行）。
-package qxnekoo.threadloc
+                                只有一个函数的接口。
+四大核心函数式接口
+
+
+函数式接口
+参数类型
+返回类型
+用途
+
+
+
+Consumer/&lt;/T/&gt;消费性接口
+T
+void
+对类型为T的对象应用操作，包含方法：void accept(T t)
+
+
+Suppl
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-03
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
+                                <a href="/categories/BASIC/" class="post-category">
+                                    BASIC
                                 </a>
                                 
                                 
@@ -416,42 +540,34 @@ package qxnekoo.threadloc
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/05/28/%E7%AD%89%E5%BE%85-%E9%80%9A%E7%9F%A5%E6%9C%BA%E5%88%B6/">
+                    <a href="/2019/09/14/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="等待/通知机制">
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="单例模式">
                             
-                            <span class="card-title">等待/通知机制</span>
+                            <span class="card-title">单例模式</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                描述等待/通知的相关方法是任意Java对象都具备的，因为这些方法被定义在所有对象的超类java.lang.Object，方法和描述：
+                                概念其属于创建型模式，保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+单例模式一般体现在类声明中，单例的类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类对象。
 
-
-
-方法名称
-描述
-
-
-
-notify()
-通知一个在对象上等待的线程，使其从wait()方法返回，而返
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-14
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
+                                <a href="/categories/BASIC/" class="post-category">
+                                    BASIC
                                 </a>
                                 
                                 
@@ -473,127 +589,31 @@ notify()
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/05/27/%E7%BA%BF%E7%A8%8B%E4%B8%AD%E6%96%AD/">
+                    <a href="/2019/08/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="线程中断">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="动态代理">
                             
-                            <span class="card-title">线程中断</span>
+                            <span class="card-title">动态代理</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                理解中断中断可以理解为线程的一个标识位属性，它表示一个运行中的线程是否被其他线程进行了中断操作。其它线程通过调用该线程的interrupt()方法对其进行中断操作。
-线程通过检查自身是否被中断来进行响应，线程通过方法isInterrupte
+                                区别
+时间: 2019/8/1
+
+静态：由程序员创建代理类或特定工具自动生成源代码在对其编译。在程序运行前代理类的.class文件就已经存在了。
+动态：在程序运行时运用反射机制动态创建而成。
+静态代理接口：
+package com.neko
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-27
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/05/20/CAS/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="CAS(Compare And Swap)">
-                            
-                            <span class="card-title">CAS(Compare And Swap)</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CAS,即比较并替换，实现并发算法时常用到的一种技术，Doug lea大神在java同步器中大量使用了CAS技术，实现了多线程执行的安全性。
-CAS的思想很简单：三个参数，一个当前内存值V，就得预期值A、即将更新的值B，当且仅当预期值A和内
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-20
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/05/20/java%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="java 中的序列化">
-                            
-                            <span class="card-title">java 中的序列化</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                序列化什么是序列化？
-为了保存在内存中的各个对象的状态，并且可以把保存的对象状态再读出来。保存对象状态的机制，就是序列化。
-专业一点： 
-序列化就是把Java对象转换为字节序列的过程。
-反序列化就是把字节序列恢复为Java对象过程。
-
-为什
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-01
                             </span>
                             <span class="publish-author">
                                 
@@ -637,7 +657,7 @@ CAS的思想很简单：三个参数，一个当前内存值V，就得预期值A
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">11 / 12</div>
+            <div class="center-align b-text-gray">11 / 13</div>
         </div>
         <div class="col s6 m4 l4">
             

@@ -1,0 +1,967 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+       
+        <meta name="referrer" content="no-referrer" />
+    <meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="hzero 网关鉴权, Nekoo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>hzero 网关鉴权 | Nekoo</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Nekoo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Nekoo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">hzero 网关鉴权</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                                <span class="chip bg-color">工作</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/HZERO/" class="post-category">
+                                HZERO
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-03
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://open.hand-china.com/document-center/doc/component/159/16194?doc_id=30958996068&_back=/document-center/search?s=%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1&doc_code=40392">https://open.hand-china.com/document-center/doc/component/159/16194?doc_id=30958996068&amp;_back=%2Fdocument-center%2Fsearch%3Fs%3D%25E5%258A%25A8%25E6%2580%2581%25E8%25B7%25AF%25E7%2594%25B1&amp;doc_code=40392</a></p>
+<h2 id="调用基本链路"><a href="#调用基本链路" class="headerlink" title="调用基本链路"></a>调用基本链路</h2><p>hzero基础服务调用链路：</p>
+<p><a target="_blank" rel="noopener" href="https://open.hand-china.com/hzero-docs/v1.3/zh/docs/installation-configuration/service-config/service-chain/">https://open.hand-china.com/hzero-docs/v1.3/zh/docs/installation-configuration/service-config/service-chain/</a></p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/hzero-chain.jpeg" alt="调用链路"></p>
+<p>① API调用</p>
+<p>所有API调用都是进入网关，通过网关路由到正确的服务上。对外暴露端口时，只需暴露网关服务的端口即可。</p>
+<p>② API鉴权</p>
+<p>在网关服务内，所有API请求都会经过 GateWayHelperFilter 过滤器，在过滤器中，会调用 hzero-gateway-helper 鉴权组件对API及用户鉴权。</p>
+<p>根过滤器 HelperChain 包含了一系列过滤器来对请求进行鉴权，将按图中的顺序进行校验。认证通过或不通过都会返回相应的状态码，红色部分表示认证失败，绿色部分表示认证通过，具体状态码的含义可参考最后 鉴权常见状态码。</p>
+<p>一般服务出现 403、500 等问题时，可先查看返回错误码，或检查 hzero-gateway-helper 的日志，看是哪一步校验不通过，对症下药。</p>
+<p>③ 获取登录用户</p>
+<p><strong>GetUserDetailsFilter</strong> <strong>会带着</strong> <strong>access_token</strong> <strong>访问 hzero-oauth 认证服务的</strong> <strong>/api/user</strong> <strong>接口获取用户信息。</strong></p>
+<p>④ 返回用户 Principal</p>
+<p>用户登录后，oauth 服务将 access_token 和用户认证实体（Authentication）关系存储在 redis session 中，在调用 /api/user 时，将通过 access_token 获取 Authentication，并在接口中返回用户信息 Principal。</p>
+<p>得到 Principal 后，转换成 CustomUserDetails。之后，在AddJwtFilter里将 UserDetails 转成 JwtToken。</p>
+<p>⑤ 返回状态码及JwtToken</p>
+<p>如果认证失败，将返回状态码，并在网关直接返回前端，不会再调用业务服务。</p>
+<p>如果API要求用户登录，将返回用户的 JwtToken 信息</p>
+<p>⑥ 路由到业务服务</p>
+<p>鉴权通过后，网关将带着 JwtToken，根据路由信息，转发到对应的业务服务上。</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%819.png"></p>
+<p>在业务服务内部，首先 JwtTokenFilter 会将 JwtToken 转换成 UserDetails，并设置到 SecurityContextHolder 上下文中，相当于用户在此服务中已登录。之后的程序中就可以通过 DetailsHelper.getUserDetails() 得到当前登录用户信息。</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8110.png"></p>
+<p>若要开启此过滤器，需在启动类上配置 @EnableChoerodonResourceServer 注解开启此功能。</p>
+<p>⑦ 返回数据</p>
+<p>之后返回数据，经过网关，再返回到前端。如果服务响应比较慢，就需要调整网关的超时时间。</p>
+<h2 id="基本逻辑"><a href="#基本逻辑" class="headerlink" title="基本逻辑"></a>基本逻辑</h2><p>如果想要在本地运行认证环境，需要启动四个服务hzero-register、hzero-gateway、hzero-admin、hzero-ouath</p>
+<p>最主要的是GateWayHelperFilter这个类，继承了org.springframework.web.server.WebFilter,并且在里面自定义了鉴权组件</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%811.png"></p>
+<p>自定义顶级认证接口</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%812.png"></p>
+<p>实现类，通过过滤链来执行认证过程</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%813.png"></p>
+<p>调用了HelperChain的doFilter方法</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%814.png"></p>
+<p>也就是把所有HelperFilter的实现Bean全都拿过来放到一个List中执行，达到一个过滤连的执行效果。当filter.run 返回false的时候，过滤链结束，并将responseContext返回出去</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%815.png"></p>
+<p>看一下HleperFilter接口，这个接口是下面认证filter的顶级接口，定义了认证的行为，下面会对每一个filter进行分析。</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%816.png"></p>
+<p>还有两个类需要注意下，RequestContex和ResponseContext。</p>
+<p>RequestContext  作为过滤链执行过程中的上下文，可以在里面设置各种参数</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%817.png"></p>
+<p>ResponseContext 过滤链执行的返回结果</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%818.png"></p>
+<h3 id="PermissionDisableOrSkipFilter"><a href="#PermissionDisableOrSkipFilter" class="headerlink" title="PermissionDisableOrSkipFilter"></a>PermissionDisableOrSkipFilter</h3><p>先看一个简单的HelperFilter：主要是用来跳过一些url的鉴权，对于一些url，并不需要进行权限的限制</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8111.png"></p>
+<p>在代码中也可以看到一些默认的内部uri和可以跳过鉴权的uri，</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8112.png"></p>
+<p>也可以配置文件中去配置这些路径</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8113.png"></p>
+<h3 id="GetPermissionFilter"><a href="#GetPermissionFilter" class="headerlink" title="GetPermissionFilter"></a>GetPermissionFilter</h3><p>代码中所有controller中的大部分接口会落库，才能被hzero访问，会被封装成一个Permission对象</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8114.png"></p>
+<p>这个Filter 可能会抛出一个最常见的错误 PERMISSION_MISMATCH 接口403，也就是</p>
+<p><code>PermissionDO permission = this.permissionService.selectPermissionByRequest(key);</code></p>
+<p>查询出来为空，则会403，详细看一下这个方法：</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8115.png"></p>
+<p>有一个参数requestKey，根据代码可以推测出这个requestKey的组成：uri:::method:::serviceName，会使用 serviceName和method去查询permission，把查询出来的permission根据uri过滤、匹配等等，找到最优匹配的permission，如果没有找到，则返回null。</p>
+<p>那么可以再看看这个selectPermissions：</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8116.png"></p>
+<p>查询sql：</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8117.png"></p>
+<p>redis里面的数据结构，可以看到将  gateway:permissions:服务名:method 作为hash键，接口作为hash值，值示例</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8118.png"></p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"id"</span><span class="token operator">:</span><span class="token number">67272</span><span class="token punctuation">,</span>
+ <span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"hszl-archives.archives-outbound.create"</span><span class="token punctuation">,</span>
+ <span class="token property">"path"</span><span class="token operator">:</span><span class="token string">"/v1/&#123;organizationId&#125;/archives-outbounds"</span><span class="token punctuation">,</span>
+ <span class="token property">"method"</span><span class="token operator">:</span><span class="token string">"post"</span><span class="token punctuation">,</span>
+ <span class="token property">"publicAccess"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token property">"loginAccess"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token property">"signAccess"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token property">"within"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token property">"fdLevel"</span><span class="token operator">:</span><span class="token string">"organization"</span><span class="token punctuation">,</span>
+ <span class="token property">"tag"</span><span class="token operator">:</span><span class="token null keyword">null</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>所以，以后遇到接口403问题，找问题的话就可以先到redis去看，然后再去数据库找，是否存在这样的接口，一般都是接口不存在或者没有刷新到表里面导致的403。</strong></p>
+<h3 id="GetUserDetailsFilter"><a href="#GetUserDetailsFilter" class="headerlink" title="GetUserDetailsFilter"></a>GetUserDetailsFilter</h3><p>获取用户信息的过滤器。主要的任务就是：<strong>GetUserDetailsFilter</strong> <strong>会带着</strong> <strong>access_token</strong> <strong>访问 hzero-oauth 认证服务的</strong> <strong>/api/user</strong> <strong>接口获取用户信息。</strong></p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8119.png"></p>
+<p>返回的结果中包含了hzero用户的信息</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8120.png"></p>
+<p>带着token请求oauth服务</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8121.png"></p>
+<p>在oauth服务中通过ouath2进行验证，<strong>OAuth2AuthenticationProcessingFilter</strong></p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8122.png"></p>
+<p>oauth2会根据携带的token去查询用户信息,并将返回结果存储到当前的SecurityContextHolder中，</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8122.png"></p>
+<p>hzero中认证服务中的tokenService的实现类为DefaultTokenServices，接口ResourceServerTokenServices：</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8124.png"></p>
+<p>会通过TokenStore的redisTokenStore实现类来从redis获取用户认证信息</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8125.png"></p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8126.png"></p>
+<p>最后的结果会存储到Authentication中的Principal，然后通过controller返回给网关</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8127.png"></p>
+<h3 id="AddJwtFilter"><a href="#AddJwtFilter" class="headerlink" title="AddJwtFilter"></a>AddJwtFilter</h3><p>网关在得到 Principal 后，转换成 CustomUserDetails，之后，在这里将 UserDetails 转成 JwtToken。并设置到response中</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8128.png"></p>
+<h3 id="LoginAccessRequestFilter"><a href="#LoginAccessRequestFilter" class="headerlink" title="LoginAccessRequestFilter"></a>LoginAccessRequestFilter</h3><p>访问的接口是否是登录才可访问接口</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8129.png"></p>
+<h3 id="AdminUserPermissionFilter"><a href="#AdminUserPermissionFilter" class="headerlink" title="AdminUserPermissionFilter"></a>AdminUserPermissionFilter</h3><p>如果是admin用户，那么就返回false，不要往下再去执行过滤链了。</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8130.png"></p>
+<h3 id="CommonRequestCheckFilter"><a href="#CommonRequestCheckFilter" class="headerlink" title="CommonRequestCheckFilter"></a>CommonRequestCheckFilter</h3><p>在系统中，会把接口分配给菜单，把菜单分配给用户，然后该用户就拥有了这个菜单下的所有接口权限</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8131.png"></p>
+<p>最主要的就是这边，根据接口的权限code去查询 ，该接口权限是否在该用户的已分配菜单下，如果不是的话，就返回pemission_not_pass，也就是权限未通过。</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8132.png"></p>
+<p>下面就是校验租户层级的权限</p>
+<p><img src="/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/%E4%BB%A3%E7%A0%8133.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.qxnekoo.cn/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/">http://www.qxnekoo.cn/2021/12/03/hzero%E7%BD%91%E5%85%B3%E9%89%B4%E6%9D%83/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                                    <span class="chip bg-color">工作</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/19/hzero%E5%BC%80%E5%8F%91%E8%80%85%E8%B7%AF%E7%94%B1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="hzero 开发者路由">
+                        
+                        <span class="card-title">hzero 开发者路由</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/HZERO/" class="post-category">
+                                    HZERO
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                        <span class="chip bg-color">工作</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/25/hzero%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="hzero 服务注册">
+                        
+                        <span class="card-title">hzero 服务注册</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/HZERO/" class="post-category">
+                                    HZERO
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                        <span class="chip bg-color">工作</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <!--
+ * @Author: your name
+ * @Date: 2021-05-30 14:06:24
+ * @LastEditTime: 2021-07-16 12:38:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\footer.ejs
+-->
+<footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6782589134"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <!-- <div class="col s12 m8 l8 copy-right">
+            
+        </div> -->
+        <!-- <div class="col s12 m8 l8 copy-right">高堂明镜悲白发，朝如青丝暮成雪</div> -->
+        <div class="col s12 m8 l8 copy-right">
+            <!-- Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span> -->
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici-author"></span>
+            <div style="float:right"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备18027893号</a></div>
+            <!-- <a href="/about" target="_blank">qxnekoo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+            
+            
+            
+            
+            <br>
+
+            <script type="text/javascript"> 
+                function getGushici() {
+                    $.ajax({url:"https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=iwbPjlHvayxXYk7KgpZQGcAHdGZ18T87",success:function(result){
+                        
+                        $('#gushici').html(result.data.content);
+                        $('#gushici-author').html(" --"+result.data.origin.author);
+                    }});
+                }
+                $("#gushici").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $("#gushici-author").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $(document).ready(function(){ 
+                    getGushici();
+                }); 
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

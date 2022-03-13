@@ -281,9 +281,13 @@
 <script>
 
 window.onload=function(){
+    
     $.ajax({url:"https://infinity-api.infinitynewtab.com/random-wallpaper",success:function(result){
         var bannerUrl = result.data[0].src.originalSrc;
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');                
+        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')'); 
+        
+
+        
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
@@ -314,26 +318,26 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/26/JUC%E5%B8%B8%E7%94%A8%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+                    <a href="/2020/04/06/%E9%94%81%E4%BC%98%E5%8C%96/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="JUC 常用并发工具类">
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="锁优化">
                             
-                            <span class="card-title">JUC 常用并发工具类</span>
+                            <span class="card-title">锁优化</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                CountDownLatchCountDownLatch允许一个或多个线程等待其他线程完成操作。
-定义了一个就计数器和一个阻塞队列，当计数器的值递减为0之前，阻塞队列里面的线程处于挂起状态，当计数器递减为0时会唤醒阻塞队列所有线程，在Cou
+                                自旋锁与自适应锁互斥同步对性能最大的影响就是阻塞的实现，挂起线程和恢复线程的操作都需要转入内核态去完成。
+如果物理机器有一个以上的处理器或者处理器核心，能让两个或以上的线程同时执行，就可以让后面请求锁的线程稍等一会儿，但不放弃处理器的执行时
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-06
                             </span>
                             <span class="publish-author">
                                 
@@ -362,29 +366,26 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/19/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+                    <a href="/2020/04/04/JMM/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="运行时数据区域">
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="JMM">
                             
-                            <span class="card-title">运行时数据区域</span>
+                            <span class="card-title">JMM</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                虚拟机在执行Java程序的时候会把他所管理的内存划分为若干个不同的数据区域，有的区域随着虚拟机进程的启动而一直存在，有些区域则是依赖用户线程的启动和结束而自动建立和销毁。
-
-
-程序计数器（Program Counter Register）
-
+                                Java内存模型的目的是定义程序中各种变量的访问规则，即关注在虚拟机中把变量值存储到内存和从内存中取出变量值这样的底层细节。
+这里的变量包括了实例字段、静态字段和构成数组对象的元素，不包括局部变量与方法参数，因为就这是线程私有的，不会被共享
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
                             </span>
                             <span class="publish-author">
                                 
@@ -413,27 +414,27 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/19/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5/">
+                    <a href="/2020/04/01/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%94%BE%E7%9A%84%E5%8C%BA%E5%9F%9F/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="内存分配与回收策略">
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="类变量和 Class 对象存放的区域">
                             
-                            <span class="card-title">内存分配与回收策略</span>
+                            <span class="card-title">类变量和 Class 对象存放的区域</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                最根本的目标是自动化解决两个问题：自动给对象分配内存以及自动回收分配给对象的内存。
-对象优先在 Eden 分配对象在新生代Eden区中分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次minor GC。
--XX:+PrintGCDe
+                                先说结论：
+JDK7之后及其以后的版本的HotSpot虚拟机选择把静态变量和Java类的Class对象存放在一起，存储与Java堆中。换句话说，JDK8 中，两者都位于堆（Heap），且static 成员变量位于 Class对象内。
+字符串
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                             <span class="publish-author">
                                 
@@ -462,33 +463,33 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/19/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+                    <a href="/2020/03/29/volatile/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="类加载机制">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="volatile">
                             
-                            <span class="card-title">类加载机制</span>
+                            <span class="card-title">volatile</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                定义Java虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的java类型，这个过程被称为虚拟机的类加载机制。
-类加载的时机一个类型的生命周期（加载到虚拟机内存开始，到卸载出内
+                                保证变量的可见性volatile修饰的变量对所有线程都具有可见性，这边的可见性主要是说，新值对于其他线程来说是立即得知的。
+volatile 修饰之后并不是让线程直接从主内存中获取数据，依然需要将变量拷贝到工作内存中。当一个变量被 vola
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
+                                <a href="/categories/CONCURRENT/" class="post-category">
+                                    CONCURRENT
                                 </a>
                                 
                                 
@@ -510,34 +511,35 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/18/%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">
+                    <a href="/2020/03/29/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="经典垃圾收集器">
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="抽象类与接口">
                             
-                            <span class="card-title">经典垃圾收集器</span>
+                            <span class="card-title">抽象类与接口</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                基本概念
-并行：多条垃圾收集器线程之间的关系，说明同一时间有多条这样的线程在工作，用户线程默认是处于等待状态的。
-并发：垃圾收集器线程与用户线程之间的关系，说明同一时间垃圾收集器线程与用户线程都在运行，此时应用程序的处理的吞吐量将受到一定影
+                                
+抽象类使用abstract关键字修饰；接口使用interface修饰。
+抽象类中有构造方法，但不能是实例化；接口没有构造方法。
+抽象类可以有非抽象方法；接口中有抽象方法，在java8后接口提供了默认方法，使用default修饰，并且不强制
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
+                                <a href="/categories/BASIC/" class="post-category">
+                                    BASIC
                                 </a>
                                 
                                 
@@ -548,8 +550,8 @@ window.onload=function(){
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
+                            <span class="chip bg-color">编程随记</span>
                         </a>
                         
                     </div>
@@ -559,26 +561,26 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/15/%E5%9E%83%E5%9C%BE%E7%AE%97%E6%B3%95%E7%BB%86%E8%8A%82%E5%90%8D%E8%AF%8D/">
+                    <a href="/2020/03/29/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="垃圾算法细节名词">
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="类加载器">
                             
-                            <span class="card-title">垃圾算法细节名词</span>
+                            <span class="card-title">类加载器</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                
-根节点枚举：收集器在根节点枚举这一步骤时都是必须暂停用户线程的，因此会和整理碎片一样面临”stop the world“的困扰。当用户进程停顿下来之后，其实并不需要一个不漏地检查完所有执行上下文和全局的引用位置，虚拟机应当是有办法直接得到
+                                “通过一个类的全限定名来获取描述该类的二进制字节流”这个动作放到虚拟机外部去实现。这个动作的代码被称为“类加载器（Class Loader）”
+类加载器对于任意一个类，都必须由加载它的类加载器和这个类本身译器共同确立其在Java虚拟机的唯一
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
                             </span>
                             <span class="publish-author">
                                 
@@ -622,7 +624,7 @@ window.onload=function(){
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">9 / 12</div>
+            <div class="center-align b-text-gray">9 / 13</div>
         </div>
         <div class="col s6 m4 l4">
             

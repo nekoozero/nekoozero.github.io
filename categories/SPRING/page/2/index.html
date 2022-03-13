@@ -280,9 +280,13 @@
 <script>
 
 window.onload=function(){
+    
     $.ajax({url:"https://infinity-api.infinitynewtab.com/random-wallpaper",success:function(result){
         var bannerUrl = result.data[0].src.originalSrc;
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');                
+        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')'); 
+        
+
+        
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
@@ -373,6 +377,15 @@ window.onload=function(){
                              chip-default "
                             style="background-color: #82E0AA;">DESIGN PATTERNS
                         <span class="tag-length">8</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/HZERO/" title="HZERO: 6">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D7BDE2;">HZERO
+                        <span class="tag-length">6</span>
                     </span>
                 </a>
                 

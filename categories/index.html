@@ -280,9 +280,13 @@
 <script>
 
 window.onload=function(){
+    
     $.ajax({url:"https://infinity-api.infinitynewtab.com/random-wallpaper",success:function(result){
         var bannerUrl = result.data[0].src.originalSrc;
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');                
+        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')'); 
+        
+
+        
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
@@ -377,6 +381,15 @@ window.onload=function(){
                 </a>
                 
                 
+                <a href="/categories/HZERO/" title="HZERO: 6">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D7BDE2;">HZERO
+                        <span class="tag-length">6</span>
+                    </span>
+                </a>
+                
+                
             </div>
         </div>
     </div>
@@ -419,7 +432,7 @@ window.onload=function(){
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"SPRING","max":15},{"name":"DATA STRUCTURE","max":15},{"name":"CONCURRENT","max":15},{"name":"BASIC","max":15},{"name":"JVM","max":15},{"name":"EFFECTIVE","max":15},{"name":"DESIGN PATTERNS","max":15}],
+            indicator: [{"name":"SPRING","max":15},{"name":"DATA STRUCTURE","max":15},{"name":"CONCURRENT","max":15},{"name":"BASIC","max":15},{"name":"JVM","max":15},{"name":"EFFECTIVE","max":15},{"name":"DESIGN PATTERNS","max":15},{"name":"HZERO","max":15}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -430,7 +443,7 @@ window.onload=function(){
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [11,9,11,13,13,2,8],
+                    value : [11,9,11,13,13,2,8,6],
                     name : '文章分类数量'
                 }
             ]

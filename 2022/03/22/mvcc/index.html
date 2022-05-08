@@ -1,0 +1,1105 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+       
+        <meta name="referrer" content="no-referrer" />
+    <meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="mvcc, Nekoo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>mvcc | Nekoo</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/my.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Nekoo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Nekoo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">mvcc</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-22
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><code>MVCC</code>，全称 <code>Multi-Version Concurrency Control</code>，即多版本并发控制。MVCC 是一种并发控制的方法，一般在数据库管理系统中，实现对数据库的并发访问，在编程语言中实现事务内存。</p>
+<p>多版本控制: 指的是一种提高并发的技术。最早的数据库系统，只有读读之间可以并发，读写，写读，写写都要阻塞。引入多版本之后，<strong>只有写写之间相互阻塞，其他三种操作都可以并行</strong>，这样大幅度提高了 InnoDB 的并发度。在内部实现中，与 Postgres 在数据行上实现多版本不同，InnoDB 是在 undolog 中实现的，通过 undolog 可以找回数据的历史版本。找回的数据历史版本可以提供给用户读(按照隔离级别的定义，有些读请求只能看到比较老的数据版本)，也可以在回滚的时候覆盖数据页上的数据。在 InnoDB 内部中，会记录一个全局的活跃读写事务数组，其主要用来判断事务的可见性。  MVCC 是一种多版本并发控制机制。</p>
+<h2 id="当前读、快照读"><a href="#当前读、快照读" class="headerlink" title="当前读、快照读"></a>当前读、快照读</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xuwc/p/13873611.html">参考资料</a></p>
+<ul>
+<li><p>当前读:像select lock in share mode(<code>共享锁</code>), select for update ; update, insert ,delete(<code>排他锁</code>)这些操作都是一种当前读，为什么叫当前读？就是它读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁</p>
+</li>
+<li><p>快照读:像<code>不加锁</code>的select操作就是快照读，即不加锁的非阻塞读；快照读的前提是隔离级别不是串行级别，串行级别下的快照读会退化成当前读；之所以出现快照读的情况，是基于提高并发性能的考虑，快照读的实现是基于多版本并发控制，即MVCC,可以认为MVCC是行锁的一个变种，但它在很多情况下，避免了加锁操作，降低了开销；既然是基于多版本，即快照读可能读到的并不一定是数据的最新版本，而有可能是之前的历史版本</p>
+</li>
+</ul>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>主要依赖记录中的3个隐式字段，undo日志，Read View来实现的。</p>
+<h2 id="隐式字段"><a href="#隐式字段" class="headerlink" title="隐式字段"></a>隐式字段</h2><p>每行记录除了我们自定义的字段外，还有数据库隐式定义的DB_TRX_ID,DB_ROLL_PTR,DB_ROW_ID等字段。</p>
+<ul>
+<li><p>DB_TRX_ID：6byte，最近修改（修改/插入）事务ID：记录创建这条记录/最后一次修改改记录的事务ID</p>
+</li>
+<li><p>DB_POLL_PTR:7byte，回滚指针，指向这条记录的上一个版本（存储于rollback segment里）</p>
+</li>
+<li><p>DB_ROW_ID：6byte，隐含的自增id（隐藏主键），如果数据表没有主键，innodb会自动已DB_ROW_ID产生一个聚簇索引</p>
+</li>
+<li><p>实际上还有一个删除flag隐藏字段，即记录被更新或删除并不代表真的删除，而是删除flag变了</p>
+</li>
+</ul>
+<p><img src="/2022/03/22/mvcc/image.png"></p>
+<p>DB_ROW_ID是数据库默认认为该记录生成的唯一隐式主键，DB_TRX_ID是当前记录的事务ID，而DB_ROLL_PTR是一个回滚指针，用于配合undo日志，指向上一个旧版本。</p>
+<h2 id="undo日志"><a href="#undo日志" class="headerlink" title="undo日志"></a>undo日志</h2><p><a target="_blank" rel="noopener" href="https://leviathan.vip/2019/02/14/InnoDB%E7%9A%84%E4%BA%8B%E5%8A%A1%E5%88%86%E6%9E%90-Undo-Log/#:"><strong>https://leviathan.vip/2019/02/14/InnoDB%E7%9A%84%E4%BA%8B%E5%8A%A1%E5%88%86%E6%9E%90-Undo-Log/#:</strong></a></p>
+<p>一条 Undo Log 对应一个事务中的一条读写语句，Undo Log 记录了被修改的 Record 的旧版本数据，当其他的事务需要读取该记录的旧版本时，通过 Undo Log 可以回溯到对应的版本的数据. 另外当事务需要回滚时，也可以根据 Undo Log 进行数据的回滚.</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/f-ck-need-u/archive/2018/05/08/9010872.html#auto_id_11"><strong>https://www.cnblogs.com/f-ck-need-u/archive/2018/05/08/9010872.html#auto_id_11</strong></a></p>
+<p>分两种</p>
+<ul>
+<li><p>insert undo log 代表事务在insert新纪录时产生的undo log，只在事务提交后可以被立即丢弃。</p>
+</li>
+<li><p>update undo log 事务在进行update或delete时产生的undo log；不仅在事务回滚时需要，在快照读时也需要，所以不能随便删除，只有在快速读或事务回滚不涉及该日志时，对应的日志才会被purge线程统一清除。</p>
+</li>
+</ul>
+<blockquote>
+<p>purge<br>从前面的分析可以看出，为了实现InnoDB的MVCC机制，更新或者删除操作都只是设置一下老记录的deleted_bit，并不真正将过时的记录删除。<br>为了节省磁盘空间，InnoDB有专门的purge线程来清理deleted_bit为true的记录。为了不影响MVCC的正常工作，purge线程自己也维护了一个read view（这个read view相当于系统中最老活跃事务的read view）;如果某个记录的deleted_bit为true，并且DB_TRX_ID相对于purge线程的read view可见，那么这条记录一定是可以被安全清除的。</p>
+</blockquote>
+<p>执行流程如下：</p>
+<p>一、 比如一个有个事务插入persion表插入了一条新记录，记录如下，<code>name</code>为Jerry, <code>age</code>为24岁，<code>隐式主键</code>是1，<code>事务ID</code>和<code>回滚指针</code>，我们假设为NULL</p>
+<p><img src="/2022/03/22/mvcc/image2.png"></p>
+<p>二、 现在来了一个<code>事务1</code>对该记录的<code>name</code>做出了修改，改为Tom</p>
+<ul>
+<li><p>在<code>事务1</code>修改该行(记录)数据时，数据库会先对该行加<code>排他锁</code></p>
+</li>
+<li><p>然后把该行数据拷贝到<code>undo log</code>中，作为旧记录，既在<code>undo log</code>中有当前行的拷贝副本</p>
+</li>
+<li><p>拷贝完毕后，修改该行<code>name</code>为Tom，并且修改隐藏字段的事务ID为当前<code>事务1</code>的ID, 我们默认从<code>1</code>开始，之后递增，回滚指针指向拷贝到<code>undo log</code>的副本记录，既表示我的上一个版本就是它</p>
+</li>
+<li><p>事务提交后，释放锁</p>
+</li>
+</ul>
+<p><img src="/2022/03/22/mvcc/image3.png"></p>
+<p>三、 又来了个<code>事务2</code>修改<code>person表</code>的同一个记录，将<code>age</code>修改为30岁</p>
+<ul>
+<li><p>在<code>事务2</code>修改该行数据时，数据库也先为该行加锁</p>
+</li>
+<li><p>然后把该行数据拷贝到<code>undo log</code>中，作为旧记录，发现该行记录已经有<code>undo log</code>了，那么最新的旧数据作为链表的表头，插在该行记录的<code>undo log</code>最前面</p>
+</li>
+<li><p>修改该行<code>age</code>为30岁，并且修改隐藏字段的事务ID为当前<code>事务2</code>的ID, 那就是<code>2</code>，回滚指针指向刚刚拷贝到<code>undo log</code>的副本记录</p>
+</li>
+<li><p>事务提交，释放锁</p>
+</li>
+</ul>
+<p><img src="/2022/03/22/mvcc/image4.png"></p>
+<p>从上面，我们就可以看出，不同事务或者相同事务的对同一记录的修改，会导致该记录的<code>undo log</code>成为一条记录版本线性表，既链表，<code>undo log</code>的链首就是最新的旧记录，链尾就是最早的旧记录（当然就像之前说的该undo log的节点可能是会purge线程清除掉，向图中的第一条insert undo log，其实在事务提交之后可能就被删除丢失了，不过这里为了演示，所以还放在这里）</p>
+<h2 id="Read-View（读视图）"><a href="#Read-View（读视图）" class="headerlink" title="Read View（读视图）"></a>Read View（读视图）</h2><p>Read View就是事务进行<code>快照读</code>操作的时候生产的<code>读视图</code>(Read View)，在该事务执行的快照读的那一刻，会生成数据库系统当前的一个快照，记录并维护系统当前活跃事务的ID(当每个事务开启时，都会被分配一个ID, 这个ID是递增的，所以最新的事务，ID值越大)</p>
+<p>所以我们知道 <code>Read View</code>主要是用来做可见性判断的, 即当我们某个事务执行快照读的时候，对该记录创建一个<code>Read View</code>读视图，把它比作条件用来判断当前事务能够看到哪个版本的数据，既可能是当前最新的数据，也有可能是该行记录的<code>undo log</code>里面的某个版本的数据。</p>
+<p><code>Read View</code>遵循一个可见性算法，主要是将<code>要被修改的数据</code>的最新记录中的<code>DB_TRX_ID</code>（即当前事务ID）取出来，与系统当前其他活跃事务的ID去对比（由Read View维护），如果<code>DB_TRX_ID</code>跟Read View的属性做了某些比较，不符合可见性，那就通过<code>DB_ROLL_PTR</code>回滚指针去取出<code>Undo Log</code>中的<code>DB_TRX_ID</code>再比较，即遍历链表的<code>DB_TRX_ID</code>（从链首到链尾，即从最近的一次修改查起），直到找到满足特定条件的<code>DB_TRX_ID</code>, 那么这个DB_TRX_ID所在的旧记录就是当前事务能看见的最新<code>老版本</code></p>
+<p><img src="/2022/03/22/mvcc/image5.png"></p>
+<p>在展示之前，我先简化一下Read View，我们可以把Read View简单的理解成有三个全局属性</p>
+<blockquote>
+<p><code>trx_list</code>（名字我随便取的）一个数值列表，用来维护Read View生成时刻系统正活跃的事务ID</p>
+<p><code>up_limit_id</code>记录trx_list列表中事务ID最小的ID</p>
+<p><code>low_limit_id</code>ReadView生成时刻系统尚未分配的下一个事务ID，也就是<code>目前已出现过的事务ID的最大值+1</code></p>
+</blockquote>
+<ul>
+<li><p>首先比较<code>DB_TRX_ID &lt; up_limit_id</code>, 如果小于，则当前事务能看到<code>DB_TRX_ID</code> 所在的记录，如果大于等于进入下一个判断</p>
+</li>
+<li><p>接下来判断 <code>DB_TRX_ID 大于等于 low_limit_id</code> , 如果大于等于则代表<code>DB_TRX_ID</code> 所在的记录在<code>Read View</code>生成后才出现的，那对当前事务肯定不可见，如果小于则进入下一个判断</p>
+</li>
+<li><p>判断<code>DB_TRX_ID</code> 是否在活跃事务之中，<code>trx_list.contains(DB_TRX_ID)</code>，如果在，则代表我<code>Read View</code>生成时刻，你这个事务还在活跃，还没有Commit，你修改的数据，我当前事务也是看不见的；如果不在，则说明，你这个事务在<code>Read View</code>生成之前就已经Commit了，你修改的结果，我当前事务是能看见的</p>
+</li>
+</ul>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><ul>
+<li>当<code>事务2</code>对某行数据执行了<code>快照读</code>，数据库为该行数据生成一个<code>Read View</code>读视图，假设当前事务ID为<code>2</code>，此时还有<code>事务1</code>和<code>事务3</code>在活跃中，<code>事务4</code>在<code>事务2</code>快照读前一刻提交更新了，所以Read View记录了系统当前活跃事务1，3的ID，维护在一个列表上，假设我们称为<code>trx_list</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>事务1</th>
+<th>事务2</th>
+<th>事务3</th>
+<th>事务4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务开始</td>
+<td>事务开始</td>
+<td>事务开始</td>
+<td>事务开始</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>修改且已提交</td>
+</tr>
+<tr>
+<td>进行中</td>
+<td>快照读</td>
+<td>进行中</td>
+<td></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>Read View不仅仅会通过一个列表<code>trx_list</code>来维护<code>事务2</code>执行<code>快照读</code>那刻系统正活跃的事务ID，还会有两个属性<code>up_limit_id</code>（记录trx_list列表中事务ID最小的ID），<code>low_limit_id</code>(记录trx_list列表中事务ID最大的ID，也有人说快照读那刻系统尚未分配的下一个事务ID也就是<code>目前已出现过的事务ID的最大值+1</code>，我更倾向于后者 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/66320138/answer/241418502">&gt;&gt;&gt;资料传送门 | 呵呵一笑百媚生的回答</a>) ；所以在这里例子中<code>up_limit_id</code>就是1，<code>low_limit_id</code>就是4 + 1 = 5，trx_list集合的值是1,3，<code>Read View</code>如下图</li>
+</ul>
+<p><img src="/2022/03/22/mvcc/image6.png"></p>
+<ul>
+<li>我们的例子中，只有<code>事务4</code>修改过该行记录，并在<code>事务2</code>执行<code>快照读</code>前，就提交了事务，所以当前该行当前数据的<code>undo log</code>如下图所示；我们的事务2在快照读该行记录的时候，就会拿该行记录的<code>DB_TRX_ID</code>去跟<code>up_limit_id</code>,<code>low_limit_id</code>和<code>活跃事务ID列表(trx_list)</code>进行比较，判断当前<code>事务2</code>能看到该记录的版本是哪个。</li>
+</ul>
+<p><img src="/2022/03/22/mvcc/image7.png"></p>
+<ul>
+<li>所以先拿该记录<code>DB_TRX_ID</code>字段记录的事务ID <code>4</code>去跟<code>Read View</code>的的<code>up_limit_id</code>比较，看<code>4</code>是否小于<code>up_limit_id</code>(1)，所以不符合条件，继续判断 <code>4</code> 是否大于等于 <code>low_limit_id</code>(5)，也不符合条件，最后判断<code>4</code>是否处于<code>trx_list</code>中的活跃事务, 最后发现事务ID为<code>4</code>的事务不在当前活跃事务列表中, 符合可见性条件，所以<code>事务4</code>修改后提交的最新结果对<code>事务2</code>快照读时是可见的，所以<code>事务2</code>能读到的最新数据记录是<code>事务4</code>所提交的版本，而事务4提交的版本也是全局角度上最新的版本</li>
+</ul>
+<p><img src="/2022/03/22/mvcc/image8.png"></p>
+<ul>
+<li>也正是Read View生成时机的不同，从而造成RC,RR级别下快照读的结果的不同</li>
+</ul>
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>RR是如何在RC级的基础上解决不可重复读的？</p>
+<p>当前读和快照读在RR级别下的区别：</p>
+<p>表1 </p>
+<table>
+<thead>
+<tr>
+<th>事务A</th>
+<th>事务B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开启事务</td>
+<td>开启事务</td>
+</tr>
+<tr>
+<td>快照读(无影响)查询金额为500</td>
+<td>快照读查询金额为500</td>
+</tr>
+<tr>
+<td>更新金额为400</td>
+<td></td>
+</tr>
+<tr>
+<td>提交事务</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>select 快照读金额为500</td>
+</tr>
+<tr>
+<td></td>
+<td>select lock in share mode当前读金额为400</td>
+</tr>
+</tbody></table>
+<p>在上表的顺序下，事务B的在事务A提交修改后的快照读是旧版本数据，而当前读是实时新数据40</p>
+<p>表2</p>
+<table>
+<thead>
+<tr>
+<th>事务A</th>
+<th>事务B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开启事务</td>
+<td>开启事务</td>
+</tr>
+<tr>
+<td>快照读（无影响）查询金额为500</td>
+<td></td>
+</tr>
+<tr>
+<td>更新金额为400</td>
+<td></td>
+</tr>
+<tr>
+<td>提交事务</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>select 快照读金额为400</td>
+</tr>
+<tr>
+<td></td>
+<td>select lock in share mode当前读金额为400</td>
+</tr>
+</tbody></table>
+<p>而在<code>表2</code>这里的顺序中，事务B在事务A提交后的快照读和当前读都是实时的新数据400，这是为什么呢？</p>
+<ul>
+<li>这里与上表的唯一区别仅仅是<code>表1</code>的事务B在事务A修改金额前<code>快照读</code>过一次金额数据，而<code>表2</code>的事务B在事务A修改金额前没有进行过快照读。</li>
+</ul>
+<p>所以我们知道事务中快照读的结果是非常依赖该事务首次出现快照读的地方，即某个事务中首次出现快照读的地方非常关键，它有决定该事务后续快照读结果的能力</p>
+<p>我们这里测试的是<code>更新</code>，同时<code>删除</code>和<code>更新</code>也是一样的，如果事务B的快照读是在事务A操作之后进行的，事务B的快照读也是能读取到最新的数据的</p>
+<p>RC,RR级别下的InnoDB快照读有什么不同？</p>
+<p>正是<code>Read View</code>生成时机的不同，从而造成RC,RR级别下快照读的结果的不同</p>
+<ul>
+<li><p>在RR级别下的某个事务的对某条记录的第一次快照读会创建一个快照及Read View, 将当前系统活跃的其他事务记录起来，此后在调用快照读的时候，还是使用的是同一个Read View，所以只要当前事务在其他事务提交更新之前使用过快照读，那么之后的快照读使用的都是同一个Read View，所以对之后的修改不可见；</p>
+</li>
+<li><p>即RR级别下，快照读生成Read View时，Read View会记录此时所有其他活动事务的快照，这些事务的修改对于当前事务都是不可见的。而早于Read View创建的事务所做的修改均是可见</p>
+</li>
+<li><p>而在RC级别下的，事务中，每次快照读都会新生成一个快照和Read View, 这就是我们在RC级别下的事务中可以看到别的事务提交的更新的原因</p>
+</li>
+</ul>
+<p>总之在RC隔离级别下，是每个快照读都会生成并获取最新的Read View；而在RR隔离级别下，则是同一个事务中的第一个快照读才会创建Read View, 之后的快照读获取的都是同一个Read View。</p>
+<h2 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h2><p>大概流程和上面一样：<br>四个概念</p>
+<ul>
+<li>m_ids:表示在生成 readview 时，当前系统中活跃的读写事务 id 列表</li>
+<li>min_trx_id:表示在生成 readview 时，当前系统中活跃的读写事务中最小的事务 id，也就是 m_ids 中最小的值</li>
+<li>max_trx_id:表示在生成 readview 时，系统中应该分配给下一个事务的 id 值(<strong>readView 和事务没有绑定关系</strong>)</li>
+<li>creator_trx_id:表示生成该 review 的事务的事务 id</li>
+</ul>
+<p>在访问某条记录时，按照一下步骤判断记录的某个版本是否可见，trx_id 表示当前这个记录的事务 id</p>
+<ol>
+<li>如果 trx_id=creator_id，表明当前事务在访问自己修改过的记录，该版本可以被当前事务访问；</li>
+<li>trx_id&lt;min_trx_id，表明生成该版本的事务在当前事务生成 readveiw 之前就已经提交了，该版本可以被当前事务访问</li>
+<li>trx_id&gt;=max_trx_id，表明生成该版本的事务在当前事务生成 readview 后才开启，该版本不可以被当前事务访问。</li>
+<li>min_trx_id=&lt;trx_id&lt;max_trx_id,需要判断 trx_id 是不是在 m_ids 列表中</li>
+</ol>
+<ul>
+<li>如果在，说明创建 readview 时生成该版本的事务还是活跃的，该版本不可访问</li>
+<li>如果不在，说明创建 readview 时生成该版本的时候已经提交了，该版本可以被访问</li>
+</ul>
+<p><strong>生成 readview 时机</strong></p>
+<ul>
+<li>RC 隔离级别：每次读取数据前，都生成一个 readview；</li>
+<li>RR 隔离级别：在第一次读取数据前，生成一个 readview；</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxnekoo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.qxnekoo.cn/2022/03/22/mvcc/">http://www.qxnekoo.cn/2022/03/22/mvcc/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxnekoo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/03/22/mvcc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="mvcc">
+                        
+                        <span class="card-title">mvcc</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/02/sql%E5%9F%BA%E6%9C%AC%E5%B8%B8%E7%94%A8%E5%8E%9F%E5%88%99/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="sql基本常用原则">
+                        
+                        <span class="card-title">sql基本常用原则</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
+                        <span class="chip bg-color">编程随记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <!--
+ * @Author: your name
+ * @Date: 2021-05-30 14:06:24
+ * @LastEditTime: 2021-07-16 12:38:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinede:\my-use\nekoozero\themes\hexo-theme-matery\layout\_partial\footer.ejs
+-->
+<footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6782589134"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <!-- <div class="col s12 m8 l8 copy-right">
+            
+        </div> -->
+        <!-- <div class="col s12 m8 l8 copy-right">高堂明镜悲白发，朝如青丝暮成雪</div> -->
+        <div class="col s12 m8 l8 copy-right">
+            <!-- Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span> -->
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici"></span>
+            <span style="font-size: larger;font-weight: bold; font-family:SimSun" id="gushici-author"></span>
+            <div style="float:right"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备18027893号</a></div>
+            <!-- <a href="/about" target="_blank">qxnekoo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+            
+            
+            
+            
+            <br>
+
+            <script type="text/javascript"> 
+                function getGushici() {
+                    $.ajax({url:"https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=iwbPjlHvayxXYk7KgpZQGcAHdGZ18T87",success:function(result){
+                        
+                        $('#gushici').html(result.data.content);
+                        $('#gushici-author').html(" --"+result.data.origin.author);
+                    }});
+                }
+                $("#gushici").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $("#gushici-author").click(function(){ 
+                　　　　//adding your code here　
+                    getGushici();
+                }); 
+                $(document).ready(function(){ 
+                    getGushici();
+                }); 
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

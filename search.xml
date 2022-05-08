@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>B+树</title>
+      <link href="2022/05/08/B-%E6%A0%91/"/>
+      <url>2022/05/08/B-%E6%A0%91/</url>
+      
+        <content type="html"><![CDATA[<p>操作系统从磁盘读取数据到内存是以磁盘块（block）为基本单位的，位于同一个磁盘块中的数据会被一次性读取出来，而不是需要什么取什么。即使只需要一个字节，磁盘也会从这个位置开始，顺序向后读取一定长度的数据放入内存。这样做的理论依据是计算机科学中著名的局部性原理： 当一个数据被用到时，其附近的数据也通常会马上被使用。</p><p>预读的长度一般为页（page）的整倍数。页是计算机管理存储器的逻辑块，硬件及操作系统往往将主存和磁盘存储区分割为连续的大小相等的块，每个存储块称为一页（在许多操作系统中，页得大小通常为 4k）。</p><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ul><li>有 k 个子树的中间节点包含有 k 个元素（B 树中是 k-1 个元素），<strong>每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。</strong></li><li><strong>所有叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且叶子结点本身依关键字的大小自小而大顺序链接。</strong></li><li><strong>所有叶子结点元素都同时存在于子节点，在子节点元素中是最大或最小元素。</strong></li></ul><p><img src="/2022/05/08/B-%E6%A0%91/image.png"><br>描述：</p><ul><li>每一个父节点的元素都出现在子节点中，是子节点的最大或最小元素</li><li>根结点的最大元素等同于整个 B+树的最大元素，以后无论插入删除多少元素，<strong>始终要保持最大元素在根结点中。</strong></li><li>父节点的元素都出现在了子节点中，因此所有叶子结点包含了全量元素信息。</li><li><strong>每一个叶子结点都带有指向下一个结点的指针，形成了一个有序链表。</strong><br><img src="/2022/05/08/B-%E6%A0%91/image2.png"><br>卫星数据：索引元素指向的数据记录，比如数据库中的某一行。在 B 树中无论中间节点还是叶子结点都带有卫星数据.<br><img src="/2022/05/08/B-%E6%A0%91/image3.png"><br>在数据库的聚集索引中，叶子结点直接包含卫星数据。在非聚集索引中，叶子节点带有指向卫星数据的指针。（只有叶子结点带有卫星数据，其余中间节点仅仅是索引，没有任何数据关联）<br><img src="/2022/05/08/B-%E6%A0%91/image4.png"><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3>B+树的中间节点没有卫星数据，所以同样大小的磁盘页可以容纳更多的结点元素，也就意味着数据量相同的情况下，B+树比B树更加矮胖，因此查询时IO次数也更少。</li></ul><p>B+树的查询必须最终找到叶子结点，而B树只要找到匹配元素即可，无论匹配元素位于中间节点还是叶子结点。因此B树的查询性能并不稳定，B+树的每一次查询都是稳定的。</p><p>范围查询更简便，只要找到最小的元素，然后进行链表顺序查询即可。</p><p>总结：</p><ol><li>单一结点存储更多的元素，使得查询的 IO 次数更少</li><li>所有查询都要找到叶子结点，查询性能稳定</li><li>所有叶子结点形成有序链表，便于范围查询</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql中B+树的应用</title>
+      <link href="2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+      <url>2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<p>特点：</p><ul><li><p>B+树中，所有数据记录节点都是按照键值的大小存放在同一层的叶子结点上，而非叶子结点只存储 key 的信息，<strong>这样可以大大减小每个节点的存储 key 的数量，降低 B+树的高度（磁盘页就能存放更多的 key 节点，减少了磁盘 IO</strong>）</p></li><li><p>B+树叶子节点的关键字从小到大有序排列，左边结尾数据都会保存右边节点开始数据的指针</p></li><li><p>B+树的层级更少：非叶子结点存储的关键字数跟多，树的层级更少查询更快</p></li><li><p>B+树数据都存放在节点，所以每次查询查找的次数都相同，所以查找速度比 B 树会更加稳定</p></li><li><p><strong>B+树天然具备排序功能，B+树所有的叶子结点数据构成了一个有序链表，在查询大小区间的数据时候更方便，数据紧密度高，缓存的命中率也会比 B 树高。</strong></p></li><li><p>B+树全节点遍历更快，因为数据都存放在叶子结点上，只需要遍历所有的叶子结点，而 B 树还需要遍历每个节点，因为非叶子结点上也会存储数据。</p></li></ul><p><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image.png"></p><h2 id="主键目录"><a href="#主键目录" class="headerlink" title="主键目录"></a>主键目录</h2><p><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image2.png"><br>mysql在存储数据的时候是以数据页为最小单位的，且数据在数据页中的存储是连续的，数据页中的数据是按照主键排序的（没有主键是由mysql自己维护的ROW_ID来排序），数据页和数据页之前是通过双向链表来关联的，数据与数据之间是通过单向链表维护的。</p><p>数据页的页号和数据页的最小主键会组成一个主键目录，这样主键查找时通过二分法会很快的定位到数据页。</p><h2 id="索引页"><a href="#索引页" class="headerlink" title="索引页"></a>索引页</h2><p>但是当数据量非常大时，二分查找的效率依旧是很低，所以设计了新的存储结构–索引页。</p><p>比如主键目录中存储了很多的主键信息，结构如下<br><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image3.png"></p><p>mysql会将其拆分成下面这样<br><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image4.png"><br>主键和数据页不单纯在主键目录中维护了，演变成了索引页，一张不够就分裂至下一张。</p><p>但是这样从外围是无法确定到哪个主键位于哪个索引页上，所以这个时候就需要一个东西来维护索引页，比如这样：<br><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image5.png"><br>如果要找id=20的数据，那么就会在索引页8上去找最小主键来确定下一页索引页（通过二分）</p><h2 id="索引分层"><a href="#索引分层" class="headerlink" title="索引分层"></a>索引分层</h2><p>数据量非常大的时候，索引页的数据就非常多，这个时候就要向上分层<br><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image6.png"><br>所以mysql整个数据结构就如下图所示<br><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image7.png"><br>这时就非常像一颗二叉树，也是数据在磁盘中真正存储的物理结构。索引页+数据页组成的B+树就是聚簇索引。</p><blockquote><p>聚簇索引是mysql基于主键索引结构创建的</p></blockquote><h2 id="非主键索引"><a href="#非主键索引" class="headerlink" title="非主键索引"></a>非主键索引</h2><p>也就是所说的联合索引。现在对name+age维护索引，原理是一样的，都是创建一颗B+树（所以索引不是越多越好，因为会占用空间）。</p><p>数据依旧是存放在数据页中，只不过每条记录存放的是 name=xx,age=xx,id=xx,不管怎么样，主键肯定会存的</p><p><img src="/2022/02/12/mysql%E4%B8%ADB-%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8/image8.png"></p><p>插入数据的时候，会按照name排序，如果name一样就按照age排序，如果还是一样就按照id排序。此时数据页中存放的是索引字段和主键，其他的字段是不会存的，会浪费空间。</p><p>对于非主键索引（一般都是联合索引），在维护 B+ 树的时候，会根据联合索引的字段依次去判断，假设联合索引为：<strong>name + address + age，那么 MySQL 在维护该索引的 B+ 树的时候，首先会根据 name 进行排序，name 相同的话会根据第二个 address 排序，如果 address 也一样，那么就会根据 age 去排序，如果 age 也一样，那么就会根据主键字段值去排序，且对于非主键索引，MySQL 在维护 B+ 树的时候，仅仅是维护索引字段和主键字段。</strong><br>查找的过程和聚簇索引是一样的。</p><p>下面这个sql:</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> name<span class="token punctuation">,</span>age <span class="token keyword">from</span> student <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token string">'xx'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这样的sql是会直接全部走索引的，不会进行回表。</p><h2 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h2><p>联合索引中存储了name，age，id三个字段，所以如果查找的是这三个，那么就会直接从联合索引中返回了。但如果还有其他字段要查询：</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> student <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token string">'xx'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>在这种情况下，联合索引并不会存储其他字段的值，这个时候就需要回表了。会根据id到聚簇索引的B+树中查询，因为聚簇索引中的数据页存储的是一条完整的记录，这个过程叫做回表。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hzero 异常处理</title>
       <link href="2022/01/23/hzero%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
       <url>2022/01/23/hzero%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</url>

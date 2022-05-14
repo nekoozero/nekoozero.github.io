@@ -80,17 +80,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>分类</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
@@ -107,28 +96,6 @@
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言板</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
     </a>
     
   </li>
@@ -183,17 +150,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -210,28 +166,6 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言板
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
 		</a>
           
         </li>
@@ -291,6 +225,8 @@ window.onload=function(){
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
+        $('#yiYan').css('font-family','cursive');
+        $('#yiYan').css('color','#D7C7AA');
         $('#yiYan').html(res);                
     }});
 }
@@ -318,6 +254,51 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2021/10/09/@Import/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Import注解">
+                            
+                            <span class="card-title">Import注解</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                参考文章：
+https://zhuanlan.zhihu.com/p/147025312
+@Import是Spring基于 Java 注解配置的主要组成部分。@Import注解提供了@Bean注解的功能，同时还有原来Spring基于 xml
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2021/09/20/Spring%20Boot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
                         <div class="card-image">
                             
@@ -342,12 +323,8 @@ window.onload=function(){
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -356,8 +333,8 @@ window.onload=function(){
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
                         </a>
                         
                     </div>
@@ -391,12 +368,8 @@ window.onload=function(){
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -405,8 +378,8 @@ window.onload=function(){
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
                         </a>
                         
                     </div>
@@ -439,12 +412,8 @@ BFS 和 DFS 最主要的区别：BFS 找到的路径一定是最短的，但代�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/DATA-STRUCTURE/" class="post-category">
-                                    DATA STRUCTURE
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -453,8 +422,8 @@ BFS 和 DFS 最主要的区别：BFS 找到的路径一定是最短的，但代�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">
+                            <span class="chip bg-color">算法</span>
                         </a>
                         
                     </div>
@@ -487,12 +456,8 @@ BFS 和 DFS 最主要的区别：BFS 找到的路径一定是最短的，但代�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/DESIGN-PATTERNS/" class="post-category">
-                                    DESIGN PATTERNS
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -501,8 +466,8 @@ BFS 和 DFS 最主要的区别：BFS 找到的路径一定是最短的，但代�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                            <span class="chip bg-color">设计模式</span>
                         </a>
                         
                     </div>
@@ -535,12 +500,8 @@ BFS 和 DFS 最主要的区别：BFS 找到的路径一定是最短的，但代�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/DESIGN-PATTERNS/" class="post-category">
-                                    DESIGN PATTERNS
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -549,56 +510,8 @@ BFS 和 DFS 最主要的区别：BFS 找到的路径一定是最短的，但代�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/08/12/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="单一职责原则">
-                            
-                            <span class="card-title">单一职责原则</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                SOLID 原则，由五个原则组成，分别是：单一职责原则、开闭原则、里氏替换原则、接口隔离原则和依赖反转原则。
-单一职责原则（Signle Responsibility Principle），简称 SRP，a class or module 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-12
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/DESIGN-PATTERNS/" class="post-category">
-                                    DESIGN PATTERNS
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                            <span class="chip bg-color">设计模式</span>
                         </a>
                         
                     </div>

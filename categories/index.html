@@ -80,17 +80,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>分类</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
@@ -107,28 +96,6 @@
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言板</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
     </a>
     
   </li>
@@ -183,17 +150,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -210,28 +166,6 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言板
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
 		</a>
           
         </li>
@@ -290,6 +224,8 @@ window.onload=function(){
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
+        $('#yiYan').css('font-family','cursive');
+        $('#yiYan').css('color','#D7C7AA');
         $('#yiYan').html(res);                
     }});
 }
@@ -316,151 +252,13 @@ window.onload=function(){
             </div>
             <div class="tag-chips">
                 
-                
-                
-                <a href="/categories/SPRING/" title="SPRING: 15">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">SPRING
-                        <span class="tag-length">15</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/DATA-STRUCTURE/" title="DATA STRUCTURE: 9">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">DATA STRUCTURE
-                        <span class="tag-length">9</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/CONCURRENT/" title="CONCURRENT: 11">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D5F5E3;">CONCURRENT
-                        <span class="tag-length">11</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/BASIC/" title="BASIC: 13">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #E8F8F5;">BASIC
-                        <span class="tag-length">13</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/JVM/" title="JVM: 13">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #FEF9E7;">JVM
-                        <span class="tag-length">13</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/EFFECTIVE/" title="EFFECTIVE: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F8F9F9;">EFFECTIVE
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/DESIGN-PATTERNS/" title="DESIGN PATTERNS: 8">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #82E0AA;">DESIGN PATTERNS
-                        <span class="tag-length">8</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/HZERO/" title="HZERO: 6">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D7BDE2;">HZERO
-                        <span class="tag-length">6</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="数据库: 6">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #A3E4D7;">数据库
-                        <span class="tag-length">6</span>
-                    </span>
-                </a>
-                
+                你目前还没有对文章进行分类.
                 
             </div>
         </div>
     </div>
 </div>
 
-
-    
-    <style type="text/css">
-    #category-radar {
-        width: 100%;
-        height: 360px;
-    }
-</style>
-
-<div class="container" data-aos="fade-up">
-    <div class="card">
-        <div id="category-radar" class="card-content"></div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/libs/echarts/echarts.min.js"></script>
-<script type="text/javascript">
-    let radarChart = echarts.init(document.getElementById('category-radar'));
-
-    
-
-    let option = {
-        title: {
-            left: 'center',
-            text: '文章分类雷达图',
-            textStyle: {
-                fontWeight: 500,
-                fontSize: 22
-            }
-        },
-        tooltip: {},
-        radar: {
-            name: {
-                textStyle: {
-                    color: '#3C4858'
-                }
-            },
-            indicator: [{"name":"SPRING","max":17},{"name":"DATA STRUCTURE","max":17},{"name":"CONCURRENT","max":17},{"name":"BASIC","max":17},{"name":"JVM","max":17},{"name":"EFFECTIVE","max":17},{"name":"DESIGN PATTERNS","max":17},{"name":"HZERO","max":17},{"name":"数据库","max":17}],
-            nameGap: 5,
-            center: ['50%','55%'],
-            radius: '66%'
-        },
-        series: [{
-            type: 'radar',
-            color: ['#3ecf8e'],
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data : [
-                {
-                    value : [15,9,11,13,13,2,8,6,6],
-                    name : '文章分类数量'
-                }
-            ]
-        }]
-    };
-
-    radarChart.setOption(option);
-</script>
 
     
 

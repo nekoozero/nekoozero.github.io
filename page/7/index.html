@@ -80,17 +80,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>分类</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
@@ -107,28 +96,6 @@
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言板</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
     </a>
     
   </li>
@@ -183,17 +150,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -210,28 +166,6 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言板
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
 		</a>
           
         </li>
@@ -291,6 +225,8 @@ window.onload=function(){
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
+        $('#yiYan').css('font-family','cursive');
+        $('#yiYan').css('color','#D7C7AA');
         $('#yiYan').html(res);                
     }});
 }
@@ -315,6 +251,52 @@ window.onload=function(){
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/05/17/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="数组和链表">
+                            
+                            <span class="card-title">数组和链表</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                两种非常基本的数据结构。
+数组一种线性的数据结构，而且在实现上也是用的连续的内存空间，所以寻址读取数据比较容易，插入和删除比较困难，插入和删除会变更数组中数据的位置。
+
+是一种线性表数据结构。他用一组连续的内存空间，来存储一组具有相同类型的
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">
+                            <span class="chip bg-color">算法</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -343,12 +325,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/BASIC/" class="post-category">
-                                    BASIC
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -357,8 +335,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/%E5%9F%BA%E7%A1%80/">
+                            <span class="chip bg-color">基础</span>
                         </a>
                         
                     </div>
@@ -392,12 +370,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -406,8 +380,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                            <span class="chip bg-color">多线程</span>
                         </a>
                         
                     </div>
@@ -439,12 +413,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -453,8 +423,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
                         </a>
                         
                     </div>
@@ -489,12 +459,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/EFFECTIVE/" class="post-category">
-                                    EFFECTIVE
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -503,8 +469,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/effective/">
+                            <span class="chip bg-color">effective</span>
                         </a>
                         
                     </div>
@@ -544,12 +510,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/EFFECTIVE/" class="post-category">
-                                    EFFECTIVE
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -558,56 +520,8 @@ https://mp.weixin.qq.com/s/iQ6qdNv7WTLa3drxNa9png
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/05/09/AQS/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="AQS">
-                            
-                            <span class="card-title">AQS</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                首先还是看一下源码中的注释
-Provides a framework for implementing blocking locks and related synchronizers (semaphores, events, etc) t
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/effective/">
+                            <span class="chip bg-color">effective</span>
                         </a>
                         
                     </div>

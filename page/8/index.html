@@ -80,17 +80,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>分类</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
@@ -107,28 +96,6 @@
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言板</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
     </a>
     
   </li>
@@ -183,17 +150,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -210,28 +166,6 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言板
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
 		</a>
           
         </li>
@@ -291,6 +225,8 @@ window.onload=function(){
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
+        $('#yiYan').css('font-family','cursive');
+        $('#yiYan').css('color','#D7C7AA');
         $('#yiYan').html(res);                
     }});
 }
@@ -318,6 +254,50 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/05/09/AQS/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="AQS">
+                            
+                            <span class="card-title">AQS</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                首先还是看一下源码中的注释
+Provides a framework for implementing blocking locks and related synchronizers (semaphores, events, etc) t
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%9F%BA%E7%A1%80/">
+                            <span class="chip bg-color">基础</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/05/02/SPI/">
                         <div class="card-image">
                             
@@ -340,12 +320,8 @@ window.onload=function(){
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/BASIC/" class="post-category">
-                                    BASIC
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -354,8 +330,8 @@ window.onload=function(){
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/%E5%9F%BA%E7%A1%80/">
+                            <span class="chip bg-color">基础</span>
                         </a>
                         
                     </div>
@@ -390,12 +366,8 @@ window.onload=function(){
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/BASIC/" class="post-category">
-                                    BASIC
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -404,8 +376,8 @@ window.onload=function(){
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/%E5%9F%BA%E7%A1%80/">
+                            <span class="chip bg-color">基础</span>
                         </a>
                         
                     </div>
@@ -440,12 +412,8 @@ bean定义描述了一个bean实例，该实例具有属性值、构造函数参
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -454,8 +422,8 @@ bean定义描述了一个bean实例，该实例具有属性值、构造函数参
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
                         </a>
                         
                     </div>
@@ -488,12 +456,8 @@ bean定义描述了一个bean实例，该实例具有属性值、构造函数参
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -502,8 +466,8 @@ bean定义描述了一个bean实例，该实例具有属性值、构造函数参
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
                         </a>
                         
                     </div>
@@ -539,12 +503,8 @@ BeanFactory 后置处理器，支持在 BeanFactory 标准初始化完成后，�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -553,56 +513,8 @@ BeanFactory 后置处理器，支持在 BeanFactory 标准初始化完成后，�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/21/BeanPostProcessor/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="BeanPostProcessor">
-                            
-                            <span class="card-title">BeanPostProcessor</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                先将源码中的注释贴上来，毕竟是翻译的，看的时候最好还是对照英文的来看：
-工厂挂钩允许自定义修改新的bean实例;例如，检查标记接口或使用代理包装bean。通常，通过标记接口或类似方法填充bean的后处理器将实现&#123;@link# po
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/SPRING/" class="post-category">
-                                    SPRING
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/spring/">
+                            <span class="chip bg-color">spring</span>
                         </a>
                         
                     </div>

@@ -80,17 +80,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>分类</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
@@ -107,28 +96,6 @@
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言板</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
     </a>
     
   </li>
@@ -183,17 +150,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -210,28 +166,6 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言板
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
 		</a>
           
         </li>
@@ -290,6 +224,8 @@ window.onload=function(){
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
+        $('#yiYan').css('font-family','cursive');
+        $('#yiYan').css('color','#D7C7AA');
         $('#yiYan').html(res);                
     }});
 }
@@ -317,28 +253,82 @@ window.onload=function(){
             <div class="tag-chips">
                 
                 
-                <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/" title="编程随记: 12">
+                <a href="/tags/spring/" title="spring: 15">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="编程随记" style="background-color: #F9EBEA;">编程随记
-                        <span class="tag-length">12</span>
+                            data-tagname="spring" style="background-color: #F9EBEA;">spring
+                        <span class="tag-length">15</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记: 65">
+                <a href="/tags/effective/" title="effective: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="笔记" style="background-color: #F5EEF8;">笔记
-                        <span class="tag-length">65</span>
+                            data-tagname="effective" style="background-color: #F5EEF8;">effective
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E5%B7%A5%E4%BD%9C/" title="工作: 6">
+                <a href="/tags/%E5%9F%BA%E7%A1%80/" title="基础: 16">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="工作" style="background-color: #D5F5E3;">工作
+                            data-tagname="基础" style="background-color: #D5F5E3;">基础
+                        <span class="tag-length">16</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式: 7">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="设计模式" style="background-color: #E8F8F5;">设计模式
+                        <span class="tag-length">7</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="多线程: 8">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="多线程" style="background-color: #FEF9E7;">多线程
+                        <span class="tag-length">8</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法: 9">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="算法" style="background-color: #F8F9F9;">算法
+                        <span class="tag-length">9</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/jvm/" title="jvm: 15">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="jvm" style="background-color: #82E0AA;">jvm
+                        <span class="tag-length">15</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="数据库: 6">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="数据库" style="background-color: #D7BDE2;">数据库
+                        <span class="tag-length">6</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/hzero/" title="hzero: 6">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="hzero" style="background-color: #A3E4D7;">hzero
                         <span class="tag-length">6</span>
                     </span>
                 </a>
@@ -367,7 +357,7 @@ window.onload=function(){
 <script type="text/javascript">
     
 
-    $('#tag-wordcloud').jQCloud([{"text":"编程随记","weight":12,"link":"/tags/编程随记/"},{"text":"笔记","weight":65,"link":"/tags/笔记/"},{"text":"工作","weight":6,"link":"/tags/工作/"}], {
+    $('#tag-wordcloud').jQCloud([{"text":"spring","weight":15,"link":"/tags/spring/"},{"text":"effective","weight":2,"link":"/tags/effective/"},{"text":"基础","weight":16,"link":"/tags/基础/"},{"text":"设计模式","weight":7,"link":"/tags/设计模式/"},{"text":"多线程","weight":8,"link":"/tags/多线程/"},{"text":"算法","weight":9,"link":"/tags/算法/"},{"text":"jvm","weight":15,"link":"/tags/jvm/"},{"text":"数据库","weight":6,"link":"/tags/数据库/"},{"text":"hzero","weight":6,"link":"/tags/hzero/"}], {
         autoResize: true
     });
 </script>

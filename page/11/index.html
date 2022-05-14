@@ -80,17 +80,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>分类</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
@@ -107,28 +96,6 @@
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言板</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
     </a>
     
   </li>
@@ -183,17 +150,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -210,28 +166,6 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言板
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
 		</a>
           
         </li>
@@ -291,6 +225,8 @@ window.onload=function(){
     }});
     $.ajax({url:"https://v1.hitokoto.cn",success:function(result){
         var res = result.hitokoto;
+        $('#yiYan').css('font-family','cursive');
+        $('#yiYan').css('color','#D7C7AA');
         $('#yiYan').html(res);                
     }});
 }
@@ -318,6 +254,50 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/04/04/JMM/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="JMM">
+                            
+                            <span class="card-title">JMM</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Java内存模型的目的是定义程序中各种变量的访问规则，即关注在虚拟机中把变量值存储到内存和从内存中取出变量值这样的底层细节。
+这里的变量包括了实例字段、静态字段和构成数组对象的元素，不包括局部变量与方法参数，因为就这是线程私有的，不会被共享
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/04/01/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%94%BE%E7%9A%84%E5%8C%BA%E5%9F%9F/">
                         <div class="card-image">
                             
@@ -342,12 +322,8 @@ JDK7之后及其以后的版本的HotSpot虚拟机选择把静态变量和Java�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -356,8 +332,8 @@ JDK7之后及其以后的版本的HotSpot虚拟机选择把静态变量和Java�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
                         </a>
                         
                     </div>
@@ -390,12 +366,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -404,8 +376,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
                         </a>
                         
                     </div>
@@ -440,12 +412,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/BASIC/" class="post-category">
-                                    BASIC
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -454,8 +422,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E8%AE%B0/">
-                            <span class="chip bg-color">编程随记</span>
+                        <a href="/tags/%E5%9F%BA%E7%A1%80/">
+                            <span class="chip bg-color">基础</span>
                         </a>
                         
                     </div>
@@ -488,12 +456,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -502,8 +466,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
                         </a>
                         
                     </div>
@@ -536,12 +500,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/CONCURRENT/" class="post-category">
-                                    CONCURRENT
-                                </a>
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
                                 
                             </span>
                         </div>
@@ -550,59 +510,8 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/19/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="运行时数据区域">
-                            
-                            <span class="card-title">运行时数据区域</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                虚拟机在执行Java程序的时候会把他所管理的内存划分为若干个不同的数据区域，有的区域随着虚拟机进程的启动而一直存在，有些区域则是依赖用户线程的启动和结束而自动建立和销毁。
-
-
-程序计数器（Program Counter Register）
-
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">笔记</span>
+                        <a href="/tags/%E5%9F%BA%E7%A1%80/">
+                            <span class="chip bg-color">基础</span>
                         </a>
                         
                     </div>

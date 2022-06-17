@@ -423,6 +423,92 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2022/05/21/InheritableThreadLocal/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="InheritableThreadLocal">
+                            
+                            <span class="card-title">InheritableThreadLocal</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                由于 ThreadLocal 设计之初就是为了绑定当前线程，如果希望当前线程的 ThreadLocal 能够被子线程使用，实现方式就会相当困难（需要用户自己在代码中传递）。在此背景下，InheritableThreadLocal 应运而生。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                            <span class="chip bg-color">多线程</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2022/05/20/ThreadLocal%E5%86%8D%E6%8E%A5%E8%A7%A6/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="ThreadLocal再接触">
+                            
+                            <span class="card-title">ThreadLocal再接触</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                ThreadLocal 类用来提供线程内部的局部变量。这种变量在多线程环境下访问(通过 get 或 set 方法访问)时能保证各个线程里的变量相对独立于其他线程内的变量。ThreadLocal 实例通常来说都是 private static
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-20
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                            <span class="chip bg-color">多线程</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2022/05/17/AQS%E7%9A%84Condition/">
                         <div class="card-image">
                             
@@ -581,92 +667,6 @@ Caused by: org.springframework.beans.factory.BeanCurrentlyInCreationException: E
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2022-04-23
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                qxnekoo
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/spring/">
-                            <span class="chip bg-color">spring</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/04/21/%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98%E4%BB%A5%E5%8F%8A%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="三级缓存以及循环依赖">
-                            
-                            <span class="card-title">三级缓存以及循环依赖</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                三级缓存一级缓存：存放的是已经实例化并且初始化完成的 Bean，可以被用户使用的 Bean。二级缓存：存储提前暴露的 bean，也即是实例化，但是并没有初始化的 Bean三级缓存：存储 bean 和其要加强的 aop 处理，如果需要 aop
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                qxnekoo
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/spring/">
-                            <span class="chip bg-color">spring</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/04/11/boot%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E8%B0%83%E7%94%A8mapper/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="boot多数据源调用mapper">
-                            
-                            <span class="card-title">boot多数据源调用mapper</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                场景：查询数据库的表信息，也就是表结构的数据，字段属性等等，写了一个 mapper 来查询 information_schema.tables 的数据，就可以查询本项目中数据库的表信息。现在需要查询别的数据库中的表信息，很明显，这个 map
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-11
                             </span>
                             <span class="publish-author">
                                 

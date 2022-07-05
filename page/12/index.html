@@ -254,6 +254,51 @@ window.onload=function(){
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/04/01/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%94%BE%E7%9A%84%E5%8C%BA%E5%9F%9F/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="类变量和 Class 对象存放的区域">
+                            
+                            <span class="card-title">类变量和 Class 对象存放的区域</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                先说结论：
+JDK7之后及其以后的版本的HotSpot虚拟机选择把静态变量和Java类的Class对象存放在一起，存储与Java堆中。换句话说，JDK8 中，两者都位于堆（Heap），且static 成员变量位于 Class对象内。
+字符串
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                qxnekoo
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/03/29/volatile/">
                         <div class="card-image">
                             
@@ -450,51 +495,6 @@ volatile 修饰之后并不是让线程直接从主内存中获取数据，依�
 
 程序计数器（Program Counter Register）
 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                qxnekoo
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/jvm/">
-                            <span class="chip bg-color">jvm</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/19/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="内存分配与回收策略">
-                            
-                            <span class="card-title">内存分配与回收策略</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                最根本的目标是自动化解决两个问题：自动给对象分配内存以及自动回收分配给对象的内存。
-对象优先在 Eden 分配对象在新生代Eden区中分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次minor GC。
--XX:+PrintGCDe
                             
                         </div>
                         <div class="publish-info">
